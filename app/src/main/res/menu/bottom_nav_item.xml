@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/save"
+        android:id="@+id/vote"
         android:title="@string/nav_item_vote"
         android:icon="@drawable/ic_vote"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/notice"
         android:title="@string/nav_item_notice"
         app:showAsAction="always"
         android:icon="@drawable/ic_notice" />
