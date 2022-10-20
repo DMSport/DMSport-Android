@@ -12,6 +12,13 @@
         android:theme="@style/Theme.App.Start"
         tools:targetApi="31">
         <activity
+            android:name=".BottomNavActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
