@@ -1,10 +1,13 @@
-package com.example.dmsport_android
+package com.example.dmsport_android.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ActivityBottomNavBinding
+import com.example.dmsport_android.ui.fragment.MyPageFragment
+import com.example.dmsport_android.ui.fragment.NoticeFragment
+import com.example.dmsport_android.ui.fragment.VoteFragment
 
 class BottomNavActivity : AppCompatActivity() {
 

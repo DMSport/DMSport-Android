@@ -1,4 +1,4 @@
-package com.example.dmsport_android
+package com.example.dmsport_android.ui.activity
 
 import android.animation.ObjectAnimator
 import android.os.Build
@@ -8,7 +8,13 @@ import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.dmsport_android.viewmodel.LoginViewModel
+import com.example.dmsport_android.R
+import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityLoginBinding
+import com.example.dmsport_android.getPref
+import com.example.dmsport_android.putPref
+import com.example.dmsport_android.repository.LoginRepository
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
@@ -27,26 +33,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         binding.loginActivity = this
 
         initSplashScreen()
-        initPwVisible()
         initLoginButton()
+        initPwVisible()
     }
 
     fun initLoginButton() {
         val email = binding.etLoginEmail.text.toString()
         val pw = binding.etLoginPw.text.toString()
         loginViewModel.login(email, pw)
-    }
-
-    fun initPwVisible() {
-        if(getPref(pref, "visible", false) as Boolean){
-            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_on)
-            binding.etLoginPw.inputType = InputType.TYPE_TEXT_VARIATION_NORMAL
-            putPref(pref.edit(), "visible", false)
-        }else{
-            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_off)
-            binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            putPref(pref.edit(), "visible", true)
-        }
     }
 
     private fun initSplashScreen() {
@@ -62,6 +56,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
     }
 
-
-
+    fun initPwVisible() {
+        if(getPref(pref, "visible", false) as Boolean){
+            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_on)
+            binding.etLoginPw.inputType = InputType.TYPE_TEXT_VARIATION_NORMAL
+            putPref(pref.edit(), "visible", false)
+        }else{
+            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_off)
+            binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            putPref(pref.edit(), "visible", true)
+        }
+    }
 }
