@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/vote"
+        android:title="@string/nav_item_vote"
+        android:icon="@drawable/ic_vote"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/notice"
+        android:title="@string/nav_item_notice"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_notice" />
+
+    <item
+        android:id="@+id/myPage"
+        android:title="@string/nav_item_myPage"
+        android:icon="@drawable/ic_my_page"
+        app:showAsAction="always" />
+
+</menu>
