@@ -1,9 +1,2 @@
 <resources>
-    <string name="app_name">DMSport-Android</string>
-    
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="nav_item_vote">vote</string>
-    <string name="nav_item_notice">notice</string>
-    <string name="nav_item_myPage">mypage</string>
-</resources>
