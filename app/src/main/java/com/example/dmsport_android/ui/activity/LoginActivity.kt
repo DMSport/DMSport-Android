@@ -1,14 +1,26 @@
-package com.example.dmsport_android
+package com.example.dmsport_android.ui.activity
 
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.animation.AnticipateInterpolator
+import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.ViewModelProvider
+import com.example.dmsport_android.viewmodel.LoginViewModel
+import com.example.dmsport_android.R
+import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityLoginBinding
+import com.example.dmsport_android.getPref
+import com.example.dmsport_android.putPref
+import com.example.dmsport_android.repository.LoginRepository
+import com.example.dmsport_android.viewmodel.factory.LoginViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
@@ -16,8 +28,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         LoginRepository()
     }
 
+    private val loginViewModelFactory : LoginViewModelFactory by lazy {
+        LoginViewModelFactory(loginRepository)
+    }
+
     private val loginViewModel : LoginViewModel by lazy {
-        LoginViewModel(loginRepository)
+        ViewModelProvider(this, loginViewModelFactory).get(LoginViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,25 +44,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
         initSplashScreen()
         initPwVisible()
-        initLoginButton()
     }
 
     fun initLoginButton() {
         val email = binding.etLoginEmail.text.toString()
         val pw = binding.etLoginPw.text.toString()
         loginViewModel.login(email, pw)
-    }
-
-    fun initPwVisible() {
-        if(getPref(pref, "visible", false) as Boolean){
-            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_on)
-            binding.etLoginPw.inputType = InputType.TYPE_TEXT_VARIATION_NORMAL
-            putPref(pref.edit(), "visible", false)
-        }else{
-            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_off)
-            binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            putPref(pref.edit(), "visible", true)
-        }
     }
 
     private fun initSplashScreen() {
@@ -62,6 +65,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
     }
 
-
-
+    fun initPwVisible() {
+        if(getPref(pref, "visible", false) as Boolean){
+            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_on)
+            binding.etLoginPw.inputType = InputType.TYPE_TEXT_VARIATION_NORMAL
+            putPref(pref.edit(), "visible", false)
+        }else{
+            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_off)
+            binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            putPref(pref.edit(), "visible", true)
+        }
+    }
 }

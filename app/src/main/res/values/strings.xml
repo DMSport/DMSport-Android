@@ -1,2 +1,18 @@
 <resources>
 
+    <string name="app_name">DMSportAndroid</string>
+
+    <string name="login_login">로그인</string>
+    <string name="login_email">이메일</string>
+    <string name="login_pw">비밀번호</string>
+    <string name="login_forgotPw">비밀번호를 잊으셨나요?</string>
+    <string name="login_DMS">DMSport.</string>
+    <string name="login_join">가입하기</string>
+    <string name="login_email_error">올바른 형식을 입력해주세요</string>
+    <string name="login_pw_error">올바른 형식을 입력해 주세요 (8자 ~ 20자)</string>
+
+    <string name="item_vote">vote</string>
+    <string name="item_notice">notice</string>
+    <string name="item_myPage">myPage</string>
+
+</resources>

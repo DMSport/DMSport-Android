@@ -1,13 +1,16 @@
-package com.example.dmsport_android
+package com.example.dmsport_android.viewmodel
 
+import android.content.SharedPreferences
+import android.text.InputType
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.dmsport_android.R
+import com.example.dmsport_android.dto.request.LoginRequest
+import com.example.dmsport_android.getPref
+import com.example.dmsport_android.putPref
+import com.example.dmsport_android.repository.LoginRepository
 import retrofit2.Response
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {

@@ -1,13 +1,12 @@
-package com.example.dmsport_android
+package com.example.dmsport_android.base
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
+import com.example.dmsport_android.initPref
 
 abstract class BaseActivity<T : ViewDataBinding>(
     @LayoutRes private val layoutId : Int
