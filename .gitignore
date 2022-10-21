@@ -36,3 +36,15 @@
 .gradle/buildOutputCleanup/outputFiles.bin
 
 .gradle/file-system.probe
+
+.gradle/7.4/checksums/md5-checksums.bin
+
+.gradle/7.4/checksums/sha1-checksums.bin
+
+.gradle/workspace-id.txt
+
+.gradle/workspace-id.txt.lock
+
+.idea/vcs.xml
+
+.idea/assetWizardSettings.xml
