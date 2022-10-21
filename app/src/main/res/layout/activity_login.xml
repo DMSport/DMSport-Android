@@ -2,13 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LoginActivity">
+    tools:context=".ui.activity.LoginActivity">
 
     <data>
 
         <variable
             name="LoginActivity"
-            type="com.example.dmsport_android.LoginActivity" />
+            type="com.example.dmsport_android.ui.activity.LoginActivity" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
