@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activity.RegisterActivity">
+
+    <data>
+
+        <variable
+            name="RegisterActivity"
+            type="com.example.dmsport_android.ui.activity.RegisterActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_register_start"
+            style="@style/Theme.DMSportAndroid.TextView_Title"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="224dp"
+            android:text="@string/register_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_register_dmsSport"
+            style="@style/Theme.DMSportAndroid.TextView_DMSport"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="-12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_start" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_register_name"
+            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            android:layout_marginTop="42dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_dmsSport">
+
+            <EditText
+                android:id="@+id/et_register_name"
+                style="@style/Theme.DMSportAndroid.EditText"
+                android:hint="@string/register_name" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_register_pw"
+            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            android:layout_marginTop="32dp"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/color_highLight1"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_register_name">
+
+            <EditText
+                android:id="@+id/et_register_pw"
+                style="@style/Theme.DMSportAndroid.EditText"
+                android:hint="@string/register_pw" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/img_register_visible_pw"
+            style="@style/Theme.DMSportAndroid.Toggle"
+            android:onClick="@{() -> RegisterActivity.initPwVisible()}"
+            app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw"
+            app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw"
+            app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_register_pw_re"
+            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            android:layout_marginTop="14dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_register_pw">
+
+            <EditText
+                android:id="@+id/et_register_pw_re"
+                style="@style/Theme.DMSportAndroid.EditText"
+                android:hint="@string/register_pw_re" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/img_register_visible_pw_re"
+            style="@style/Theme.DMSportAndroid.Toggle"
+            android:onClick="@{() -> RegisterActivity.initPwReVisible()}"
+            app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw_re"
+            app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw_re"
+            app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw_re" />
+
+        <Button
+            android:id="@+id/bt_register_next"
+            style="@style/Theme.DMSportAndroid.Button_Primary"
+            android:layout_marginBottom="42dp"
+            android:text="@string/register_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
