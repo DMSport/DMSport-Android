@@ -11,6 +11,9 @@
     <string name="login_email_error">올바른 형식을 입력해주세요</string>
     <string name="login_pw_error">올바른 형식을 입력해 주세요 (8자 ~ 20자)</string>
 
+    <string name="vote_event">종목</string>
+    <string name="vote_time">시간</string>
+
     <string name="item_vote">vote</string>
     <string name="item_notice">notice</string>
     <string name="item_myPage">myPage</string>
