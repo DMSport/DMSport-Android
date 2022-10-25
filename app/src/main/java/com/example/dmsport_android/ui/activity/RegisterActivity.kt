@@ -1,13 +1,12 @@
 package com.example.dmsport_android.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityRegisterBinding
-import com.example.dmsport_android.getPref
-import com.example.dmsport_android.putPref
+import com.example.dmsport_android.util.getPref
+import com.example.dmsport_android.util.putPref
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
 
