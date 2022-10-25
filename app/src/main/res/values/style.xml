@@ -23,7 +23,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:background">@drawable/edittext_courner</item>
-        <item name="android:layout_marginHorizontal">16dp</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:paddingVertical">14dp</item>
@@ -59,11 +58,14 @@
     <style name="Theme.DMSportAndroid.TextInputLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">16dp</item>
     </style>
 
-    <style name="Theme.DMSportAndroid.View">
+    <style name="Theme.DMSportAndroid.Toggle">
         <item name="android:layout_width">24dp</item>
         <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
     </style>
 
 </resources>

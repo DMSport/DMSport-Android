@@ -15,4 +15,10 @@
     <string name="item_notice">notice</string>
     <string name="item_myPage">myPage</string>
 
+    <string name="register_start">시작하기</string>
+    <string name="register_name">이름(실명)</string>
+    <string name="register_pw">비밀번호를 입력해주세요</string>
+    <string name="register_pw_re">비밀번호를 다시 입력해 주세요</string>
+    <string name="register_next">다음</string>
+
 </resources>
