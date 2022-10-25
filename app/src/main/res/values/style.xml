@@ -61,9 +61,31 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="Theme.DMSportAndroid.View">
+    <style name="Theme.DMSportAndroid.ImageView">
         <item name="android:layout_width">24dp</item>
         <item name="android:layout_height">24dp</item>
+    </style>
+
+    <style name="Theme.DMSportAndroid.View_Vote">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">190dp</item>
+        <item name="background">@color/color_primary3</item>
+    </style>
+    
+    <style name="Theme.DMSportAndroid.TextView_Vote">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/bold</item>
+        <item name="android:textColor">@color/color_hint1</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="Theme.DMSportAndroid.CardView_Vote_event">
+        <item name="android:layout_width">136dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="cardCornerRadius">20dp</item>
     </style>
 
 </resources>
