@@ -20,5 +20,9 @@
     <string name="register_pw">비밀번호를 입력해주세요</string>
     <string name="register_pw_re">비밀번호를 다시 입력해 주세요</string>
     <string name="register_next">다음</string>
+    <string name="verify_verify">인증하기</string>
+    <string name="verify_button">인증</string>
+    <string name="verify_code">인증번호</string>
+    <string name="verify_complement">완료</string>
 
 </resources>
