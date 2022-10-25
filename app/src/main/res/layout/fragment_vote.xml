@@ -1,12 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".ui.fragment.VoteFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-</FrameLayout>
+    <data>
+        <variable
+            name="VoteFragment"
+            type="com.example.dmsport_android.ui.fragment.VoteFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_base">
+
+        <View
+            android:id="@+id/view_vote_view"
+            style="@style/Theme.DMSportAndroid.View_Vote"
+            android:background="@color/color_primary3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_vote_event"
+            style="@style/Theme.DMSportAndroid.TextView_Vote"
+            android:text="@string/vote_event"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_vote_view" />
+
+        <HorizontalScrollView
+            android:id="@+id/sv_vote_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_vote_event">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_vote_bad"
+                    style="@style/Theme.DMSportAndroid.CardView_Vote_event" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_vote_soc"
+                    style="@style/Theme.DMSportAndroid.CardView_Vote_event" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_vote_bas"
+                    style="@style/Theme.DMSportAndroid.CardView_Vote_event" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_vote_event_vol"
+                    style="@style/Theme.DMSportAndroid.CardView_Vote_event" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:id="@+id/tv_vote_time"
+            style="@style/Theme.DMSportAndroid.TextView_Vote"
+            android:text="@string/vote_time"
+            app:layout_constraintTop_toBottomOf="@id/sv_vote_scroll_view"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="20sp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
