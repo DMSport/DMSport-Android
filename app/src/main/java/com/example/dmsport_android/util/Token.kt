@@ -1,4 +1,4 @@
-package com.example.dmsport_android
+package com.example.dmsport_android.util
 
 val BASE_URL = ""
 

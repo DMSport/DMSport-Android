@@ -1,15 +1,10 @@
 package com.example.dmsport_android.viewmodel
 
-import android.content.SharedPreferences
-import android.text.InputType
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.dmsport_android.R
 import com.example.dmsport_android.dto.request.LoginRequest
-import com.example.dmsport_android.getPref
-import com.example.dmsport_android.putPref
 import com.example.dmsport_android.repository.LoginRepository
 import retrofit2.Response
 
