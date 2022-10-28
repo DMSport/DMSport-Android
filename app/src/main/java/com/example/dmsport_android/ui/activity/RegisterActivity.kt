@@ -7,6 +7,7 @@ import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityRegisterBinding
 import com.example.dmsport_android.repository.RegisterRepository
 import com.example.dmsport_android.util.putPref
+import com.example.dmsport_android.util.snack
 import com.example.dmsport_android.util.startIntent
 import com.example.dmsport_android.viewmodel.RegisterViewModel
 import com.example.dmsport_android.viewmodel.factory.RegisterViewModelFactory
@@ -29,12 +30,12 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.registerViewModel = registerViewModel
-        registerViewModel.initPwVisible()
-        registerViewModel.initPwReVisible()
+        registerViewModel.pwVisible()
+        registerViewModel.pwReVisible()
         binding.registerActivity = this
     }
     
-    fun initNextButton(){
+    fun nextButton(){
         val name = binding.etRegisterName.text.toString()
         val pw = binding.etRegisterPw.text.toString()
         val pwRe = binding.etRegisterPwRe.text.toString()
@@ -43,7 +44,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             putPref(pref.edit(), "pw", pw)
             startIntent(this, VerifyActivity::class.java)
         }else{
-            Snackbar.make(binding.btRegisterNext, "항목을 확인해주세요!", Snackbar.LENGTH_SHORT).show()
+            snack(binding.root,"항목을 확인해주세요!")
         }
     }
 }

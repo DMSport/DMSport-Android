@@ -42,7 +42,7 @@ class RegisterViewModel(
         }
     }
 
-    fun initPwVisible() {
+    fun pwVisible() {
         if(getPref(pref, "visiblePw", false) as Boolean){
             _toggle.value = R.drawable.ic_visible_on
             _inputType.value = InputType.TYPE_TEXT_VARIATION_NORMAL
@@ -54,7 +54,7 @@ class RegisterViewModel(
         }
     }
 
-    fun initPwReVisible() {
+    fun pwReVisible() {
         if(getPref(pref, "visiblePwRe", false) as Boolean){
             _toggleRe.value = R.drawable.ic_visible_on
             _inputTypeRe.value = InputType.TYPE_TEXT_VARIATION_NORMAL
@@ -65,5 +65,4 @@ class RegisterViewModel(
             putPref(pref.edit(), "visiblePwRe", true)
         }
     }
-
 }

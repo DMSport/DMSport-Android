@@ -7,6 +7,10 @@
     <data>
 
         <variable
+            name="RegisterViewModel"
+            type="com.example.dmsport_android.viewmodel.RegisterViewModel" />
+
+        <variable
             name="RegisterActivity"
             type="com.example.dmsport_android.ui.activity.RegisterActivity" />
     </data>
@@ -21,6 +25,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="224dp"
             android:text="@string/register_start"
+            app:flow_verticalBias="23"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,6 +64,7 @@
 
             <EditText
                 android:id="@+id/et_register_pw"
+                android:inputType="@{RegisterViewModel.inputType}"
                 style="@style/Theme.DMSportAndroid.EditText"
                 android:hint="@string/register_pw" />
 
@@ -67,7 +73,8 @@
         <ImageView
             android:id="@+id/img_register_visible_pw"
             style="@style/Theme.DMSportAndroid.Toggle"
-            android:onClick="@{() -> RegisterActivity.initPwVisible()}"
+            android:onClick="@{() -> RegisterViewModel.pwVisible()}"
+            toggle="@{RegisterViewModel.toggle}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw" />
@@ -85,6 +92,7 @@
 
             <EditText
                 android:id="@+id/et_register_pw_re"
+                android:inputType="@{RegisterViewModel.inputTypeRe}"
                 style="@style/Theme.DMSportAndroid.EditText"
                 android:hint="@string/register_pw_re" />
 
@@ -93,7 +101,8 @@
         <ImageView
             android:id="@+id/img_register_visible_pw_re"
             style="@style/Theme.DMSportAndroid.Toggle"
-            android:onClick="@{() -> RegisterActivity.initPwReVisible()}"
+            toggle="@{RegisterViewModel.toggleRe}"
+            android:onClick="@{() -> RegisterViewModel.pwReVisible()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw_re"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw_re"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw_re" />
@@ -103,6 +112,7 @@
             style="@style/Theme.DMSportAndroid.Button_Primary"
             android:layout_marginBottom="42dp"
             android:text="@string/register_next"
+            android:onClick="@{()->RegisterActivity.nextButton()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
