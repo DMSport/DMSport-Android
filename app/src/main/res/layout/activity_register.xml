@@ -27,10 +27,8 @@
         <TextView
             android:id="@+id/tv_register_dmsSport"
             style="@style/Theme.DMSportAndroid.TextView_DMSport"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="-12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_register_start" />
+            app:layout_constraintTop_toBottomOf="@id/tv_register_start"
+            app:layout_constraintStart_toStartOf="@id/tv_register_start" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_register_name"
