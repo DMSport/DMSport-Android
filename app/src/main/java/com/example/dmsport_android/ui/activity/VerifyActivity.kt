@@ -42,6 +42,15 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
         snack(binding.root, "이메일을 입력해주세요")
     }
 
+    fun completeButton(){
+        val code = binding.etVerifyCode.text.toString()
+        val email = binding.etVerifyEmail.text.toString()
+        if(code.isNotEmpty() && email.isNotEmpty()){
+            registerViewModel.verify(code, email)
+        }
+        snack(binding.root, "항목을 확인해주세요")
+    }
+
     fun observeDuplicate(){
         registerViewModel.duplicateResponse.observe(this, Observer {
             when(it.code()){
