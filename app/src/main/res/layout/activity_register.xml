@@ -32,8 +32,8 @@
         <TextView
             android:id="@+id/tv_register_dmsSport"
             style="@style/Theme.DMSportAndroid.TextView_DMSport"
-            app:layout_constraintTop_toBottomOf="@id/tv_register_start"
-            app:layout_constraintStart_toStartOf="@id/tv_register_start" />
+            app:layout_constraintStart_toStartOf="@id/tv_register_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_start" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_register_name"
@@ -56,7 +56,7 @@
             style="@style/Theme.DMSportAndroid.TextInputLayout"
             android:layout_marginTop="32dp"
             app:errorEnabled="true"
-            app:errorTextColor="@color/color_highLight1"
+            app:helperTextTextColor="@color/color_highLight1"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,17 +64,17 @@
 
             <EditText
                 android:id="@+id/et_register_pw"
-                android:inputType="@{RegisterViewModel.inputType}"
                 style="@style/Theme.DMSportAndroid.EditText"
-                android:hint="@string/register_pw" />
+                android:hint="@string/register_pw"
+                android:inputType="@{RegisterViewModel.inputType}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/img_register_visible_pw"
             style="@style/Theme.DMSportAndroid.Toggle"
-            android:onClick="@{() -> RegisterViewModel.pwVisible()}"
             toggle="@{RegisterViewModel.toggle}"
+            android:onClick="@{() -> RegisterViewModel.pwVisible()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw" />
@@ -92,9 +92,9 @@
 
             <EditText
                 android:id="@+id/et_register_pw_re"
-                android:inputType="@{RegisterViewModel.inputTypeRe}"
                 style="@style/Theme.DMSportAndroid.EditText"
-                android:hint="@string/register_pw_re" />
+                android:hint="@string/register_pw_re"
+                android:inputType="@{RegisterViewModel.inputTypeRe}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,8 +111,8 @@
             android:id="@+id/bt_register_next"
             style="@style/Theme.DMSportAndroid.Button_Primary"
             android:layout_marginBottom="42dp"
-            android:text="@string/register_next"
             android:onClick="@{()->RegisterActivity.nextButton()}"
+            android:text="@string/register_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
