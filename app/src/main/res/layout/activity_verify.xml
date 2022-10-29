@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="VerifyActivity"
+            type="com.example.dmsport_android.ui.activity.VerifyActivity" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -42,6 +48,7 @@
         <Button
             android:id="@+id/bt_verify_verify"
             android:text="@string/verify_button"
+            android:onClick="@{()->VerifyActivity.verifyButton()}"
             style="@style/Theme.DMSportAndroid.Button_Primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_verify_email" />
@@ -66,6 +73,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/verify_complement"
+            android:onClick="@{()->VerifyActivity.completeButton()}"
             android:layout_marginBottom="42dp"
             app:layout_constraintBottom_toBottomOf="parent"
             style="@style/Theme.DMSportAndroid.Button_Primary"/>

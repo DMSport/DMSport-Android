@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.repository.RegisterRepository
 import com.example.dmsport_android.viewmodel.RegisterViewModel
 
-class RegisterviewModelFactory(
+class RegisterViewModelFactory(
     private val registerRepository: RegisterRepository,
     private val sharedPreferences: SharedPreferences,
 ) : ViewModelProvider.Factory {

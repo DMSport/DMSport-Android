@@ -41,12 +41,14 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         if (name.isNotEmpty() && pw.isNotEmpty() && pwRe.isNotEmpty() && pw.equals(pwRe)) {
             putPref(pref.edit(), "name", name)
             putPref(pref.edit(), "pw", pw)
-            if(getPref(pref, "emailVerify", false) as Boolean){
+            if(getPref(pref, getPref(pref, "email", "").toString(), false) as Boolean){
                 registerViewModel.register(pw, name, getPref(pref, "email", "").toString())
+            }else{
+                startIntent(this, VerifyActivity::class.java)
             }
-            startIntent(this, VerifyActivity::class.java)
+        }else{
+            snack(binding.root, "항목을 확인해주세요!")
         }
-        snack(binding.root, "항목을 확인해주세요!")
     }
 
     fun observeRegister(){
@@ -54,6 +56,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             when(it.code()){
                 CREATED -> {
                     snack(binding.root, "회원가입이 완료되었습니다")
+                    startIntent(this, BottomNavActivity::class.java)
                 }
                 BAD_REQUEST -> snack(binding.root, "항목을 확인해주세요")
             }

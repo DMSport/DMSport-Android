@@ -81,11 +81,11 @@ class RegisterViewModel(
             _toggle.value = R.drawable.ic_visible_on
             _inputType.value = InputType.TYPE_TEXT_VARIATION_NORMAL
             putPref(pref.edit(), "visiblePw", false)
+        } else {
+            _toggle.value = R.drawable.ic_visible_off
+            _inputType.value = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            putPref(pref.edit(), "visiblePw", true)
         }
-        _toggle.value = R.drawable.ic_visible_off
-        _inputType.value = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        putPref(pref.edit(), "visiblePw", true)
-
     }
 
     fun pwReVisible() {
@@ -93,10 +93,10 @@ class RegisterViewModel(
             _toggleRe.value = R.drawable.ic_visible_on
             _inputTypeRe.value = InputType.TYPE_TEXT_VARIATION_NORMAL
             putPref(pref.edit(), "visiblePwRe", false)
+        } else {
+            _toggleRe.value = R.drawable.ic_visible_off
+            _inputTypeRe.value = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            putPref(pref.edit(), "visiblePwRe", true)
         }
-        _toggleRe.value = R.drawable.ic_visible_off
-        _inputTypeRe.value = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        putPref(pref.edit(), "visiblePwRe", true)
-
     }
 }
