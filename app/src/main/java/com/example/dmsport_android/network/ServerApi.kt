@@ -13,11 +13,6 @@ interface ServerApi {
         @Body loginRequest: LoginRequest
     ) : Response<LoginResponse>
 
-    @POST("users")
-    suspend fun register(
-        @Body registerRequest : RegisterRequest
-    ) : Response<Response<RegisterResponse>>
-
     @POST("users/mail/duplicate")
     suspend fun duplicate(
         @Body duplicateRequest: DuplicateRequest
@@ -32,5 +27,10 @@ interface ServerApi {
     suspend fun verify(
         @Body verifyRequest: VerifyRequest
     ) : Response<Void>
+
+    @POST("users")
+    suspend fun register(
+        @Body registerRequest : RegisterRequest
+    ) : Response<RegisterResponse>
 
 }
