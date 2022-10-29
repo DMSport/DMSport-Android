@@ -3,6 +3,7 @@ package com.example.dmsport_android.network
 import com.example.dmsport_android.dto.request.DuplicateRequest
 import com.example.dmsport_android.dto.request.LoginRequest
 import com.example.dmsport_android.dto.request.RegisterRequest
+import com.example.dmsport_android.dto.request.VerifyEmailRequest
 import com.example.dmsport_android.dto.response.LoginResponse
 import com.example.dmsport_android.dto.response.RegisterResponse
 import retrofit2.Response
@@ -23,6 +24,11 @@ interface ServerApi {
     @POST("users/mail/duplicate")
     suspend fun duplicate(
         @Body duplicateRequest: DuplicateRequest
+    ) : Response<Void>
+
+    @POST("users/mail/signup")
+    suspend fun verifyEmail(
+        @Body verifyEmailRequest: VerifyEmailRequest
     ) : Response<Void>
 
 }

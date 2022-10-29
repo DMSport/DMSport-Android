@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dmsport_android.R
 import com.example.dmsport_android.dto.request.DuplicateRequest
+import com.example.dmsport_android.dto.request.VerifyEmailRequest
 import com.example.dmsport_android.repository.RegisterRepository
 import com.example.dmsport_android.util.getPref
 import com.example.dmsport_android.util.putPref
@@ -22,6 +23,9 @@ class RegisterViewModel(
 
     private val _duplicateResponse = MutableLiveData<Response<Void>>()
     val duplicateResponse : LiveData<Response<Void>> = _duplicateResponse
+
+    private val _verifyEmailResponse = MutableLiveData<Response<Void>>()
+    val verifyEmailResponse : LiveData<Response<Void>> = _verifyEmailResponse
 
     private val _inputType = MutableLiveData<Int>()
     val inputType : LiveData<Int> = _inputType
@@ -39,6 +43,13 @@ class RegisterViewModel(
         val duplicateRequest = DuplicateRequest(email)
         viewModelScope.launch(Dispatchers.IO){
             _duplicateResponse.postValue(registerRepository.duplicate(duplicateRequest))
+        }
+    }
+
+    fun verifyEmail(email : String){
+        val verifyEmailRequest = VerifyEmailRequest(email)
+        viewModelScope.launch(Dispatchers.IO){
+            _verifyEmailResponse.postValue(registerRepository.verifyEmail(verifyEmailRequest))
         }
     }
 
