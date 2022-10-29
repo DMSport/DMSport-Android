@@ -76,6 +76,13 @@ class RegisterViewModel(
         }
     }
 
+    fun initVisible(){
+        putPref(pref.edit(), "visiblePw", false)
+        _toggle.value = R.drawable.ic_visible_on
+        putPref(pref.edit(), "visiblePwRe", false)
+        _toggleRe.value = R.drawable.ic_visible_off
+    }
+
     fun pwVisible() {
         if (getPref(pref, "visiblePw", false) as Boolean) {
             _toggle.value = R.drawable.ic_visible_on

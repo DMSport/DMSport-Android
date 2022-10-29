@@ -1,6 +1,7 @@
 package com.example.dmsport_android.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
@@ -28,9 +29,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeRegister()
+        registerViewModel.initVisible()
         binding.registerViewModel = registerViewModel
-        registerViewModel.pwVisible()
-        registerViewModel.pwReVisible()
         binding.registerActivity = this
     }
 
