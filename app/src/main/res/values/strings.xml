@@ -13,6 +13,11 @@
 
     <string name="vote_event">종목</string>
     <string name="vote_time">시간</string>
+    <string name="vote_auto_participate">빈자리 자동 참여</string>
+    <string name="vote_event_badminton">배드민턴</string>
+    <string name="vote_event_soccer">축구</string>
+    <string name="vote_event_basketball">농구</string>
+    <string name="vote_event_volleyball">배구</string>
 
     <string name="item_vote">vote</string>
     <string name="item_notice">notice</string>
