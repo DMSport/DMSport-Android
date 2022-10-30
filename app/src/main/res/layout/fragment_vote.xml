@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.VoteFragment">
 
-
     <data>
         <variable
             name="VoteFragment"
@@ -25,44 +24,194 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_vote_auto_participate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vote_auto_participate"
+            android:textSize="14sp"
+            style="@style/Theme.DMSportAndroid.TextView_Vote"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="23dp"
+            app:layout_constraintStart_toEndOf="@id/tv_vote_event"
+            app:layout_constraintTop_toBottomOf="@id/view_vote_view" />
+
+        <TextView
             android:id="@+id/tv_vote_event"
             style="@style/Theme.DMSportAndroid.TextView_Vote"
             android:text="@string/vote_event"
             android:textSize="20sp"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_vote_view" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="48dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:checked="true"
+            android:gravity="center"
+            android:thumb="@drawable/vote_switch_thumb"
+            app:track="@drawable/vote_selector_switch"
+            app:layout_constraintStart_toEndOf="@id/tv_vote_auto_participate"
+            app:layout_constraintTop_toBottomOf="@id/view_vote_view"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <HorizontalScrollView
             android:id="@+id/sv_vote_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal"
+            android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_vote_event">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_vote_bad"
-                    style="@style/Theme.DMSportAndroid.CardView_Vote_event" />
+                    style="@style/Theme.DMSportAndroid.CardView_Vote_event"
+                    android:onClick="@{()->VoteFragment.initBadmintonSelected()}"
+                    app:cardCornerRadius="20dp" >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/tv_vote_event_bad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/vote_event_badminton"
+                        style="@style/Theme.DMSportAndroid.TextView_Vote_event" />
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/vote_event_badminton"
+                            app:layout_constraintTop_toBottomOf="@id/tv_vote_event_bad"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginTop="36dp"
+                            android:layout_marginStart="66dp"
+                            android:layout_marginEnd="34dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_vote_soc"
-                    style="@style/Theme.DMSportAndroid.CardView_Vote_event" />
+                    style="@style/Theme.DMSportAndroid.CardView_Vote_event"
+                    android:onClick="@{()->VoteFragment.initSoccerSelected()}"
+                    app:cardCornerRadius="20dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/tv_vote_event_soc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vote_event_soccer"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        style="@style/Theme.DMSportAndroid.TextView_Vote_event" />
+
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/vote_event_soccer"
+                            app:layout_constraintTop_toBottomOf="@id/tv_vote_event_soc"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginTop="36dp"
+                            android:layout_marginStart="66dp"
+                            android:layout_marginEnd="34dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_vote_bas"
-                    style="@style/Theme.DMSportAndroid.CardView_Vote_event" />
+                    style="@style/Theme.DMSportAndroid.CardView_Vote_event"
+                    android:onClick="@{()->VoteFragment.initBasSelected()}"
+                    app:cardCornerRadius="20dp" >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+
+                    <TextView
+                        android:id="@+id/tv_vote_event_basket"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vote_event_basketball"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/Theme.DMSportAndroid.TextView_Vote_event" />
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/vote_event_basketball"
+                            app:layout_constraintTop_toBottomOf="@id/tv_vote_event_basket"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginTop="36dp"
+                            android:layout_marginStart="66dp"
+                            android:layout_marginEnd="34dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_vote_event_vol"
-                    style="@style/Theme.DMSportAndroid.CardView_Vote_event" />
+                    android:id="@+id/cv_vote_vol"
+                    style="@style/Theme.DMSportAndroid.CardView_Vote_event"
+                    android:onClick="@{()->VoteFragment.initVolSelected()}"
+                    app:cardCornerRadius="20dp" >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_vote_event_volley"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vote_event_volleyball"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/Theme.DMSportAndroid.TextView_Vote_event" />
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/vote_event_volleyball"
+                            app:layout_constraintTop_toBottomOf="@id/tv_vote_event_volley"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginTop="36dp"
+                            android:layout_marginStart="66dp"
+                            android:layout_marginEnd="34dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
@@ -73,9 +222,16 @@
             android:id="@+id/tv_vote_time"
             style="@style/Theme.DMSportAndroid.TextView_Vote"
             android:text="@string/vote_time"
-            app:layout_constraintTop_toBottomOf="@id/sv_vote_scroll_view"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            android:textSize="20sp" />
+            app:layout_constraintTop_toBottomOf="@id/sv_vote_scroll_view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_vote_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_vote_time" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
