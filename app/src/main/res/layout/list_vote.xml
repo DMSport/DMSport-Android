@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="140dp"
+    android:background="@color/color_base" >
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="358dp"
-        android:layout_height="126dp" >
+        <androidx.cardview.widget.CardView
+            android:layout_width="358dp"
+            android:layout_height="126dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_list_vote_event"
+                    style="@style/Theme.DMSportAndroid.TextView_Vote_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="종목"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/Theme.DMSportAndroid.TextView_List_Vote"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="5dp"
+                    android:text="2/4명"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_list_vote_event" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="326dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="4dp"
+                    android:progressDrawable="@drawable/vote_event_progressbar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-    </androidx.cardview.widget.CardView>
-    
 </androidx.constraintlayout.widget.ConstraintLayout>
