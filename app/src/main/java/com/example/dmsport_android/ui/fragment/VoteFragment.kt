@@ -12,6 +12,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
         binding.voteFragment = this
 
     }
+
     fun initBadmintonSelected() {
         binding.cvVoteBad.setBackgroundResource(R.drawable.vote_card_view_on)
         binding.cvVoteSoc.setBackgroundResource(R.drawable.vote_card_view_off)
