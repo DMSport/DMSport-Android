@@ -74,7 +74,7 @@
             android:id="@+id/img_register_visible_pw"
             style="@style/Theme.DMSportAndroid.Toggle"
             toggle="@{RegisterViewModel.toggle}"
-            android:onClick="@{() -> RegisterViewModel.pwVisible()}"
+            android:onClick="@{() -> RegisterViewModel.visible()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw" />
@@ -102,7 +102,7 @@
             android:id="@+id/img_register_visible_pw_re"
             style="@style/Theme.DMSportAndroid.Toggle"
             toggle="@{RegisterViewModel.toggleRe}"
-            android:onClick="@{() -> RegisterViewModel.pwReVisible()}"
+            android:onClick="@{() -> RegisterViewModel.visibleRe()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw_re"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw_re"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw_re" />

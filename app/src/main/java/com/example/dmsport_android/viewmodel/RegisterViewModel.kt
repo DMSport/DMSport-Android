@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class RegisterViewModel(
     private val registerRepository: RegisterRepository,
-    private val pref: SharedPreferences
+    private val pref: SharedPreferences,
 ) : ViewModel() {
 
     private val _duplicateResponse = MutableLiveData<Response<Void>>()
@@ -69,8 +69,16 @@ class RegisterViewModel(
         }
     }
 
-    fun register(password: String, name: String, email: String) {
-        val registerRequest = RegisterRequest(password, name, email)
+    fun register(
+        password: String,
+        name: String,
+        email: String,
+    ) {
+        val registerRequest = RegisterRequest(
+            password = password,
+            name = name,
+            email = email,
+        )
         viewModelScope.launch(Dispatchers.IO) {
             _registerResponse.postValue(registerRepository.register(registerRequest))
         }
@@ -78,12 +86,14 @@ class RegisterViewModel(
 
     fun initVisible(){
         putPref(pref.edit(), "visiblePw", false)
-        _toggle.value = R.drawable.ic_visible_on
+        _toggle.value = R.drawable.ic_visible_off
+        _inputType.value = InputType.TYPE_TEXT_VARIATION_NORMAL
         putPref(pref.edit(), "visiblePwRe", false)
         _toggleRe.value = R.drawable.ic_visible_off
+        _inputType.value = InputType.TYPE_TEXT_VARIATION_NORMAL
     }
 
-    fun pwVisible() {
+    fun visible() {
         if (getPref(pref, "visiblePw", false) as Boolean) {
             _toggle.value = R.drawable.ic_visible_on
             _inputType.value = InputType.TYPE_TEXT_VARIATION_NORMAL
@@ -95,7 +105,7 @@ class RegisterViewModel(
         }
     }
 
-    fun pwReVisible() {
+    fun visibleRe() {
         if (getPref(pref, "visiblePwRe", false) as Boolean) {
             _toggleRe.value = R.drawable.ic_visible_on
             _inputTypeRe.value = InputType.TYPE_TEXT_VARIATION_NORMAL
