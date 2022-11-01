@@ -18,6 +18,8 @@
     <string name="vote_event_soccer">축구</string>
     <string name="vote_event_basketball">농구</string>
     <string name="vote_event_volleyball">배구</string>
+    <string name="vote_event_apply">신청</string>
+    <string name="vote_event_complete">완료</string>
 
     <string name="item_vote">vote</string>
     <string name="item_notice">notice</string>
