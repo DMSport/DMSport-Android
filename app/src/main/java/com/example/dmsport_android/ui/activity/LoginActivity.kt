@@ -7,7 +7,6 @@ import android.text.InputType
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.animation.AnticipateInterpolator
-import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
