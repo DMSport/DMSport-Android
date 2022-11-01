@@ -93,8 +93,8 @@
             android:id="@+id/bt_login_login"
             style="@style/Theme.DMSportAndroid.Button_Primary"
             android:layout_marginBottom="12dp"
-            android:text="@string/login_login"
             android:onClick="@{() -> LoginActivity.initLoginButton()}"
+            android:text="@string/login_login"
             app:layout_constraintBottom_toTopOf="@id/bt_login_register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

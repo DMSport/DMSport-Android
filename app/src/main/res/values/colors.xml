@@ -11,6 +11,7 @@
     <color name="color_base">#F8F8F8</color>
     <color name="color_primary">#80CCE3</color>
     <color name="color_primary2">#5596AA</color>
+    <color name="color_primary3">#C7EDF9</color>
     <color name="color_highLight1">#FF3232</color>
     <color name="color_hint1">#888888</color>
 </resources>
