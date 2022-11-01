@@ -3,9 +3,12 @@ package com.example.dmsport_android.ui.activity
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
+import android.renderscript.ScriptGroup.Input
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.view.animation.AnticipateInterpolator
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
@@ -35,10 +38,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-
+        visible()
         binding.loginActivity = this
-        binding.loginViewModel = loginViewModel
-        loginViewModel.initVisible()
         observeLogin()
         initSplashScreen()
     }
@@ -65,6 +66,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     start()
                 }
             }
+        }
+    }
+
+    fun visible(){
+        if(loginViewModel.visible()){
+            binding.imgLoginVisible.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_visible_on))
+            binding.etLoginPw.inputType = InputType.TYPE_TEXT_VARIATION_NORMAL
+        }else{
+            binding.imgLoginVisible.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_visible_off))
+            binding.etLoginPw.inputType = InputType.TYPE_TEXT_VARIATION_NORMAL or InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
     }
 
