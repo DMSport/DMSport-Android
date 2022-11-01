@@ -6,9 +6,13 @@
 
     <data>
 
-        <variable
-            name="LoginActivity"
-            type="com.example.dmsport_android.ui.activity.LoginActivity" />
+       <variable
+           name="LoginActivity"
+           type="com.example.dmsport_android.ui.activity.LoginActivity" />
+
+       <variable
+           name="LoginViewModel"
+           type="com.example.dmsport_android.viewmodel.LoginViewModel" />
 
     </data>
 
@@ -66,6 +70,7 @@
                 android:id="@+id/et_login_pw"
                 style="@style/Theme.DMSportAndroid.EditText"
                 android:hint="@string/login_pw"
+                android:inputType="@{LoginViewModel.inputType}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/inputLayout_login_email" />
@@ -76,7 +81,8 @@
             android:id="@+id/img_login_visible"
             style="@style/Theme.DMSportAndroid.Toggle"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_login_pw"
-            android:onClick="@{() -> LoginActivity.initPwVisible()}"
+            android:onClick="@{() -> LoginViewModel.visible()}"
+            toggle="@{LoginViewModel.toggle}"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_login_pw"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_login_pw" />
 
@@ -93,18 +99,18 @@
             android:id="@+id/bt_login_login"
             style="@style/Theme.DMSportAndroid.Button_Primary"
             android:layout_marginBottom="12dp"
-            android:onClick="@{() -> LoginActivity.initLoginButton()}"
+            android:onClick="@{() -> LoginActivity.login()}"
             android:text="@string/login_login"
             app:layout_constraintBottom_toTopOf="@id/bt_login_register"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <Button
             android:id="@+id/bt_login_register"
             style="@style/Theme.DMSportAndroid.Button_White"
             android:layout_marginBottom="42dp"
             android:text="@string/login_join"
-            android:onClick="@{() -> LoginActivity.initRegisterButton()}"
+            android:onClick="@{() -> LoginActivity.registerText()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

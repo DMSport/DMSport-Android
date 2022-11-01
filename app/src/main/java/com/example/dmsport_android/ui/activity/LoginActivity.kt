@@ -3,34 +3,32 @@ package com.example.dmsport_android.ui.activity
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
-import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.view.animation.AnticipateInterpolator
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.viewmodel.LoginViewModel
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityLoginBinding
-import com.example.dmsport_android.util.getPref
-import com.example.dmsport_android.util.putPref
 import com.example.dmsport_android.repository.LoginRepository
-import com.example.dmsport_android.util.startIntent
+import com.example.dmsport_android.util.*
 import com.example.dmsport_android.viewmodel.factory.LoginViewModelFactory
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
-    private val loginRepository : LoginRepository by lazy {
+    private val loginRepository: LoginRepository by lazy {
         LoginRepository()
     }
 
-    private val loginViewModelFactory : LoginViewModelFactory by lazy {
-        LoginViewModelFactory(loginRepository)
+    private val loginViewModelFactory: LoginViewModelFactory by lazy {
+        LoginViewModelFactory(loginRepository, pref)
     }
 
-    private val loginViewModel : LoginViewModel by lazy {
+    private val loginViewModel: LoginViewModel by lazy {
         ViewModelProvider(this, loginViewModelFactory).get(LoginViewModel::class.java)
     }
 
@@ -39,23 +37,26 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         super.onCreate(savedInstanceState)
 
         binding.loginActivity = this
-
+        binding.loginViewModel = loginViewModel
+        loginViewModel.initVisible()
+        observeLogin()
         initSplashScreen()
-        initPwVisible()
     }
 
-    fun initLoginButton() {
+    fun login() {
         val email = binding.etLoginEmail.text.toString()
         val pw = binding.etLoginPw.text.toString()
-        loginViewModel.login(email, pw)
+        if (email.isNotEmpty() && pw.isNotEmpty()) {
+            loginViewModel.login(email, pw)
+        }
     }
 
-    fun initRegisterButton(){
+    fun registerText() {
         startIntent(this, RegisterActivity::class.java)
     }
 
     private fun initSplashScreen() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             splashScreen.setOnExitAnimationListener { splashScreenView ->
                 ObjectAnimator.ofFloat(splashScreenView, View.ALPHA, 1f, 0f).run {
                     interpolator = AnticipateInterpolator()
@@ -67,15 +68,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
     }
 
-    fun initPwVisible() {
-        if(getPref(pref, "visible", false) as Boolean){
-            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_on)
-            binding.etLoginPw.inputType = InputType.TYPE_TEXT_VARIATION_NORMAL
-            putPref(pref.edit(), "visible", false)
-        }else{
-            binding.imgLoginVisible.setBackgroundResource(R.drawable.ic_visible_off)
-            binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            putPref(pref.edit(), "visible", true)
-        }
+    private fun observeLogin() {
+        loginViewModel.loginResponse.observe(this, Observer {
+            when (it.code()) {
+                OK -> {
+                    snack(binding.root, "로그인에 성공했습니다!")
+                    startIntent(this, BottomNavActivity::class.java)
+                    finish()
+                }
+                BAD_REQUEST -> snack(binding.root, "이메일 또는 비밀번호가 잘못되었습니다")
+                NOT_FOUND -> snack(binding.root, "존재하지 않는 회원입니다")
+            }
+        })
     }
 }
