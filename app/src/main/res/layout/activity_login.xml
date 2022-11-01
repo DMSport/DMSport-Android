@@ -30,7 +30,6 @@
         <TextView
             android:id="@+id/tv_login_dmsSport"
             style="@style/Theme.DMSportAndroid.TextView_DMSport"
-            android:layout_marginTop="-12dp"
             app:layout_constraintStart_toStartOf="@id/tv_login_login"
             app:layout_constraintTop_toBottomOf="@id/tv_login_login" />
 
@@ -48,13 +47,12 @@
             <EditText
                 android:id="@+id/et_login_email"
                 style="@style/Theme.DMSportAndroid.EditText"
-                android:layout_marginTop="42dp"
                 android:hint="@string/login_email" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout_login_pw"
+            android:id="@+id/textInputLayout_login_pw"
             style="@style/Theme.DMSportAndroid.TextInputLayout"
             app:errorEnabled="true"
             app:errorTextColor="@color/color_highLight1"
@@ -76,22 +74,20 @@
 
         <ImageView
             android:id="@+id/img_login_visible"
-            style="@style/Theme.DMSportAndroid.ImageView"
-            android:layout_marginEnd="36dp"
-            android:layout_marginBottom="20dp"
+            style="@style/Theme.DMSportAndroid.Toggle"
+            app:layout_constraintTop_toTopOf="@id/textInputLayout_login_pw"
             android:onClick="@{() -> LoginActivity.initPwVisible()}"
-            app:layout_constraintBottom_toBottomOf="@id/inputLayout_login_pw"
-            app:layout_constraintEnd_toEndOf="@id/inputLayout_login_pw"
-            app:layout_constraintTop_toTopOf="@id/inputLayout_login_pw" />
+            app:layout_constraintEnd_toEndOf="@id/textInputLayout_login_pw"
+            app:layout_constraintBottom_toBottomOf="@id/textInputLayout_login_pw" />
 
         <TextView
             android:id="@+id/tv_login_forgotPw"
             style="@style/Theme.DMSportAndroid.TextView_Des"
             android:layout_marginTop="48dp"
             android:text="@string/login_forgotPw"
-            app:layout_constraintEnd_toEndOf="@id/inputLayout_login_pw"
-            app:layout_constraintStart_toStartOf="@id/inputLayout_login_pw"
-            app:layout_constraintTop_toBottomOf="@id/inputLayout_login_pw" />
+            app:layout_constraintEnd_toEndOf="@id/textInputLayout_login_pw"
+            app:layout_constraintStart_toStartOf="@id/textInputLayout_login_pw"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_login_pw" />
 
         <Button
             android:id="@+id/bt_login_login"
@@ -108,6 +104,7 @@
             style="@style/Theme.DMSportAndroid.Button_White"
             android:layout_marginBottom="42dp"
             android:text="@string/login_join"
+            android:onClick="@{() -> LoginActivity.initRegisterButton()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

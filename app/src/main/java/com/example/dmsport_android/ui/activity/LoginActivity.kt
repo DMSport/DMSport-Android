@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.animation.AnticipateInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
@@ -15,11 +14,11 @@ import com.example.dmsport_android.viewmodel.LoginViewModel
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityLoginBinding
-import com.example.dmsport_android.getPref
-import com.example.dmsport_android.putPref
+import com.example.dmsport_android.util.getPref
+import com.example.dmsport_android.util.putPref
 import com.example.dmsport_android.repository.LoginRepository
+import com.example.dmsport_android.util.startIntent
 import com.example.dmsport_android.viewmodel.factory.LoginViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
@@ -49,6 +48,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         val email = binding.etLoginEmail.text.toString()
         val pw = binding.etLoginPw.text.toString()
         loginViewModel.login(email, pw)
+    }
+
+    fun initRegisterButton(){
+        startIntent(this, RegisterActivity::class.java)
     }
 
     private fun initSplashScreen() {

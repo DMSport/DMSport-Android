@@ -1,4 +1,4 @@
-package com.example.dmsport_android
+package com.example.dmsport_android.util
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 fun initPref(context: Context, mode: Int): SharedPreferences {
     return context.getSharedPreferences("user", mode)
 }
-
 
 fun putPref(editor: SharedPreferences.Editor, key: String, value: Any?) {
     when(value){
