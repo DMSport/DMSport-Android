@@ -8,6 +8,9 @@ apply plugin : 'kotlin-kapt'
 android {
     namespace 'com.example.dmsport_android'
     compileSdk 33
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
     defaultConfig {
         applicationId "com.example.dmsport_android"
@@ -17,6 +20,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", keystoreProperties["BASE_URL"]
     }
 
     buildTypes {
