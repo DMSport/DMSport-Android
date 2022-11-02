@@ -8,9 +8,9 @@ import com.example.dmsport_android.viewmodel.LoginViewModel
 
 class LoginViewModelFactory(
     private val loginRepository: LoginRepository,
-    private val pref : SharedPreferences,
+    private val sharedPreferences : SharedPreferences,
 ) :  ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LoginViewModel(loginRepository, pref) as T
+        return LoginViewModel(loginRepository, sharedPreferences) as T
     }
 }
