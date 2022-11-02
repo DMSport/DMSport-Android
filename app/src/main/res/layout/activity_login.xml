@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_login_login" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout_login_email"
+            android:id="@+id/textInputLayout_login_email"
             style="@style/Theme.DMSportAndroid.TextInputLayout"
             android:layout_marginTop="42dp"
             app:errorEnabled="true"
@@ -59,7 +59,7 @@
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputLayout_login_email"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_login_email"
             app:passwordToggleDrawable="@drawable/ic_visible_off">
 
             <EditText
@@ -68,7 +68,7 @@
                 android:hint="@string/login_pw"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputLayout_login_email" />
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_login_email" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
