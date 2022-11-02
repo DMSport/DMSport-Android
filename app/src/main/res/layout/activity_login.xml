@@ -6,13 +6,9 @@
 
     <data>
 
-       <variable
-           name="LoginActivity"
-           type="com.example.dmsport_android.ui.activity.LoginActivity" />
-
-       <variable
-           name="LoginViewModel"
-           type="com.example.dmsport_android.viewmodel.LoginViewModel" />
+        <variable
+            name="LoginActivity"
+            type="com.example.dmsport_android.ui.activity.LoginActivity" />
 
     </data>
 
@@ -38,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_login_login" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout_login_email"
+            android:id="@+id/textInputLayout_login_email"
             style="@style/Theme.DMSportAndroid.TextInputLayout"
             android:layout_marginTop="42dp"
             app:errorEnabled="true"
@@ -63,28 +59,26 @@
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputLayout_login_email"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_login_email"
             app:passwordToggleDrawable="@drawable/ic_visible_off">
 
             <EditText
                 android:id="@+id/et_login_pw"
                 style="@style/Theme.DMSportAndroid.EditText"
                 android:hint="@string/login_pw"
-                android:inputType="@{LoginViewModel.inputType}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputLayout_login_email" />
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_login_email" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/img_login_visible"
             style="@style/Theme.DMSportAndroid.Toggle"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout_login_pw"
-            android:onClick="@{() -> LoginViewModel.visible()}"
-            toggle="@{LoginViewModel.toggle}"
+            android:onClick="@{() -> LoginActivity.visible()}"
+            app:layout_constraintBottom_toBottomOf="@id/textInputLayout_login_pw"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_login_pw"
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout_login_pw" />
+            app:layout_constraintTop_toTopOf="@id/textInputLayout_login_pw" />
 
         <TextView
             android:id="@+id/tv_login_forgotPw"
@@ -103,14 +97,14 @@
             android:text="@string/login_login"
             app:layout_constraintBottom_toTopOf="@id/bt_login_register"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/bt_login_register"
             style="@style/Theme.DMSportAndroid.Button_White"
             android:layout_marginBottom="42dp"
-            android:text="@string/login_join"
             android:onClick="@{() -> LoginActivity.registerText()}"
+            android:text="@string/login_join"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

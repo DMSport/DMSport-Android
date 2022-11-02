@@ -5,11 +5,6 @@
     tools:context=".ui.activity.RegisterActivity">
 
     <data>
-
-        <variable
-            name="RegisterViewModel"
-            type="com.example.dmsport_android.viewmodel.RegisterViewModel" />
-
         <variable
             name="RegisterActivity"
             type="com.example.dmsport_android.ui.activity.RegisterActivity" />
@@ -65,16 +60,14 @@
             <EditText
                 android:id="@+id/et_register_pw"
                 style="@style/Theme.DMSportAndroid.EditText"
-                android:hint="@string/register_pw"
-                android:inputType="@{RegisterViewModel.inputType}" />
+                android:hint="@string/register_pw"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/img_register_visible_pw"
             style="@style/Theme.DMSportAndroid.Toggle"
-            toggle="@{RegisterViewModel.toggle}"
-            android:onClick="@{() -> RegisterViewModel.visible()}"
+            android:onClick="@{() -> RegisterActivity.visible()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw" />
@@ -93,16 +86,14 @@
             <EditText
                 android:id="@+id/et_register_pw_re"
                 style="@style/Theme.DMSportAndroid.EditText"
-                android:hint="@string/register_pw_re"
-                android:inputType="@{RegisterViewModel.inputTypeRe}" />
+                android:hint="@string/register_pw_re" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/img_register_visible_pw_re"
             style="@style/Theme.DMSportAndroid.Toggle"
-            toggle="@{RegisterViewModel.toggleRe}"
-            android:onClick="@{() -> RegisterViewModel.visibleRe()}"
+            android:onClick="@{() -> RegisterActivity.visibleRe()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw_re"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw_re"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw_re" />

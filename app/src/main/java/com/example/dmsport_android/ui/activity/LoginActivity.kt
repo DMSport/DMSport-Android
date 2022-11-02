@@ -3,9 +3,10 @@ package com.example.dmsport_android.ui.activity
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.text.InputType
 import android.view.View
 import android.view.animation.AnticipateInterpolator
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
@@ -35,10 +36,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-
         binding.loginActivity = this
-        binding.loginViewModel = loginViewModel
         loginViewModel.initVisible()
+        initVisible()
         observeLogin()
         initSplashScreen()
     }
@@ -68,16 +68,29 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
     }
 
+    private fun initVisible(){
+        binding.imgLoginVisible.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_visible_off))
+        binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+    }
+
+    fun visible(){
+        if(loginViewModel.visible()){
+            binding.imgLoginVisible.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_visible_on))
+            binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT
+        }else{
+            initVisible()
+        }
+    }
+
     private fun observeLogin() {
         loginViewModel.loginResponse.observe(this, Observer {
             when (it.code()) {
                 OK -> {
-                    snack(binding.root, "로그인에 성공했습니다!")
-                    startIntent(this, BottomNavActivity::class.java)
+                    startIntent(this, MainActivity::class.java)
                     finish()
                 }
-                BAD_REQUEST -> snack(binding.root, "이메일 또는 비밀번호가 잘못되었습니다")
-                NOT_FOUND -> snack(binding.root, "존재하지 않는 회원입니다")
+                BAD_REQUEST -> snack(binding.root, getString(R.string.login_bad_request))
+                NOT_FOUND -> snack(binding.root, getString(R.string.login_not_found))
             }
         })
     }
