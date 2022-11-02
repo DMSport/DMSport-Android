@@ -15,6 +15,8 @@ import com.example.dmsport_android.dto.response.RegisterResponse
 import com.example.dmsport_android.repository.RegisterRepository
 import com.example.dmsport_android.util.getPref
 import com.example.dmsport_android.util.putPref
+import com.example.dmsport_android.util.registerVisible
+import com.example.dmsport_android.util.registerVisibleRe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -36,17 +38,6 @@ class RegisterViewModel(
     private val _registerResponse = MutableLiveData<Response<RegisterResponse>>()
     val registerResponse: LiveData<Response<RegisterResponse>> = _registerResponse
 
-    private val _inputType = MutableLiveData<Int>()
-    val inputType: LiveData<Int> = _inputType
-
-    private val _toggle = MutableLiveData<Int>()
-    val toggle: LiveData<Int> = _toggle
-
-    private val _inputTypeRe = MutableLiveData<Int>()
-    val inputTypeRe: LiveData<Int> = _inputTypeRe
-
-    private val _toggleRe = MutableLiveData<Int>()
-    val toggleRe: LiveData<Int> = _toggleRe
 
     fun duplicate(email: String) {
         val duplicateRequest = DuplicateRequest(email)
@@ -85,35 +76,27 @@ class RegisterViewModel(
     }
 
     fun initVisible(){
-        putPref(pref.edit(), "visiblePw", false)
-        _toggle.value = R.drawable.ic_visible_off
-        _inputType.value = InputType.TYPE_TEXT_VARIATION_NORMAL
-        putPref(pref.edit(), "visiblePwRe", false)
-        _toggleRe.value = R.drawable.ic_visible_off
-        _inputType.value = InputType.TYPE_TEXT_VARIATION_NORMAL
+        putPref(pref.edit(), registerVisible, false)
     }
 
-    fun visible() {
-        if (getPref(pref, "visiblePw", false) as Boolean) {
-            _toggle.value = R.drawable.ic_visible_on
-            _inputType.value = InputType.TYPE_TEXT_VARIATION_NORMAL
-            putPref(pref.edit(), "visiblePw", false)
-        } else {
-            _toggle.value = R.drawable.ic_visible_off
-            _inputType.value = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            putPref(pref.edit(), "visiblePw", true)
+    fun visible() : Boolean{
+        if(getPref(pref, registerVisible, false) as Boolean){
+            putPref(pref.edit(), registerVisible, false)
+            return true
+        }else{
+            putPref(pref.edit(), registerVisible, true)
+            return false
         }
     }
 
-    fun visibleRe() {
-        if (getPref(pref, "visiblePwRe", false) as Boolean) {
-            _toggleRe.value = R.drawable.ic_visible_on
-            _inputTypeRe.value = InputType.TYPE_TEXT_VARIATION_NORMAL
-            putPref(pref.edit(), "visiblePwRe", false)
-        } else {
-            _toggleRe.value = R.drawable.ic_visible_off
-            _inputTypeRe.value = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            putPref(pref.edit(), "visiblePwRe", true)
+    fun visibleRe() : Boolean{
+        if(getPref(pref, registerVisibleRe, false) as Boolean){
+            putPref(pref.edit(), registerVisibleRe, false)
+            return true
+
+        }else{
+            putPref(pref.edit(), registerVisibleRe, true)
+            return false
         }
     }
 }

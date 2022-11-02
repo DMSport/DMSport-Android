@@ -20,24 +20,34 @@ import retrofit2.Response
 
 class LoginViewModel(
     private val loginRepository: LoginRepository,
-    private val pref : SharedPreferences,
+    private val pref: SharedPreferences,
 ) : ViewModel() {
 
     private val _loginResponse = MutableLiveData<Response<LoginResponse>>()
-    val loginResponse : LiveData<Response<LoginResponse>> = _loginResponse
+    val loginResponse: LiveData<Response<LoginResponse>> = _loginResponse
 
-    fun login(email : String, pw : String){
-        val loginRequest = LoginRequest(email, pw)
-        viewModelScope.launch(Dispatchers.IO){
+    fun login(
+        email: String,
+        pw: String,
+    ) {
+        val loginRequest = LoginRequest(
+            email = email,
+            password = pw,
+        )
+        viewModelScope.launch(Dispatchers.IO) {
             _loginResponse.postValue(loginRepository.login(loginRequest))
         }
     }
 
-    fun visible() : Boolean{
-        if(getPref(pref, loginVisible, false) as Boolean){
+    fun initVisible(){
+        putPref(pref.edit(), loginVisible, false)
+    }
+
+    fun visible(): Boolean {
+        if (getPref(pref, loginVisible, false) as Boolean) {
             putPref(pref.edit(), loginVisible, false)
             return true
-        }else{
+        } else {
             putPref(pref.edit(), loginVisible, true)
             return false
         }
