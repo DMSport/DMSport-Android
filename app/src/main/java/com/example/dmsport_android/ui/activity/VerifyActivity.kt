@@ -1,6 +1,5 @@
 package com.example.dmsport_android.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +10,6 @@ import com.example.dmsport_android.repository.RegisterRepository
 import com.example.dmsport_android.util.*
 import com.example.dmsport_android.viewmodel.RegisterViewModel
 import com.example.dmsport_android.viewmodel.factory.RegisterViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 
 class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_verify) {
 
@@ -95,7 +93,7 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
             when(it.code()){
                 CREATED -> {
                     snack(binding.root, getString(R.string.register_created))
-                    startIntent(this, BottomNavActivity::class.java)
+                    startIntent(this, MainActivity::class.java)
                 }
                 BAD_REQUEST ->{
                     snack(binding.root, getString(R.string.register_bad_request))

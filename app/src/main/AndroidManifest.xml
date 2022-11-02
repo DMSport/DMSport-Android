@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.BottomNavActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="false" />
 
         <meta-data

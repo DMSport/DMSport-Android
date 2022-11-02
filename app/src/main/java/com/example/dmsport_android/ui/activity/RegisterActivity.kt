@@ -122,7 +122,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             when (it.code()) {
                 CREATED -> {
                     snack(binding.root, getString(R.string.register_created))
-                    startIntent(this, BottomNavActivity::class.java)
+                    startIntent(this, MainActivity::class.java)
                 }
                 BAD_REQUEST -> snack(binding.root, getString(R.string.register_bad_request))
             }

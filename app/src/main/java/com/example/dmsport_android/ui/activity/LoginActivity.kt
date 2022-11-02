@@ -3,9 +3,7 @@ package com.example.dmsport_android.ui.activity
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Input
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.content.res.AppCompatResources
@@ -16,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.viewmodel.LoginViewModel
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
-import com.example.dmsport_android.databinding.ActivityBottomNavBinding
 import com.example.dmsport_android.databinding.ActivityLoginBinding
 import com.example.dmsport_android.repository.LoginRepository
 import com.example.dmsport_android.util.*
@@ -89,7 +86,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         loginViewModel.loginResponse.observe(this, Observer {
             when (it.code()) {
                 OK -> {
-                    startIntent(this, BottomNavActivity::class.java)
+                    startIntent(this, MainActivity::class.java)
                     finish()
                 }
                 BAD_REQUEST -> snack(binding.root, getString(R.string.login_bad_request))
