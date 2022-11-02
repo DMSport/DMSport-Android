@@ -2,6 +2,7 @@ package com.example.dmsport_android.ui.activity
 
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.Fragment
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityMainBinding
@@ -23,16 +24,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.vote -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.menu_frame_layout, VoteFragment()).commitAllowingStateLoss()
+                    replaceFragment(VoteFragment())
                 }
                 R.id.notice -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.menu_frame_layout, NoticeFragment()).commitAllowingStateLoss()
+                    replaceFragment(MyPageFragment())
                 }
                 R.id.myPage -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.menu_frame_layout, MyPageFragment()).commitAllowingStateLoss()
+                    replaceFragment(MyPageFragment())
                 }
             }
             true
         }
+    }
+
+    private fun replaceFragment(fragment : Fragment): Int {
+        return supportFragmentManager.beginTransaction().replace(R.id.menu_frame_layout, fragment).commitAllowingStateLoss()
     }
 }
