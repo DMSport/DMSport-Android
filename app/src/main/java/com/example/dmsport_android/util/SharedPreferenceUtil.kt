@@ -7,6 +7,10 @@ val loginVisible = "LoginVisible"
 val registerVisible = "RegisterVisible"
 val registerVisibleRe = "RegisterVisibleRe"
 
+val localEmail = "Email"
+val localName = "Name"
+val localPassword = "Password"
+
 fun initPref(context: Context, mode: Int): SharedPreferences {
     return context.getSharedPreferences("user", mode)
 }
