@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.ChangePwVerifyActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -12,6 +8,73 @@
             type="com.example.dmsport_android.ui.activity.ChangePwVerifyActivity" />
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tv_verify_verify"
+            style="@style/Theme.DMSportAndroid.TextView_Title"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="224dp"
+            android:text="@string/verify_verify"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_verify_dmSport"
+            style="@style/Theme.DMSportAndroid.TextView_Change_Password"
+            app:layout_constraintStart_toStartOf="@id/tv_verify_verify"
+            app:layout_constraintTop_toBottomOf="@id/tv_verify_verify" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_verify_email"
+            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="42dp"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toStartOf="@id/bt_verify_verify"
+            app:layout_constraintStart_toStartOf="parent"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tv_verify_dmSport">
+
+            <EditText
+                android:id="@+id/et_verify_email"
+                style="@style/Theme.DMSportAndroid.EditText"
+                android:hint="@string/login_email" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/bt_verify_verify"
+            android:text="@string/verify_button"
+            style="@style/Theme.DMSportAndroid.Button_Primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textInputLayout_verify_email" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:hintEnabled="false"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_verify_email">
+
+            <EditText
+                android:id="@+id/et_verify_code"
+                android:hint="@string/verify_code"
+                style="@style/Theme.DMSportAndroid.EditText"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/bt_verify_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/verify_complement"
+            android:layout_marginBottom="42dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/Theme.DMSportAndroid.Button_Primary"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
