@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="ChangePwVerifyActivity"
-            type="com.example.dmsport_android.ui.activity.ChangePwVerifyActivity" />
+            name="EmailChangePwActivity"
+            type="com.example.dmsport_android.ui.activity.EmailChangePwActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,6 +48,7 @@
         <ImageView
             android:id="@+id/img_change_visible_pw"
             style="@style/Theme.DMSportAndroid.Toggle"
+            android:onClick="@{()->EmailChangePwActivity.visible}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_change_pw"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_change_pw"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_change_pw" />
@@ -73,6 +74,7 @@
         <ImageView
             android:id="@+id/img_change_visible_pw_re"
             style="@style/Theme.DMSportAndroid.Toggle"
+            android:onClick="@{()->EmailChangePwActivity.visibleRe}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_change_pw_re"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_change_pw_re"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_change_pw_re" />
