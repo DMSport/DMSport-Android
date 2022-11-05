@@ -9,9 +9,12 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="color_base">#F8F8F8</color>
-    <color name="color_primary">#80CCE3</color>
-    <color name="color_primary2">#5596AA</color>
-    <color name="color_primary3">#C7EDF9</color>
-    <color name="color_highLight1">#FF3232</color>
-    <color name="color_hint1">#888888</color>
+    <color name="color_main">#80CCE3</color>
+    <color name="color_sub">#5596AA</color>
+    <color name="color_background">#C7EDF9</color>
+    <color name="color_error">#FF3232</color>
+    <color name="color_hint">#888888</color>
+    <color name="color_highLight">#FF6060</color>
+    <color name="color_disabled">#DDDDDD</color>
+    <color name="color_primary1">#E2F8FF</color>
 </resources>

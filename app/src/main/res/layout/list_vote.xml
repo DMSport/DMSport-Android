@@ -25,8 +25,6 @@
                 <TextView
                     android:id="@+id/tv_list_vote_event"
                     style="@style/Theme.DMSportAndroid.TextView_Vote_event"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginStart="16dp"
                     android:text="종목"
@@ -71,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="hh:MM 남음"
-                    android:textColor="@color/color_hint1"
+                    android:textColor="@color/color_hint"
                     android:fontFamily="@font/medium"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
