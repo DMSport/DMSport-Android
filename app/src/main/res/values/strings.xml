@@ -50,4 +50,9 @@
     <string name="duplicate_conflict">중복된 이메일 입니다</string>
     <string name="duplicate_no_content">인증 메일이 전송되었습니다</string>
 
+    <string name="mypage_changePw">비밀번호 변경</string>
+    <string name="mypage_auto_participant">종목 빈자리 자동 참여</string>
+    <string name="mypage_logout">로그아웃</string>
+    <string name="mypage_delete_user">회원탈퇴</string>
+
 </resources>
