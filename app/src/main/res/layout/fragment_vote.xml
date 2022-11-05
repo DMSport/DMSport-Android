@@ -13,34 +13,31 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_base">
+        android:layout_height="match_parent">
 
         <View
             android:id="@+id/view_vote_view"
             style="@style/Theme.DMSportAndroid.View_Vote"
-            android:background="@color/color_primary3"
+            android:background="@color/color_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_vote_auto_participate"
-            style="@style/Theme.DMSportAndroid.TextView_Vote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Theme.DMSportAndroid.TextView_Hint"
             android:layout_marginTop="23dp"
             android:layout_marginEnd="8dp"
             android:text="@string/vote_auto_participate"
-            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/switchMaterial"
             app:layout_constraintTop_toBottomOf="@id/view_vote_view" />
 
         <TextView
             android:id="@+id/tv_vote_event"
-            style="@style/Theme.DMSportAndroid.TextView_Vote"
+            style="@style/Theme.DMSportAndroid.TextView_Hint"
             android:layout_marginStart="20dp"
             android:text="@string/vote_event"
+            android:layout_marginTop="20dp"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_vote_view" />
@@ -88,8 +85,6 @@
                         <TextView
                             android:id="@+id/tv_vote_event_bad"
                             style="@style/Theme.DMSportAndroid.TextView_Vote_event"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:text="@string/vote_event_badminton"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -124,8 +119,6 @@
                         <TextView
                             android:id="@+id/tv_vote_event_soc"
                             style="@style/Theme.DMSportAndroid.TextView_Vote_event"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:text="@string/vote_event_soccer"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -161,8 +154,6 @@
                         <TextView
                             android:id="@+id/tv_vote_event_basket"
                             style="@style/Theme.DMSportAndroid.TextView_Vote_event"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:text="@string/vote_event_basketball"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -196,8 +187,6 @@
                         <TextView
                             android:id="@+id/tv_vote_event_volley"
                             style="@style/Theme.DMSportAndroid.TextView_Vote_event"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:text="@string/vote_event_volleyball"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -224,7 +213,7 @@
 
         <TextView
             android:id="@+id/tv_vote_time"
-            style="@style/Theme.DMSportAndroid.TextView_Vote"
+            style="@style/Theme.DMSportAndroid.TextView_Hint"
             android:layout_marginStart="20dp"
             android:text="@string/vote_time"
             android:textSize="20sp"
@@ -234,8 +223,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_vote_time"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             tools:listitem="@layout/list_vote"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_vote_time" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
