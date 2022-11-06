@@ -86,6 +86,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         loginViewModel.loginResponse.observe(this, Observer {
             when (it.code()) {
                 OK -> {
+                    ACCESS_TOKEN = "Bearer ${it.body()!!.access_token}"
                     startIntent(this, MainActivity::class.java)
                     finish()
                 }
