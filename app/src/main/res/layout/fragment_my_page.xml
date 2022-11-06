@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.MyPageFragment">
 
+    <data>
+        <variable
+            name="MyPageViewModel"
+            type="com.example.dmsport_android.viewmodel.MyPageViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +27,7 @@
                 style="@style/Theme.DMSportAndroid.TextView_Vote_event"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
-                android:text="김학동"
+                android:text="@{MyPageViewModel.myPageResponse.body().name}"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -31,14 +37,14 @@
                 style="@style/Theme.DMSportAndroid.TextView_Light"
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="USER"
+                android:text="@{MyPageViewModel.myPageResponse.body().authority}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_mypage_name"
                 app:layout_constraintStart_toEndOf="@id/tv_mypage_name" />
 
             <TextView
                 android:id="@+id/tv_mypage_email"
                 style="@style/Theme.DMSportAndroid.TextView_Light"
-                android:text="whatwhatwhat@what.com"
+                android:text="@{MyPageViewModel.myPageResponse.body().email}"
                 app:layout_constraintStart_toStartOf="@id/tv_mypage_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_mypage_name" />
 
