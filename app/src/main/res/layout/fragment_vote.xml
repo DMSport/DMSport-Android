@@ -169,6 +169,7 @@
                         style="@style/CardView_Vote"
                         android:onClick="@{()->VoteFragment.initVolSelected()}"
                         app:cardCornerRadius="20dp"
+                        android:layout_marginEnd="16dp"
                         app:cardElevation="0dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
