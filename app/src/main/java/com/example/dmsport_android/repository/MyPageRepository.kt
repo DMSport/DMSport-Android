@@ -8,7 +8,7 @@ import retrofit2.Response
 class MyPageRepository {
 
     suspend fun my() : Response<MyPageResponse> {
-        return ApiProvider.retrofit.my(ACCESS_TOKEN)
+        return ApiProvider.myPageApi.my(ACCESS_TOKEN)
     }
 
 }
