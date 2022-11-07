@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/tv_vote_auto_participate"
-                style="@style/TextView_Hint"
+                style="@style/TextView_Hint16"
                 android:layout_marginTop="23dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/vote_auto_participate"
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/tv_vote_event"
-                style="@style/TextView_Hint"
+                style="@style/TextView_Hint20"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/vote_event"
@@ -200,7 +200,7 @@
 
             <TextView
                 android:id="@+id/tv_vote_time"
-                style="@style/TextView_Hint"
+                style="@style/TextView_Hint20"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/vote_time"

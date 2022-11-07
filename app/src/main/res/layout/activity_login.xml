@@ -38,10 +38,9 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <LinearLayout
+            android:id="@+id/ll_login_edittext"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,10 +52,7 @@
                 style="@style/TextInputLayout"
                 app:errorEnabled="true"
                 app:errorTextColor="@color/color_error"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:hintEnabled="false">
 
                 <EditText
                     android:id="@+id/et_login_email"
@@ -70,30 +66,24 @@
                 style="@style/TextInputLayout"
                 app:errorEnabled="true"
                 app:errorTextColor="@color/color_error"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputLayout_login_email">
+                app:hintEnabled="false">
 
                 <EditText
                     android:id="@+id/et_login_pw"
                     style="@style/EditText"
-                    android:hint="@string/login_pw"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textInputLayout_login_email" />
+                    android:hint="@string/login_pw" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/img_login_visible"
-                style="@style/Theme.DMSportAndroid.Toggle"
-                android:onClick="@{() -> LoginActivity.visible()}"
-                app:layout_constraintBottom_toBottomOf="@id/textInputLayout_login_pw"
-                app:layout_constraintEnd_toEndOf="@id/textInputLayout_login_pw"
-                app:layout_constraintTop_toTopOf="@id/textInputLayout_login_pw" />
+        </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/img_login_visible"
+            style="@style/Toggle"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="@id/ll_login_edittext"
+            app:layout_constraintEnd_toEndOf="@id/ll_login_edittext"
+            android:onClick="@{() -> LoginActivity.visible()}" />
 
         <TextView
             android:id="@+id/tv_login_forgotPw"
@@ -102,7 +92,7 @@
             app:layout_constraintBottom_toTopOf="@id/ll_login_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/ll_login_edittext"
             app:layout_constraintVertical_bias="0.3" />
 
         <LinearLayout
@@ -112,8 +102,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98">
+            app:layout_constraintTop_toBottomOf="@id/ll_login_edittext"
+            app:layout_constraintVertical_bias="0.9">
 
             <Button
                 android:id="@+id/bt_login_login"
