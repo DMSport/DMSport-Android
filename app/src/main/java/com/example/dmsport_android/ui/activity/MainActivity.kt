@@ -32,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     replaceFragment(VoteFragment())
                 }
                 R.id.notice -> {
-                    replaceFragment(MyPageFragment())
+                    replaceFragment(NoticeFragment())
                 }
                 R.id.myPage -> {
                     replaceFragment(MyPageFragment())
