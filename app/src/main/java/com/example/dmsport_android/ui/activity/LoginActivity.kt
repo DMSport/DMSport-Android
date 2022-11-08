@@ -46,6 +46,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         initVisible()
         observeLogin()
         initSplashScreen()
+        snackBar()
     }
 
     fun login() {
@@ -100,5 +101,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 NOT_FOUND -> snack(binding.root, getString(R.string.login_not_found))
             }
         })
+    }
+
+    private fun snackBar(){
+        if(isLogOuted){
+            snack(binding.root, "로그아웃 되었습니다!")
+            isLogOuted = false
+        }
     }
 }

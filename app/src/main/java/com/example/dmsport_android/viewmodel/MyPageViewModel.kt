@@ -1,5 +1,6 @@
 package com.example.dmsport_android.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,9 +18,18 @@ class MyPageViewModel(
     private val _myPageResponse : MutableLiveData<Response<MyPageResponse>> = MutableLiveData()
     val myPageResponse : LiveData<Response<MyPageResponse>> = _myPageResponse
 
+    private val _logoutResponse : MutableLiveData<Response<Void>> = MutableLiveData()
+    val logoutResponse : LiveData<Response<Void>> = _logoutResponse
+
     fun my(){
         viewModelScope.launch(Dispatchers.IO){
             _myPageResponse.postValue(myPageRepository.my())
+        }
+    }
+
+    fun logout(){
+        viewModelScope.launch(Dispatchers.IO){
+            _logoutResponse.postValue(myPageRepository.logout())
         }
     }
 
