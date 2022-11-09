@@ -9,30 +9,11 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 
 interface ServerApi {
-    @POST("users/auth")
-    suspend fun login(
-        @Body loginRequest: LoginRequest
-    ) : Response<LoginResponse>
-
-    @POST("users/mail/duplicate")
-    suspend fun duplicate(
-        @Body duplicateRequest: DuplicateRequest
-    ) : Response<Void>
-
-    @POST("users/mail/signup")
-    suspend fun verifyEmail(
-        @Body verifyEmailRequest: VerifyEmailRequest
-    ) : Response<Void>
 
     @POST("users/mail/verify")
     suspend fun verify(
         @Body verifyRequest: VerifyRequest
     ) : Response<Void>
-
-    @POST("users")
-    suspend fun register(
-        @Body registerRequest : RegisterRequest
-    ) : Response<RegisterResponse>
 
     @POST("users/mail/find")
     suspend fun findVerifyEmail(
