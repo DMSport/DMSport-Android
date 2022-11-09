@@ -1,20 +1,15 @@
 package com.example.dmsport_android.network
 
-import com.example.dmsport_android.dto.request.*
-import com.example.dmsport_android.dto.response.LoginResponse
-import com.example.dmsport_android.dto.response.MyPageResponse
+import com.example.dmsport_android.dto.request.DuplicateRequest
+import com.example.dmsport_android.dto.request.RegisterRequest
+import com.example.dmsport_android.dto.request.VerifyEmailRequest
+import com.example.dmsport_android.dto.request.VerifyRequest
 import com.example.dmsport_android.dto.response.RegisterResponse
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 
-interface ServerApi {
-    @POST("users/auth")
-    suspend fun login(
-        @Body loginRequest: LoginRequest,
-    ) : Response<LoginResponse>
+interface RegisterApi {
 
     @POST("users/mail/duplicate")
     suspend fun duplicate(
@@ -35,9 +30,4 @@ interface ServerApi {
     suspend fun register(
         @Body registerRequest : RegisterRequest,
     ) : Response<RegisterResponse>
-
-    @GET("users/my")
-    suspend fun my(
-        @Header("Authorization") accessToken : String,
-    ) : Response<MyPageResponse>
 }

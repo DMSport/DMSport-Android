@@ -45,15 +45,15 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="4dp"
                 android:text="@{MyPageViewModel.myPageResponse.body().authority}"
-                app:layout_constraintBottom_toBottomOf="@id/tv_mypage_name"
-                app:layout_constraintStart_toEndOf="@id/tv_mypage_name" />
+                app:layout_constraintBottom_toBottomOf="@id/tv_my_page_name"
+                app:layout_constraintStart_toEndOf="@id/tv_my_page_name" />
 
             <TextView
                 android:id="@+id/tv_mypage_email"
                 style="@style/TextView_Light"
                 android:text="@{MyPageViewModel.myPageResponse.body().email}"
-                app:layout_constraintStart_toStartOf="@id/tv_mypage_name"
-                app:layout_constraintTop_toBottomOf="@id/tv_mypage_name" />
+                app:layout_constraintStart_toStartOf="@id/tv_my_page_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_my_page_name" />
 
             <ScrollView
                 style="@style/Theme.DMSportAndroid.ScrollView"
@@ -61,14 +61,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_mypage_email">
+                app:layout_constraintTop_toBottomOf="@id/tv_my_page_email">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_mypage_change_password"
+                        android:id="@+id/cv_my_page_change_password"
                         style="@style/Theme.DMSportAndroid.CardView_Mypage"
                         app:cardCornerRadius="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -101,13 +101,13 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_mypage_auto_participant"
+                        android:id="@+id/cv_my_page_auto_participant"
                         style="@style/Theme.DMSportAndroid.CardView_Mypage"
                         android:layout_marginTop="12dp"
                         app:cardCornerRadius="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cv_mypage_change_password">
+                        app:layout_constraintTop_toBottomOf="@id/cv_my_page_change_password">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -126,13 +126,14 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_mypage_logout"
+                        android:id="@+id/cv_my_page_logout"
                         style="@style/Theme.DMSportAndroid.CardView_Mypage"
                         android:layout_marginTop="12dp"
                         app:cardCornerRadius="20dp"
+                        android:onClick="@{()->MyPageViewModel.logout()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cv_mypage_auto_participant">
+                        app:layout_constraintTop_toBottomOf="@id/cv_my_page_auto_participant">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -161,7 +162,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_mypage_delete_user"
+                        android:id="@+id/cv_my_page_delete_user"
                         style="@style/Theme.DMSportAndroid.CardView_Mypage"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="8dp"
@@ -169,7 +170,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cv_mypage_logout">
+                        app:layout_constraintTop_toBottomOf="@id/cv_my_page_logout">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
