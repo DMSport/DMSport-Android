@@ -1,9 +1,11 @@
 package com.example.dmsport_android.ui.activity
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.content.res.AppCompatResources
@@ -15,9 +17,12 @@ import com.example.dmsport_android.viewmodel.LoginViewModel
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityLoginBinding
+import com.example.dmsport_android.databinding.ActivityMainBinding
 import com.example.dmsport_android.repository.LoginRepository
+import com.example.dmsport_android.ui.fragment.VoteFragment
 import com.example.dmsport_android.util.*
 import com.example.dmsport_android.viewmodel.factory.LoginViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
@@ -41,6 +46,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         initVisible()
         observeLogin()
         initSplashScreen()
+        snackBar()
     }
 
     fun login() {
@@ -90,6 +96,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         loginViewModel.loginResponse.observe(this, Observer {
             when (it.code()) {
                 OK -> {
+                    ACCESS_TOKEN = "Bearer ${it.body()!!.access_token}"
+                    isLogged = true
                     startIntent(this, MainActivity::class.java)
                     finish()
                 }
@@ -97,5 +105,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 NOT_FOUND -> snack(binding.root, getString(R.string.login_not_found))
             }
         })
+    }
+
+    private fun snackBar(){
+        if(isLogOuted){
+            snack(binding.root, "로그아웃 되었습니다!")
+            isLogOuted = false
+        }
     }
 }

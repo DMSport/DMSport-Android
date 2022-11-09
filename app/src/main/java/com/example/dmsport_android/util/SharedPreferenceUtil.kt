@@ -14,6 +14,9 @@ val localEmail = "Email"
 val localName = "Name"
 val localPassword = "Password"
 
+var isLogged = false
+var isLogOuted = false
+
 fun initPref(context: Context, mode: Int): SharedPreferences {
     return context.getSharedPreferences("user", mode)
 }

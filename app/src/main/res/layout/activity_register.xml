@@ -5,6 +5,7 @@
     tools:context=".ui.activity.RegisterActivity">
 
     <data>
+
         <variable
             name="RegisterActivity"
             type="com.example.dmsport_android.ui.activity.RegisterActivity" />
@@ -14,94 +15,104 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_register_start"
-            style="@style/Theme.DMSportAndroid.TextView_Title"
+        <LinearLayout
+            android:id="@+id/ll_register_title"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="224dp"
-            android:text="@string/register_start"
-            app:flow_verticalBias="23"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.22">
 
-        <TextView
-            android:id="@+id/tv_register_dmsSport"
-            style="@style/Theme.DMSportAndroid.TextView_DMSport"
-            app:layout_constraintStart_toStartOf="@id/tv_register_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_register_start" />
+            <TextView
+                android:id="@+id/tv_register_start"
+                style="@style/TextView_Title"
+                android:text="@string/register_start"
+                app:flow_verticalBias="23"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_register_name"
-            style="@style/Theme.DMSportAndroid.TextInputLayout"
-            android:layout_marginTop="42dp"
-            app:hintEnabled="false"
+            <TextView
+                android:id="@+id/tv_register_dmsSport"
+                style="@style/TextView_DMSport"
+                app:layout_constraintStart_toStartOf="@id/tv_register_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_register_start" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_register_edittext"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_register_dmsSport">
+            app:layout_constraintTop_toBottomOf="@id/ll_register_title">
 
-            <EditText
-                android:id="@+id/et_register_name"
-                style="@style/Theme.DMSportAndroid.EditText"
-                android:hint="@string/register_name" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_register_name"
+                style="@style/TextInputLayout"
+                app:errorEnabled="true"
+                app:hintEnabled="false">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/et_register_name"
+                    style="@style/EditText"
+                    android:hint="@string/register_name" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_register_pw"
-            style="@style/Theme.DMSportAndroid.TextInputLayout"
-            android:layout_marginTop="32dp"
-            app:errorEnabled="true"
-            app:helperTextTextColor="@color/color_highLight1"
-            app:hintEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_register_name">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/et_register_pw"
-                style="@style/Theme.DMSportAndroid.EditText"
-                android:hint="@string/register_pw"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_register_pw"
+                style="@style/TextInputLayout"
+                app:errorEnabled="true"
+                app:helperTextTextColor="@color/color_error"
+                app:hintEnabled="false">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/et_register_pw"
+                    style="@style/EditText"
+                    android:hint="@string/register_pw" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_register_pw_re"
+                style="@style/TextInputLayout"
+                app:errorEnabled="true"
+                app:hintEnabled="false">
+
+                <EditText
+                    android:id="@+id/et_register_pw_re"
+                    style="@style/EditText"
+                    android:hint="@string/register_pw_re" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/img_register_visible_pw"
-            style="@style/Theme.DMSportAndroid.Toggle"
+            style="@style/Toggle"
             android:onClick="@{() -> RegisterActivity.visible()}"
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw"
-            app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_register_pw_re"
-            style="@style/Theme.DMSportAndroid.TextInputLayout"
-            android:layout_marginTop="14dp"
-            app:errorEnabled="true"
-            app:hintEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_register_pw">
-
-            <EditText
-                android:id="@+id/et_register_pw_re"
-                style="@style/Theme.DMSportAndroid.EditText"
-                android:hint="@string/register_pw_re" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintBottom_toBottomOf="@id/ll_register_edittext"
+            app:layout_constraintEnd_toEndOf="@id/ll_register_edittext"
+            app:layout_constraintTop_toTopOf="@id/ll_register_edittext" />
 
         <ImageView
             android:id="@+id/img_register_visible_pw_re"
-            style="@style/Theme.DMSportAndroid.Toggle"
+            style="@style/Toggle"
+            android:layout_marginBottom="32dp"
             android:onClick="@{() -> RegisterActivity.visibleRe()}"
-            app:layout_constraintBottom_toBottomOf="@id/textInputLayout_register_pw_re"
-            app:layout_constraintEnd_toEndOf="@id/textInputLayout_register_pw_re"
-            app:layout_constraintTop_toTopOf="@id/textInputLayout_register_pw_re" />
+            app:layout_constraintBottom_toBottomOf="@id/ll_register_edittext"
+            app:layout_constraintEnd_toEndOf="@id/ll_register_edittext" />
 
         <Button
+            app:layout_constraintTop_toBottomOf="@id/ll_register_edittext"
             android:id="@+id/bt_register_next"
-            style="@style/Theme.DMSportAndroid.Button_Primary"
-            android:layout_marginBottom="42dp"
+            app:layout_constraintVertical_bias="0.9"
+            style="@style/Button_Primary"
+            android:layout_marginHorizontal="16dp"
             android:onClick="@{()->RegisterActivity.nextButton()}"
             android:text="@string/register_next"
             app:layout_constraintBottom_toBottomOf="parent"

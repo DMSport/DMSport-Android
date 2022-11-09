@@ -9,6 +9,6 @@ import retrofit2.Response
 class LoginRepository {
 
     suspend fun login(loginRequest: LoginRequest) : Response<LoginResponse> {
-        return ApiProvider.retrofit.login(loginRequest)
+        return ApiProvider.loginApi.login(loginRequest)
     }
 }

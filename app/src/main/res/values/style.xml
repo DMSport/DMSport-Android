@@ -1,128 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.DMSportAndroid.TextView_Title">
+    <style name="TextView_Title" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:textColor">@color/color_main</item>
         <item name="android:textSize">48sp</item>
         <item name="android:fontFamily">@font/bold</item>
     </style>
 
-    <style name="Theme.DMSportAndroid.TextView_DMSport">
+    <style name="TextView_DMSport" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">32sp</item>
         <item name="android:text">@string/login_DMS</item>
         <item name="android:fontFamily">@font/bold</item>
-        <item name="android:textColor">@color/color_primary2</item>
+        <item name="android:textColor">@color/color_sub</item>
         <item name="android:layout_marginTop">-12dp</item>
     </style>
 
     <style name="Theme.DMSportAndroid.TextView_Change_Password">
-        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">32sp</item>
         <item name="android:text">@string/change_pw_text_en</item>
         <item name="android:fontFamily">@font/bold</item>
         <item name="android:textColor">@color/color_primary2</item>
         <item name="android:layout_marginTop">-12dp</item>
     </style>
+    <style name="TextView_Des" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_sub</item>
+    </style>
 
-    <style name="Theme.DMSportAndroid.EditText">
+    <style name="TextView_Hint20" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/color_hint</item>
+    </style>
+
+    <style name="TextView_Hint16" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/color_hint</item>
+    </style>
+
+    <style name="TextView_Light" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/light</item>
+        <item name="android:textColor">@color/color_hint</item>
+    </style>
+
+    <style name="TextView_Vote_event" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="TextView_List_Vote" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/color_hint</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/bold</item>
+    </style>
+
+    <style name="EditText" parent="Widget.AppCompat.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:background">@drawable/edittext_courner</item>
         <item name="android:paddingStart">16dp</item>
+        <item name="android:singleLine">true</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:maxLength">30</item>
         <item name="android:paddingVertical">14dp</item>
     </style>
 
-    <style name="Theme.DMSportAndroid.TextView_Des">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/color_primary2</item>
-    </style>
-
-    <style name="Theme.DMSportAndroid.Button_Primary">
-        <item name="android:layout_width">0dp</item>
+    <style name="Button_Primary" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:background">@drawable/button_primary</item>
-        <item name="android:layout_marginHorizontal">16dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/bold</item>
     </style>
 
-    <style name="Theme.DMSportAndroid.Button_White">
-        <item name="android:layout_width">0dp</item>
+    <style name="Button_White" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:background">@drawable/button_white</item>
-        <item name="android:layout_marginHorizontal">16dp</item>
-        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:textColor">@color/color_main</item>
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/bold</item>
     </style>
 
-    <style name="Theme.DMSportAndroid.TextInputLayout">
-        <item name="android:layout_width">0dp</item>
+    <style name="TextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginHorizontal">16dp</item>
     </style>
 
-    <style name="Theme.DMSportAndroid.Toggle">
+    <style name="Toggle">
         <item name="android:layout_width">24dp</item>
         <item name="android:layout_height">24dp</item>
         <item name="android:layout_marginBottom">20dp</item>
         <item name="android:layout_marginEnd">20dp</item>
     </style>
 
-    <style name="Theme.DMSportAndroid.View_Vote">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">190dp</item>
-        <item name="background">@color/color_primary3</item>
+    <style name="Theme.DMSportAndroid.ImageView_Vote">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_marginStart">66dp</item>
+        <item name="android:layout_marginTop">36dp</item>
+        <item name="android:layout_marginEnd">34dp</item>
     </style>
     
-    <style name="Theme.DMSportAndroid.TextView_Vote">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="fontFamily">@font/bold</item>
-        <item name="android:textColor">@color/color_hint1</item>
-        <item name="android:layout_marginTop">20dp</item>
-    </style>
-
-    <style name="Theme.DMSportAndroid.TextView_Vote_event">
-        <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/bold</item>
-        <item name="android:textSize">18sp</item>
+    <style name="CardView_Vote" parent="CardView">
+        <item name="android:layout_width">136dp</item>
+        <item name="android:layout_height">150dp</item>
         <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginTop">12dp</item>
-    </style>
-
-    <style name="Theme.DMSportAndroid.TextView_List_Vote">
-        <item name="android:textColor">@color/color_hint1</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="fontFamily">@font/bold</item>
-
-
-    </style>
-    
-    <style name="Theme.DMSportAndroid.CardView_Vote_event_badminton">
-        <item name="android:layout_width">136dp</item>
-        <item name="android:layout_height">150dp</item>
-        <item name="android:layout_marginStart">15dp</item>
         <item name="android:layout_marginEnd">4dp</item>
-        <item name="android:background">@drawable/vote_card_view_on</item>
-    </style>
-
-    <style name="Theme.DMSportAndroid.CardView_Vote_event">
-        <item name="android:layout_width">136dp</item>
-        <item name="android:layout_height">150dp</item>
-        <item name="android:layout_marginStart">15dp</item>
-        <item name="android:layout_marginEnd">4dp</item>
-        <item name="android:background">@drawable/vote_card_view_off</item>
     </style>
     
     <style name="Theme.DMSportAndroid.Button_Vote_event_apply">
@@ -131,6 +137,30 @@
         <item name="android:textColor">@color/white</item>
         <item name="fontFamily">@font/bold</item>
         <item name="android:background">@drawable/vote_event_apply</item>
+    </style>
+
+    <style name="Theme.DMSportAndroid.View_Main">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:background">@drawable/background_corner</item>
+    </style>
+
+    <style name="Theme.DMSportAndroid.ScrollView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="Theme.DMSportAndroid.CardView_Mypage">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginHorizontal">16dp</item>
+    </style>
+
+    <style name="Theme.DMSportAndroid.LinearLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
 </resources>
