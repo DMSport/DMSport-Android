@@ -49,6 +49,7 @@
             android:id="@+id/bt_verify_verify"
             android:text="@string/verify_button"
             style="@style/Theme.DMSportAndroid.Button_Primary"
+            android:onClick="@{()->ChangePwVerifyActivity.verifyButton()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_verify_email" />
 
@@ -71,6 +72,7 @@
             android:id="@+id/bt_verify_next"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{()->ChangePwVerifyActivity.completeButton()}"
             android:text="@string/verify_complement"
             android:layout_marginBottom="42dp"
             app:layout_constraintBottom_toBottomOf="parent"
