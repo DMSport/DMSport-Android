@@ -48,7 +48,7 @@
         <ImageView
             android:id="@+id/img_change_visible_pw"
             style="@style/Theme.DMSportAndroid.Toggle"
-            android:onClick="@{()->EmailChangePwActivity.visible}"
+            android:onClick="@{()->EmailChangePwActivity.visible()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_change_pw"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_change_pw"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_change_pw" />
@@ -74,7 +74,7 @@
         <ImageView
             android:id="@+id/img_change_visible_pw_re"
             style="@style/Theme.DMSportAndroid.Toggle"
-            android:onClick="@{()->EmailChangePwActivity.visibleRe}"
+            android:onClick="@{()->EmailChangePwActivity.visibleRe()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_change_pw_re"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_change_pw_re"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_change_pw_re" />
@@ -84,6 +84,7 @@
             style="@style/Theme.DMSportAndroid.Button_Primary"
             android:layout_marginBottom="42dp"
             android:text="@string/register_next"
+            android:onClick="@{()->EmailChangePwActivity.nextButton()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
