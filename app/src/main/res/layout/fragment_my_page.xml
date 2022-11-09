@@ -15,16 +15,23 @@
         android:layout_height="match_parent"
         android:background="@color/color_primary1">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_my_page_horizon"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2"/>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/Theme.DMSportAndroid.View_Main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/gl_my_page_horizon">
 
             <TextView
-                android:id="@+id/tv_my_page_name"
-                style="@style/Theme.DMSportAndroid.TextView_Vote_event"
+                android:id="@+id/tv_mypage_name"
+                style="@style/TextView_Vote_event"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
                 android:text="@{MyPageViewModel.myPageResponse.body().name}"
@@ -33,8 +40,8 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_my_page_auth"
-                style="@style/Theme.DMSportAndroid.TextView_Light"
+                android:id="@+id/tv_mypage_auth"
+                style="@style/TextView_Light"
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="4dp"
                 android:text="@{MyPageViewModel.myPageResponse.body().authority}"
@@ -42,8 +49,8 @@
                 app:layout_constraintStart_toEndOf="@id/tv_my_page_name" />
 
             <TextView
-                android:id="@+id/tv_my_page_email"
-                style="@style/Theme.DMSportAndroid.TextView_Light"
+                android:id="@+id/tv_mypage_email"
+                style="@style/TextView_Light"
                 android:text="@{MyPageViewModel.myPageResponse.body().email}"
                 app:layout_constraintStart_toStartOf="@id/tv_my_page_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_my_page_name" />
@@ -73,7 +80,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                style="@style/Theme.DMSportAndroid.TextView_Hint"
+                                style="@style/TextView_Hint16"
                                 android:layout_marginStart="16dp"
                                 android:text="@string/mypage_changePw"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -107,7 +114,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                style="@style/Theme.DMSportAndroid.TextView_Hint"
+                                style="@style/TextView_Hint16"
                                 android:layout_marginStart="16dp"
                                 android:text="@string/mypage_auto_participant"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -133,7 +140,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                style="@style/Theme.DMSportAndroid.TextView_Hint"
+                                style="@style/TextView_Hint16"
                                 android:layout_marginStart="16dp"
                                 android:text="@string/mypage_logout"
                                 android:textColor="@color/color_error"
@@ -170,7 +177,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                style="@style/Theme.DMSportAndroid.TextView_Hint"
+                                style="@style/TextView_Hint16"
                                 android:layout_marginStart="16dp"
                                 android:text="@string/mypage_delete_user"
                                 android:textColor="@color/color_error"
