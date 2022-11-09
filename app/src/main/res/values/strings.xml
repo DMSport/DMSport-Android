@@ -44,15 +44,16 @@
     <string name="verify_code">인증번호</string>
     <string name="verify_complement">완료</string>
     <string name="verify_caution">이메일을 입력해주세요</string>
-   <string name="verify_unauthorized">인증번호가 잘못되었습니다</string>
+    <string name="verify_unauthorized">인증번호가 잘못되었습니다</string>
 
     <string name="duplicate_bad_request">잘못된 이메일 형식입니다</string>
     <string name="duplicate_conflict">중복된 이메일 입니다</string>
     <string name="duplicate_no_content">인증 메일이 전송되었습니다</string>
 
-    <string name="mypage_changePw">비밀번호 변경</string>
-    <string name="mypage_auto_participant">종목 빈자리 자동 참여</string>
-    <string name="mypage_logout">로그아웃</string>
-    <string name="mypage_delete_user">회원탈퇴</string>
-
+    <string name="change_pw_edit_text">새로운 비밀번호를 입력해주세요</string>
+    <string name="change_pw_created">비밀번호 변경이 완료되었습니다</string>
+    <string name="change_pw_re">비밀번호를 다시 입력해주세요</string>
+    <string name="change_pw_text_ko">변경하기</string>
+    <string name="change_pw_text_en">Password</string>
+    <string name="change_pw_bad_request">항목을 확인해주세요</string>
 </resources>

@@ -7,6 +7,9 @@ val loginVisible = "LoginVisible"
 val registerVisible = "RegisterVisible"
 val registerVisibleRe = "RegisterVisibleRe"
 
+val emailChangePwVisible = "EmailChangePwVisible"
+val emailChangePwVisibleRe = "EmailChangePwVisibleRe"
+
 val localEmail = "Email"
 val localName = "Name"
 val localPassword = "Password"

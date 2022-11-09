@@ -88,6 +88,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
     }
 
+    fun forgotPw() {
+        startIntent(this, ChangePwVerifyActivity::class.java)
+    }
+
     private fun observeLogin() {
         loginViewModel.loginResponse.observe(this, Observer {
             when (it.code()) {
