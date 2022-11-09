@@ -10,10 +10,24 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
-        android:theme="@style/Theme.DMSportAndroid"
         android:supportsRtl="true"
+        android:theme="@style/Theme.DMSportAndroid"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activity.EmailChangePwActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activity.ChangePwVerifyActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ui.activity.VerifyActivity"
             android:exported="false">
