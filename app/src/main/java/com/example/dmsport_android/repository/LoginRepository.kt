@@ -8,7 +8,6 @@ import retrofit2.Response
 
 class LoginRepository {
 
-    suspend fun login(loginRequest: LoginRequest) : Response<LoginResponse> {
-        return ApiProvider.loginApi.login(loginRequest)
-    }
+    suspend fun login(loginRequest: LoginRequest) : Response<LoginResponse> =
+        ApiProvider.loginApi.login(loginRequest)
 }
