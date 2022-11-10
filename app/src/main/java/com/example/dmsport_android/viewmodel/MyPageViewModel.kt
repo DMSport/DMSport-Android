@@ -1,10 +1,10 @@
 package com.example.dmsport_android.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.dmsport_android.dto.request.DeleteUserRequest
 import com.example.dmsport_android.dto.response.MyPageResponse
 import com.example.dmsport_android.repository.MyPageRepository
 import kotlinx.coroutines.Dispatchers
@@ -21,15 +21,24 @@ class MyPageViewModel(
     private val _logoutResponse : MutableLiveData<Response<Void>> = MutableLiveData()
     val logoutResponse : LiveData<Response<Void>> = _logoutResponse
 
-    fun my(){
+    private val _deleteUserResponse : MutableLiveData<Response<Void>> = MutableLiveData()
+    val deleteUserResponse : LiveData<Response<Void>> = _deleteUserResponse
+
+    fun fetchMyPage(){
         viewModelScope.launch(Dispatchers.IO){
-            _myPageResponse.postValue(myPageRepository.my())
+            _myPageResponse.postValue(myPageRepository.fetchMyPage())
         }
     }
 
     fun logout(){
         viewModelScope.launch(Dispatchers.IO){
-            _logoutResponse.postValue(myPageRepository.logout())
+            _logoutResponse.postValue(myPageRepository.userLogout())
+        }
+    }
+
+    fun deleteUser(deleteUserRequest: DeleteUserRequest){
+        viewModelScope.launch(Dispatchers.IO){
+            _deleteUserResponse.postValue(myPageRepository.deleteUser(deleteUserRequest))
         }
     }
 
