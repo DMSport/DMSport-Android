@@ -107,6 +107,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         if(isLogOuted){
             snack(binding.root, "로그아웃 되었습니다!")
             isLogOuted = false
+        }else if(isDeletedUser){
+            snack(binding.root, "성공적으로 진행되었습니다!")
+            isDeletedUser = false
         }
     }
 }

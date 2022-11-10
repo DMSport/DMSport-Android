@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activity.DeleteUserActivity">
 
+    <data>
+        <variable
+            name="DeleteUserActivity"
+            type="com.example.dmsport_android.ui.activity.DeleteUserActivity" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -49,6 +55,7 @@
             <EditText
                 android:id="@+id/et_delete_user_pw"
                 style="@style/EditText"
+                android:inputType="textPassword"
                 android:hint="@string/login_pw"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -71,6 +78,7 @@
 
         <Button
             style="@style/Button_Primary"
+            android:onClick="@{()->DeleteUserActivity.deleteUserButton()}"
             app:layout_constraintVertical_bias="0.8"
             android:layout_marginHorizontal="16dp"
             android:text="@string/mypage_delete_user"
