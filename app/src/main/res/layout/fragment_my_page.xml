@@ -6,6 +6,10 @@
 
     <data>
         <variable
+            name="MyPageFragment"
+            type="com.example.dmsport_android.ui.fragment.MyPageFragment" />
+
+        <variable
             name="MyPageViewModel"
             type="com.example.dmsport_android.viewmodel.MyPageViewModel" />
     </data>
@@ -167,6 +171,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="8dp"
                         app:cardCornerRadius="20dp"
+                        android:onClick="@{()->MyPageFragment.deleteUserButton()}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
