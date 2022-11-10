@@ -10,20 +10,18 @@ import retrofit2.Response
 
 class RegisterRepository {
 
-    suspend fun duplicate(duplicateRequest: DuplicateRequest) : Response<Void> {
-        return ApiProvider.registerApi.duplicate(duplicateRequest)
-    }
+    suspend fun emailDuplicate(duplicateRequest: DuplicateRequest) : Response<Void> =
+        ApiProvider.registerApi.emailDuplicate(duplicateRequest)
 
-    suspend fun verifyEmail(verifyEmailRequest : VerifyEmailRequest) : Response<Void>{
-        return ApiProvider.registerApi.verifyEmail(verifyEmailRequest)
-    }
 
-    suspend fun verify(verifyRequest: VerifyRequest) : Response<Void>{
-        return ApiProvider.registerApi.verify(verifyRequest)
-    }
+    suspend fun sendVerifyEmail(verifyEmailRequest : VerifyEmailRequest) : Response<Void> =
+        ApiProvider.registerApi.sendVerifyEmail(verifyEmailRequest)
 
-    suspend fun register(registerRequest: RegisterRequest) : Response<RegisterResponse> {
-        return ApiProvider.registerApi.register(registerRequest)
-    }
 
+    suspend fun verifyEmail(verifyRequest: VerifyRequest) : Response<Void> =
+        ApiProvider.registerApi.verifyEmail(verifyRequest)
+
+
+    suspend fun register(registerRequest: RegisterRequest) : Response<RegisterResponse> =
+        ApiProvider.registerApi.register(registerRequest)
 }

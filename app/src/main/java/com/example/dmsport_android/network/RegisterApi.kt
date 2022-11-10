@@ -12,22 +12,22 @@ import retrofit2.http.POST
 interface RegisterApi {
 
     @POST("users/mail/duplicate")
-    suspend fun duplicate(
+    suspend fun emailDuplicate(
         @Body duplicateRequest: DuplicateRequest,
-    ) : Response<Void>
+    ): Response<Void>
 
     @POST("users/mail/signup")
-    suspend fun verifyEmail(
+    suspend fun sendVerifyEmail(
         @Body verifyEmailRequest: VerifyEmailRequest,
-    ) : Response<Void>
+    ): Response<Void>
 
     @POST("users/mail/verify")
-    suspend fun verify(
+    suspend fun verifyEmail(
         @Body verifyRequest: VerifyRequest,
-    ) : Response<Void>
+    ): Response<Void>
 
     @POST("users")
     suspend fun register(
-        @Body registerRequest : RegisterRequest,
-    ) : Response<RegisterResponse>
+        @Body registerRequest: RegisterRequest,
+    ): Response<RegisterResponse>
 }
