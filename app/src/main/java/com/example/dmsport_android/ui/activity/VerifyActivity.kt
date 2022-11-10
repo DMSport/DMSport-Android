@@ -94,6 +94,7 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
                 CREATED -> {
                     snack(binding.root, getString(R.string.register_created))
                     startIntent(this, MainActivity::class.java)
+                    ACCESS_TOKEN = "Bearer $ACCESS_TOKEN"
                 }
                 BAD_REQUEST ->{
                     snack(binding.root, getString(R.string.register_bad_request))
