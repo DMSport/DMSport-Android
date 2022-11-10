@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/tv_verify_verify"
-            style="@style/Theme.DMSportAndroid.TextView_Title"
+            style="@style/TextView_Title"
             android:layout_marginStart="24dp"
             android:layout_marginTop="224dp"
             android:text="@string/verify_verify"
@@ -29,7 +29,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_verify_email"
-            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            style="@style/TextInputLayout"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="42dp"
             app:errorEnabled="true"
@@ -40,7 +40,7 @@
 
             <EditText
                 android:id="@+id/et_verify_email"
-                style="@style/Theme.DMSportAndroid.EditText"
+                style="@style/EditText"
                 android:hint="@string/login_email" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -48,13 +48,13 @@
         <Button
             android:id="@+id/bt_verify_verify"
             android:text="@string/verify_button"
-            style="@style/Theme.DMSportAndroid.Button_Primary"
+            style="@style/Button_Primary"
             android:onClick="@{()->ChangePwVerifyActivity.verifyButton()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/textInputLayout_verify_email" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            style="@style/TextInputLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:hintEnabled="false"
@@ -64,7 +64,7 @@
             <EditText
                 android:id="@+id/et_verify_code"
                 android:hint="@string/verify_code"
-                style="@style/Theme.DMSportAndroid.EditText"/>
+                style="@style/EditText"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +76,7 @@
             android:text="@string/verify_complement"
             android:layout_marginBottom="42dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            style="@style/Theme.DMSportAndroid.Button_Primary"/>
+            style="@style/Button_Primary"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
