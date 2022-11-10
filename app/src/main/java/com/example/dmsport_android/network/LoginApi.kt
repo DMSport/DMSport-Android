@@ -10,5 +10,5 @@ interface LoginApi {
     @POST("users/auth")
     suspend fun login(
         @Body loginRequest: LoginRequest,
-    ) : Response<LoginResponse>
+    ): Response<LoginResponse>
 }
