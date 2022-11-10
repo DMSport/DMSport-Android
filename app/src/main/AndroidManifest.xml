@@ -18,6 +18,12 @@
             android:name=".ui.activity.DeleteUserActivity"
             android:exported="false"/>
         <activity
+            android:name=".ui.activity.EmailChangePwActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.activity.ChangePwVerifyActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ui.activity.VerifyActivity"
             android:exported="false"/>
         <activity
