@@ -25,9 +25,10 @@
         <item name="android:textSize">32sp</item>
         <item name="android:text">@string/change_pw_text_en</item>
         <item name="android:fontFamily">@font/bold</item>
-        <item name="android:textColor">@color/color_primary2</item>
+        <item name="android:textColor">@color/color_sub</item>
         <item name="android:layout_marginTop">-12dp</item>
     </style>
+
     <style name="TextView_Des" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
