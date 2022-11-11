@@ -8,10 +8,7 @@ import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityDeleteUserBinding
 import com.example.dmsport_android.dto.request.DeleteUserRequest
 import com.example.dmsport_android.repository.MyPageRepository
-import com.example.dmsport_android.util.NO_CONTENT
-import com.example.dmsport_android.util.isDeletedUser
-import com.example.dmsport_android.util.showSnack
-import com.example.dmsport_android.util.startIntent
+import com.example.dmsport_android.util.*
 import com.example.dmsport_android.viewmodel.MyPageViewModel
 import com.example.dmsport_android.viewmodel.factory.MyPageViewModelFactory
 
@@ -50,8 +47,9 @@ class DeleteUserActivity : BaseActivity<ActivityDeleteUserBinding>(R.layout.acti
             when(it.code()){
                 NO_CONTENT -> {
                     startIntent(this, LoginActivity::class.java)
-                    finish()
                     isDeletedUser = true
+                    putPref(pref.edit(), getPref(pref, localEmail, "").toString(), false)
+                    finish()
                 }
             }
         })
