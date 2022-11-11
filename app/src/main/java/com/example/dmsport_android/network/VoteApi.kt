@@ -12,5 +12,5 @@ interface VoteApi {
         @Header("Authorization") accessToken : String,
         @Query("type") type : String,
         @Query("date") date : String,
-    ) : Response<ArrayList<VoteListResponse>>
+    ) : Response<VoteListResponse>
 }

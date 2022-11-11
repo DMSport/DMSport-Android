@@ -14,8 +14,8 @@ class VoteListViewModel(
     private val voteListRepository : VoteListRepository,
 ) : ViewModel(){
 
-    private val _voteListResponse : MutableLiveData<Response<ArrayList<VoteListResponse>>> = MutableLiveData()
-    val voteListResponse : LiveData<Response<ArrayList<VoteListResponse>>> = _voteListResponse
+    private val _voteListResponse : MutableLiveData<Response<VoteListResponse>> = MutableLiveData()
+    val voteListResponse : LiveData<Response<VoteListResponse>> = _voteListResponse
 
     fun getVoteList(
         type : String,

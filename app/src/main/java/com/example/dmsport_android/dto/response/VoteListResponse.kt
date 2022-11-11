@@ -4,7 +4,7 @@ data class VoteListResponse(
     val is_ban: Boolean,
     val ban_period: Boolean,
     val max_people: Int,
-    val vote: Vote,
+    val vote: ArrayList<Vote>,
     val ban: Boolean,
 )
 

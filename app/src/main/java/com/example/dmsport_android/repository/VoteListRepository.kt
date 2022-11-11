@@ -9,7 +9,7 @@ class VoteListRepository {
     suspend fun getVoteList(
         type : String,
         date : String,
-    ) : Response<ArrayList<VoteListResponse>> =
+    ) : Response<VoteListResponse> =
         voteApi.getVoteList(
             ACCESS_TOKEN,
             type,
