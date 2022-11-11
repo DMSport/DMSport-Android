@@ -27,7 +27,6 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         observeVerify()
     }
 
@@ -35,11 +34,18 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
         val auth_code = binding.etVerifyCode.text.toString()
         val email = binding.etVerifyEmail.text.toString()
         if (email.isNotEmpty()) {
-            emailChangePwViewModel.verify(auth_code, email)
-            putPref(pref.edit(), localEmail, email)
+            emailChangePwViewModel.verify(
+                auth_code = auth_code,
+                email = email,
+            )
+            putPref(
+                editor = pref.edit(),
+                key = localEmail,
+                value = email,
+            )
 
         }else{
-            snack(binding.root, getString(R.string.verify_caution))
+            showSnack(binding.root, getString(R.string.verify_caution))
         }
     }
 
@@ -49,7 +55,7 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
         if(code.isNotEmpty() && email.isNotEmpty()){
             emailChangePwViewModel.findVerifyEmail(email)
         }else{
-            snack(binding.root, getString(R.string.change_pw_bad_request))
+            showSnack(binding.root, getString(R.string.change_pw_bad_request))
         }
     }
 
@@ -60,7 +66,7 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
                 NO_CONTENT -> {
                     putPref(pref.edit(), getPref(pref, localEmail, "").toString(), true)
                 }
-                UNAUTHORIZED -> snack(binding.root, getString(R.string.verify_unauthorized))
+                UNAUTHORIZED -> showSnack(binding.root, getString(R.string.verify_unauthorized))
             }
         })
     }

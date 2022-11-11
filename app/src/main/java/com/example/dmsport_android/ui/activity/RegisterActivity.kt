@@ -52,7 +52,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 startIntent(this, VerifyActivity::class.java)
             }
         } else {
-            snack(binding.root, getString(R.string.register_bad_request))
+            showSnack(binding.root, getString(R.string.register_bad_request))
         }
     }
 
@@ -60,13 +60,13 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         binding.imgRegisterVisiblePw.setImageDrawable(
             AppCompatResources.getDrawable(
                 this,
-                R.drawable.ic_visible_on,
+                R.drawable.ic_visible_off,
             )
         )
         binding.imgRegisterVisiblePwRe.setImageDrawable(
             AppCompatResources.getDrawable(
                 this,
-                R.drawable.ic_visible_on,
+                R.drawable.ic_visible_off,
             )
         )
         binding.etRegisterPw.inputType =
@@ -121,12 +121,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         registerViewModel.registerResponse.observe(this, Observer {
             when (it.code()) {
                 CREATED -> {
-                    snack(binding.root, getString(R.string.register_created))
+                    showSnack(binding.root, getString(R.string.register_created))
                     startIntent(this, MainActivity::class.java)
                 }
-                BAD_REQUEST -> snack(binding.root, getString(R.string.register_bad_request))
+                BAD_REQUEST -> showSnack(binding.root, getString(R.string.register_bad_request))
             }
         })
     }
-
 }

@@ -1,6 +1,5 @@
 package com.example.dmsport_android.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.content.res.AppCompatResources
@@ -51,11 +50,9 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
                 startIntent(this, VerifyActivity::class.java)
             }
         } else {
-            snack(binding.root, getString(R.string.change_pw_bad_request))
+            showSnack(binding.root, getString(R.string.change_pw_bad_request))
         }
     }
-
-
 
     fun initVisible() {
         binding.imgChangeVisiblePw.setImageDrawable(
@@ -122,10 +119,10 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
         emailChangePwViewModel.emailChangePwResponse.observe(this, Observer {
             when(it.code()) {
                 CREATED -> {
-                    snack(binding.root, getString(R.string.change_pw_created))
+                    showSnack(binding.root, getString(R.string.change_pw_created))
                     startIntent(this, LoginActivity::class.java)
                 }
-                BAD_REQUEST -> snack(binding.root, getString(R.string.change_pw_bad_request))
+                BAD_REQUEST -> showSnack(binding.root, getString(R.string.change_pw_bad_request))
             }
         })
     }

@@ -70,6 +70,7 @@
                 <EditText
                     android:id="@+id/et_verify_email"
                     style="@style/EditText"
+                    android:layout_width="match_parent"
                     android:hint="@string/login_email" />
 
             </com.google.android.material.textfield.TextInputLayout>

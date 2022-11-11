@@ -18,22 +18,32 @@ var isLogged = false
 var isLogOuted = false
 var isDeletedUser = false
 
-fun initPref(context: Context, mode: Int): SharedPreferences {
-    return context.getSharedPreferences("user", mode)
-}
+fun initPref(
+    context: Context,
+    mode: Int,
+): SharedPreferences =
+    context.getSharedPreferences("user", mode)
 
-fun putPref(editor: SharedPreferences.Editor, key: String, value: Any?) {
-    when(value){
+
+fun putPref(
+    editor: SharedPreferences.Editor,
+    key: String,
+    value: Any?,
+) {
+    when (value) {
         is String -> editor.putString(key, value).apply()
         is Int -> editor.putInt(key, value).apply()
         is Boolean -> editor.putBoolean(key, value).apply()
     }
 }
 
-fun getPref(preferences: SharedPreferences, key: String, value: Any?) : Any?{
-    return when(value){
+fun getPref(
+    preferences: SharedPreferences,
+    key: String,
+    value: Any?,
+): Any? =
+    when (value) {
         is String -> preferences.getString(key, value)
         is Int -> preferences.getInt(key, value)
         else -> preferences.getBoolean(key, value as Boolean)
     }
-}

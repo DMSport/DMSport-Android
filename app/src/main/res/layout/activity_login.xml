@@ -21,10 +21,10 @@
             android:id="@+id/ll_login_title"
             style="@style/Theme.DMSportAndroid.LinearLayout"
             android:layout_marginStart="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ll_login_edittext"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.22">
+            app:layout_constraintVertical_bias="0.85">
 
             <TextView
                 android:id="@+id/tv_login_login"
@@ -43,9 +43,11 @@
             style="@style/Theme.DMSportAndroid.LinearLayout"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_login_title">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout_login_email"
@@ -91,21 +93,9 @@
             android:text="@string/login_forgotPw"
             app:layout_constraintBottom_toTopOf="@id/ll_login_button"
             android:onClick="@{()->LoginActivity.forgotPw()}"
-            app:layout_constraintEnd_toEndOf="@id/textInputLayout_login_pw"
-            app:layout_constraintStart_toStartOf="@id/textInputLayout_login_pw"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_login_pw" />
-
-        <Button
-            android:id="@+id/bt_login_login"
-            style="@style/Theme.DMSportAndroid.Button_Primary"
-            android:layout_marginBottom="12dp"
-            android:onClick="@{() -> LoginActivity.login()}"
-            android:text="@string/login_login"
-            app:layout_constraintBottom_toTopOf="@id/bt_login_register"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_login_edittext"
-            app:layout_constraintVertical_bias="0.3" />
+            app:layout_constraintEnd_toEndOf="@id/ll_login_edittext"
+            app:layout_constraintStart_toStartOf="@id/ll_login_edittext"
+            app:layout_constraintTop_toBottomOf="@id/ll_login_edittext" />
 
         <LinearLayout
             android:id="@+id/ll_login_button"

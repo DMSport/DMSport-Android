@@ -7,8 +7,8 @@ import com.example.dmsport_android.viewmodel.MyPageViewModel
 
 class MyPageViewModelFactory(
     private val myPageRepository: MyPageRepository,
-) : ViewModelProvider.Factory{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MyPageViewModel(myPageRepository) as T
-    }
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        MyPageViewModel(myPageRepository) as T
+
 }
