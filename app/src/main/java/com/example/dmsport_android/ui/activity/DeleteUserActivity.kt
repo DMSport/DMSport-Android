@@ -1,8 +1,6 @@
 package com.example.dmsport_android.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
@@ -12,7 +10,7 @@ import com.example.dmsport_android.dto.request.DeleteUserRequest
 import com.example.dmsport_android.repository.MyPageRepository
 import com.example.dmsport_android.util.NO_CONTENT
 import com.example.dmsport_android.util.isDeletedUser
-import com.example.dmsport_android.util.snack
+import com.example.dmsport_android.util.showSnack
 import com.example.dmsport_android.util.startIntent
 import com.example.dmsport_android.viewmodel.MyPageViewModel
 import com.example.dmsport_android.viewmodel.factory.MyPageViewModelFactory
@@ -43,7 +41,7 @@ class DeleteUserActivity : BaseActivity<ActivityDeleteUserBinding>(R.layout.acti
             val deleteUserRequest = DeleteUserRequest(password)
             myPageViewModel.deleteUser(deleteUserRequest)
         }else{
-            snack(binding.root, "비밀번호를 입력해주세요")
+            showSnack(binding.root, "비밀번호를 입력해주세요")
         }
     }
 
