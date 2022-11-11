@@ -17,6 +17,7 @@ val localPassword = "Password"
 var isLogged = false
 var isLogOuted = false
 var isDeletedUser = false
+var isJoined = false
 
 fun initPref(
     context: Context,
