@@ -10,7 +10,6 @@ class LoginViewModelFactory(
     private val loginRepository: LoginRepository,
     private val sharedPreferences : SharedPreferences,
 ) :  ViewModelProvider.Factory{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LoginViewModel(loginRepository, sharedPreferences) as T
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        LoginViewModel(loginRepository, sharedPreferences) as T
 }

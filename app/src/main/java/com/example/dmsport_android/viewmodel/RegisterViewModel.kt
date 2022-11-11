@@ -37,21 +37,28 @@ class RegisterViewModel(
     val registerResponse: LiveData<Response<RegisterResponse>> = _registerResponse
 
 
-    fun emailDuplicate(email: String) {
+    fun emailDuplicate(
+        email: String,
+    ) {
         val duplicateRequest = DuplicateRequest(email)
         viewModelScope.launch(Dispatchers.IO) {
             _duplicateResponse.postValue(registerRepository.emailDuplicate(duplicateRequest))
         }
     }
 
-    fun sendVerifyEmail(email: String) {
+    fun sendVerifyEmail(
+        email: String,
+    ) {
         val verifyEmailRequest = VerifyEmailRequest(email)
         viewModelScope.launch(Dispatchers.IO) {
             _verifyEmailResponse.postValue(registerRepository.sendVerifyEmail(verifyEmailRequest))
         }
     }
 
-    fun verifyEmail(code: String, email: String) {
+    fun verifyEmail(
+        code: String,
+        email: String,
+    ) {
         val verifyRequest = VerifyRequest(code, email)
         viewModelScope.launch(Dispatchers.IO) {
             _verifyResponse.postValue(registerRepository.verifyEmail(verifyRequest))
@@ -77,24 +84,23 @@ class RegisterViewModel(
         putPref(pref.edit(), registerVisible, false)
     }
 
-    fun visible() : Boolean{
+    fun visible() : Boolean =
         if(getPref(pref, registerVisible, false) as Boolean){
             putPref(pref.edit(), registerVisible, false)
-            return true
+            true
         }else{
             putPref(pref.edit(), registerVisible, true)
-            return false
+            false
         }
-    }
 
-    fun visibleRe() : Boolean{
+
+    fun visibleRe() : Boolean =
         if(getPref(pref, registerVisibleRe, false) as Boolean){
             putPref(pref.edit(), registerVisibleRe, false)
-            return true
+            true
 
         }else{
             putPref(pref.edit(), registerVisibleRe, true)
-            return false
+            false
         }
-    }
 }
