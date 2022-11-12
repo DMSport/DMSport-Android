@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListVoteBinding
+import com.example.dmsport_android.dto.response.Vote
 import com.example.dmsport_android.dto.response.VoteListResponse
 
 class VoteListAdapter(
@@ -13,8 +14,9 @@ class VoteListAdapter(
     ) : RecyclerView.Adapter<VoteListAdapter.VoteListViewHodler>(){
 
     class VoteListViewHodler(val binding : ListVoteBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(arrayList : VoteListResponse){
-            binding.model = arrayList
+        fun bind(voteListResponse: VoteListResponse, vote : Vote){
+            binding.main = voteListResponse
+            binding.vote = vote
         }
     }
 
@@ -29,7 +31,7 @@ class VoteListAdapter(
 
 
     override fun onBindViewHolder(holder: VoteListViewHodler, position: Int) {
-        holder.bind(arrayList[position])
+        holder.bind(arrayList[position], arrayList[position].vote[position])
     }
 
     override fun getItemCount(): Int =
