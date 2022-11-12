@@ -5,10 +5,9 @@
     tools:context=".ui.fragment.VoteFragment">
 
     <data>
-
         <variable
-            name="VoteFragment"
-            type="com.example.dmsport_android.ui.fragment.VoteFragment" />
+            name="viewModel"
+            type="com.example.dmsport_android.viewmodel.VoteListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,7 +57,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_vote_bad"
                         style="@style/CardView_Vote"
-                        android:onClick="@{()->VoteFragment.initBadmintonSelected()}"
+                        android:onClick="@{()->viewModel.selectVote(1)}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -88,7 +87,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_vote_soc"
                         style="@style/CardView_Vote"
-                        android:onClick="@{()->VoteFragment.initSoccerSelected()}"
+                        android:onClick="@{()->viewModel.selectVote(2)}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -117,7 +116,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_vote_bas"
                         style="@style/CardView_Vote"
-                        android:onClick="@{()->VoteFragment.initBasSelected()}"
+                        android:onClick="@{()->viewModel.selectVote(3)}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -146,7 +145,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_vote_vol"
                         style="@style/CardView_Vote"
-                        android:onClick="@{()->VoteFragment.initVolSelected()}"
+                        android:onClick="@{()->viewModel.selectVote(4)}"
                         app:cardCornerRadius="20dp"
                         android:layout_marginEnd="16dp"
                         app:cardElevation="0dp">

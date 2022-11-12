@@ -10,6 +10,6 @@ data class VoteListResponse(
 
 data class Vote(
     val vote_id : Int,
-    val time : String,
+    val vote_type : String,
     val vote_count : Int,
 )
