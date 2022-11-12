@@ -1,6 +1,7 @@
 package com.example.dmsport_android.util
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 
 val loginVisible = "LoginVisible"
@@ -14,6 +15,13 @@ val localEmail = "Email"
 val localName = "Name"
 val localPassword = "Password"
 
+val selectedNumber = "SelectedNumber"
+
+val BASKETBALL = "BASKETBALL"
+val SOCCER = "SOCCER"
+val BADMINTON = "BADMINTON"
+val VOLLEYBALL = "VOLLEYBALL"
+
 var isLogged = false
 var isLogOuted = false
 var isDeletedUser = false
@@ -21,9 +29,8 @@ var isJoined = false
 
 fun initPref(
     context: Context,
-    mode: Int,
 ): SharedPreferences =
-    context.getSharedPreferences("user", mode)
+    context.getSharedPreferences("user", MODE_PRIVATE)
 
 
 fun putPref(
