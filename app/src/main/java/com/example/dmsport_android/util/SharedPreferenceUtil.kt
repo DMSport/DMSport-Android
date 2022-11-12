@@ -16,11 +16,15 @@ const val localName = "Name"
 const val localPassword = "Password"
 
 const val selectedNumber = "SelectedNumber"
+const val selectedVoteTitle = "SelectedVoteTitle"
 
-const val BASKETBALL = "BASKETBALL"
-const val SOCCER = "SOCCER"
 const val BADMINTON = "BADMINTON"
+const val SOCCER = "SOCCER"
 const val VOLLEYBALL = "VOLLEYBALL"
+const val BASKETBALL = "BASKETBALL"
+
+const val LUNCH = "LUNCH"
+const val DINNER = "DINNER"
 
 var isLogged = false
 var isLogOuted = false

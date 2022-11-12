@@ -9,15 +9,18 @@ import com.example.dmsport_android.databinding.ListVoteBinding
 import com.example.dmsport_android.dto.response.Vote
 import com.example.dmsport_android.dto.response.VoteListResponse
 import com.example.dmsport_android.util.ConvertTextUtil
+import com.example.dmsport_android.viewmodel.VoteListViewModel
 
 class VoteListAdapter(
-    val arrayList: ArrayList<VoteListResponse>,
+    private val arrayList: ArrayList<VoteListResponse>,
+    private val voteListViewModel : VoteListViewModel,
     ) : RecyclerView.Adapter<VoteListAdapter.VoteListViewHodler>(){
 
     class VoteListViewHodler(val binding : ListVoteBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(voteListResponse: VoteListResponse, vote : Vote){
+        fun bind(voteListResponse: VoteListResponse, vote : Vote, voteListViewModel : VoteListViewModel){
             binding.model = voteListResponse
             binding.vote = vote
+            binding.viewModel = voteListViewModel
             binding.util = ConvertTextUtil()
         }
     }
@@ -33,7 +36,7 @@ class VoteListAdapter(
 
 
     override fun onBindViewHolder(holder: VoteListViewHodler, position: Int) {
-        holder.bind(arrayList[position], arrayList[position].vote[position])
+        holder.bind(arrayList[position], arrayList[position].vote[position], voteListViewModel)
     }
 
     override fun getItemCount(): Int =

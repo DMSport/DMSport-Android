@@ -51,7 +51,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
     }
 
     private fun initRecyclerView() {
-        binding.rvVoteList.adapter = VoteListAdapter(arrayList)
+        binding.rvVoteList.adapter = VoteListAdapter(arrayList, voteListViewModel)
         binding.rvVoteList.layoutManager = LinearLayoutManager(this.requireContext())
     }
 

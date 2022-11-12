@@ -4,14 +4,17 @@
 
     <data>
         <variable
-            name="main"
+            name="model"
             type="com.example.dmsport_android.dto.response.VoteListResponse" />
         <variable
             name="vote"
             type="com.example.dmsport_android.dto.response.Vote" />
         <variable
+            name="viewModel"
+            type="com.example.dmsport_android.viewmodel.VoteListViewModel" />
+        <variable
             name="util"
-            type="com.example.dmsport_android.util.TextProcessingUtil" />
+            type="com.example.dmsport_android.util.ConvertTextUtil" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,6 +42,7 @@
                     style="@style/TextView_Vote_event"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
+                    android:text="@{viewModel.currentVote}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,6 +51,7 @@
                     style="@style/TextView_List_Vote"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="5dp"
+                    android:text="@{String.valueOf(util.convertInt(vote.vote_count, model.max_people))}"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_list_vote_event" />
@@ -56,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="@{util.changeText(vote.vote_type)}"
+                    android:text="@{util.convertString(vote.time)}"
                     android:layout_marginBottom="3dp"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/pb_list_vote_number"
@@ -65,8 +70,11 @@
                 <ProgressBar
                     android:id="@+id/pb_list_vote_number"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="326dp"
+                    android:layout_width="0dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_height="8dp"
+                    android:max="@{model.max_people}"
+                    android:progress="@{vote.vote_count}"
                     android:progressDrawable="@drawable/vote_event_progressbar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
