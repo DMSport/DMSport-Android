@@ -8,6 +8,7 @@ import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListVoteBinding
 import com.example.dmsport_android.dto.response.Vote
 import com.example.dmsport_android.dto.response.VoteListResponse
+import com.example.dmsport_android.util.TextProcessingUtil
 
 class VoteListAdapter(
     val arrayList: ArrayList<VoteListResponse>,
@@ -17,6 +18,7 @@ class VoteListAdapter(
         fun bind(voteListResponse: VoteListResponse, vote : Vote){
             binding.main = voteListResponse
             binding.vote = vote
+            binding.util = TextProcessingUtil()
         }
     }
 

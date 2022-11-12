@@ -9,6 +9,9 @@
         <variable
             name="vote"
             type="com.example.dmsport_android.dto.response.Vote" />
+        <variable
+            name="util"
+            type="com.example.dmsport_android.util.TextProcessingUtil" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="@{vote.vote_type}"
+                    android:text="@{util.changeText(vote.vote_type)}"
                     android:layout_marginBottom="3dp"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/pb_list_vote_number"

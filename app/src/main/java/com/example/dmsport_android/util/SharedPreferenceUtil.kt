@@ -22,6 +22,9 @@ val SOCCER = "SOCCER"
 val BADMINTON = "BADMINTON"
 val VOLLEYBALL = "VOLLEYBALL"
 
+val LUNCH = "점심"
+val DINNER = "저녁"
+
 var isLogged = false
 var isLogOuted = false
 var isDeletedUser = false
