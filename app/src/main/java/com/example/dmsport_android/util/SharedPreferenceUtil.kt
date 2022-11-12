@@ -4,26 +4,23 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 
-val loginVisible = "LoginVisible"
-val registerVisible = "RegisterVisible"
-val registerVisibleRe = "RegisterVisibleRe"
+const val loginVisible = "LoginVisible"
+const val registerVisible = "RegisterVisible"
+const val registerVisibleRe = "RegisterVisibleRe"
 
-val emailChangePwVisible = "EmailChangePwVisible"
-val emailChangePwVisibleRe = "EmailChangePwVisibleRe"
+const val emailChangePwVisible = "EmailChangePwVisible"
+const val emailChangePwVisibleRe = "EmailChangePwVisibleRe"
 
-val localEmail = "Email"
-val localName = "Name"
-val localPassword = "Password"
+const val localEmail = "Email"
+const val localName = "Name"
+const val localPassword = "Password"
 
-val selectedNumber = "SelectedNumber"
+const val selectedNumber = "SelectedNumber"
 
-val BASKETBALL = "BASKETBALL"
-val SOCCER = "SOCCER"
-val BADMINTON = "BADMINTON"
-val VOLLEYBALL = "VOLLEYBALL"
-
-val LUNCH = "점심"
-val DINNER = "저녁"
+const val BASKETBALL = "BASKETBALL"
+const val SOCCER = "SOCCER"
+const val BADMINTON = "BADMINTON"
+const val VOLLEYBALL = "VOLLEYBALL"
 
 var isLogged = false
 var isLogOuted = false
