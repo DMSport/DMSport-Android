@@ -14,10 +14,11 @@ import com.example.dmsport_android.databinding.FragmentVoteBinding
 import com.example.dmsport_android.dto.response.VoteListResponse
 import com.example.dmsport_android.repository.VoteListRepository
 import com.example.dmsport_android.util.OK
+import com.example.dmsport_android.util.getPref
 import com.example.dmsport_android.util.initPref
+import com.example.dmsport_android.util.selectedNumber
 import com.example.dmsport_android.viewmodel.VoteListViewModel
 import com.example.dmsport_android.viewmodel.factory.VoteListViewModelFactory
-import java.time.LocalDate
 
 class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
 
@@ -46,7 +47,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
         binding.viewModel = voteListViewModel
         observeVoteListResponse()
         observeSelectedVote()
-        voteListViewModel.initSelectedVote
+        initSelectedVote()
     }
 
     private fun initRecyclerView() {
@@ -54,12 +55,36 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
         binding.rvVoteList.layoutManager = LinearLayoutManager(this.requireContext())
     }
 
+    private fun initSelectedVote(){
+        initSelected()
+        when(voteListViewModel.initSelectedVote()){
+            1->{
+                setBackgroundOn(binding.cvVoteBad)
+                voteListViewModel.selectVote(1)
+            }
+            2->{
+                setBackgroundOn(binding.cvVoteBad)
+                voteListViewModel.selectVote(2)
+            }
+            3->{
+                setBackgroundOn(binding.cvVoteBad)
+                voteListViewModel.selectVote(3)
+            }
+            else->{
+                setBackgroundOn(binding.cvVoteBad)
+                voteListViewModel.selectVote(4)
+            }
+        }
+    }
+
     private fun observeVoteListResponse() {
         voteListViewModel.voteListResponse.observe(viewLifecycleOwner, Observer {
             when(it.code()){
                 OK->{
-                    arrayList.clear()
-                    arrayList.add(it.body()!!)
+                    arrayList.run {
+                        clear()
+                        add(it.body()!!)
+                    }
                     initRecyclerView()
                 }
             }
@@ -67,15 +92,17 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
     }
 
     private fun observeSelectedVote(){
-        voteListViewModel.selectedNumber.observe(viewLifecycleOwner, Observer {
-            initSelected()
-            when(it){
-                1->setBackgroundOn(binding.cvVoteBad)
-                2->setBackgroundOn(binding.cvVoteSoc)
-                3->setBackgroundOn(binding.cvVoteBas)
-                else -> setBackgroundOn(binding.cvVoteVol)
-            }
-        })
+        voteListViewModel.run {
+            selectedVote.observe(viewLifecycleOwner, Observer {
+                initSelected()
+                when(it){
+                    1->setBackgroundOn(binding.cvVoteBad)
+                    2->setBackgroundOn(binding.cvVoteSoc)
+                    3->setBackgroundOn(binding.cvVoteBas)
+                    else -> setBackgroundOn(binding.cvVoteVol)
+                }
+            })
+        }
     }
 
     fun initSelected() {

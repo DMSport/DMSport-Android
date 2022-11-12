@@ -10,6 +10,7 @@ import com.example.dmsport_android.repository.VoteListRepository
 import com.example.dmsport_android.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.selects.select
 import retrofit2.Response
 import java.time.LocalDate
 
@@ -21,8 +22,8 @@ class VoteListViewModel(
     private val _voteListResponse : MutableLiveData<Response<VoteListResponse>> = MutableLiveData()
     val voteListResponse : LiveData<Response<VoteListResponse>> = _voteListResponse
 
-    private val _selectedNumber : MutableLiveData<Int> = MutableLiveData()
-    val selectedNumber : LiveData<Int> = _selectedNumber
+    private val _selectedVote : MutableLiveData<Int> = MutableLiveData()
+    val selectedVote : LiveData<Int> = _selectedVote
 
     private val today = LocalDate.now()
 
@@ -34,17 +35,22 @@ class VoteListViewModel(
         }
     }
 
-    val initSelectedVote : () -> Unit = { putPref(pref.edit(), selectedVote, 1); _selectedNumber.value = 1}
+    fun initSelectedVote() : Int =
+        when(getPref(pref, selectedNumber, 0)){
+            1-> 1
+            2-> 2
+            3-> 3
+            else -> 4
+        }
 
     fun selectVote(number : Int) {
-        putPref(pref.edit(), selectedVote, number)
-        _selectedNumber.value = number
+        _selectedVote.value = number
+        putPref(pref.edit(), selectedNumber, number)
         when(number){
             1->getVoteList(BADMINTON)
             2->getVoteList(SOCCER)
             3->getVoteList(BASKETBALL)
             4->getVoteList(VOLLEYBALL)
         }
-
     }
 }
