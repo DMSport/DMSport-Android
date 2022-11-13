@@ -82,17 +82,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_list_vote_number"
                     app:layout_constraintVertical_bias="0.05" />
 
-                <TextView
-                    android:id="@+id/tv_vote_event_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/medium"
-                    android:textColor="@color/color_hint"
-                    app:layout_constraintBottom_toBottomOf="@+id/bt_vote_apply"
-                    app:layout_constraintEnd_toStartOf="@+id/bt_vote_apply"
-                    app:layout_constraintTop_toTopOf="@+id/bt_vote_apply" />
-
                 <Button
                     android:id="@+id/bt_vote_apply"
                     style="@style/Theme.DMSportAndroid.Button_Vote_event_apply"
