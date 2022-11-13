@@ -57,7 +57,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_vote_bad"
                         style="@style/CardView_Vote"
-                        android:onClick="@{()->viewModel.selectVote(1)}"
+                        android:onClick="@{()->viewModel.selectVote(0)}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -87,7 +87,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_vote_soc"
                         style="@style/CardView_Vote"
-                        android:onClick="@{()->viewModel.selectVote(2)}"
+                        android:onClick="@{()->viewModel.selectVote(1)}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -116,7 +116,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_vote_bas"
                         style="@style/CardView_Vote"
-                        android:onClick="@{()->viewModel.selectVote(3)}"
+                        android:onClick="@{()->viewModel.selectVote(2)}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -145,7 +145,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_vote_vol"
                         style="@style/CardView_Vote"
-                        android:onClick="@{()->viewModel.selectVote(4)}"
+                        android:onClick="@{()->viewModel.selectVote(3)}"
                         app:cardCornerRadius="20dp"
                         android:layout_marginEnd="16dp"
                         app:cardElevation="0dp">

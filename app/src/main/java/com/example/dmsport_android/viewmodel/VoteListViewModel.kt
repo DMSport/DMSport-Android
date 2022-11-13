@@ -1,7 +1,6 @@
 package com.example.dmsport_android.viewmodel
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,39 +27,21 @@ class VoteListViewModel(
     private val _currentVote : MutableLiveData<String> = MutableLiveData()
     val currentVote : LiveData<String> = _currentVote
 
-    private val today = LocalDate.now()
-
     private fun getVoteList(
         type : String,
     ){
         viewModelScope.launch(Dispatchers.IO){
-             _voteListResponse.postValue(voteListRepository.getVoteList(type, today.toString()))
+             _voteListResponse.postValue(voteListRepository.getVoteList(type, LocalDate.now().toString()))
         }
     }
 
     fun initSelectedVote() : Int =
-        getPref(pref, selectedNumber, 0) as Int
+        getPref(pref, selectedVoteNumber, 0) as Int
 
     fun selectVote(number : Int) {
         _selectedVote.value = number
-        putPref(pref.edit(), selectedNumber, number)
-        when(number){
-            1->{
-                _currentVote.value = "배드민턴"
-                getVoteList(BADMINTON)
-            }
-            2->{
-                _currentVote.value = "축구"
-                getVoteList(SOCCER)
-            }
-            3->{
-                _currentVote.value = "농구"
-                getVoteList(BASKETBALL)
-            }
-            4->{
-                _currentVote.value = "배구"
-                getVoteList(VOLLEYBALL)
-            }
-        }
+        _currentVote.value = typeListTitle[number]
+        getVoteList(typeList[number])
+        putPref(pref.edit(), selectedVoteNumber, number)
     }
 }

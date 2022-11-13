@@ -15,13 +15,7 @@ const val localEmail = "Email"
 const val localName = "Name"
 const val localPassword = "Password"
 
-const val selectedNumber = "SelectedNumber"
-const val selectedVoteTitle = "SelectedVoteTitle"
-
-const val BADMINTON = "BADMINTON"
-const val SOCCER = "SOCCER"
-const val VOLLEYBALL = "VOLLEYBALL"
-const val BASKETBALL = "BASKETBALL"
+const val selectedVoteNumber = "SelectedNumber"
 
 const val LUNCH = "LUNCH"
 const val DINNER = "DINNER"
@@ -30,6 +24,9 @@ var isLogged = false
 var isLogOuted = false
 var isDeletedUser = false
 var isJoined = false
+
+val typeList = arrayListOf("BADMINTON", "SOCCER", "BASKETBALL", "VOLLEYBALL")
+val typeListTitle = arrayListOf("배드민턴", "축구", "농구", "배구")
 
 fun initPref(
     context: Context,
