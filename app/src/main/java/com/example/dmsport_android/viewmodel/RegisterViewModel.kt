@@ -82,12 +82,14 @@ class RegisterViewModel(
 
     fun initVisible(){
         putPref(pref.edit(), registerVisible, false)
+        putPref(pref.edit(), registerVisibleRe, false)
     }
 
     fun visible() : Boolean =
         if(getPref(pref, registerVisible, false) as Boolean){
             putPref(pref.edit(), registerVisible, false)
             true
+
         }else{
             putPref(pref.edit(), registerVisible, true)
             false

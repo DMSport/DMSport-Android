@@ -9,6 +9,7 @@ import com.example.dmsport_android.databinding.ActivityMainBinding
 import com.example.dmsport_android.ui.fragment.MyPageFragment
 import com.example.dmsport_android.ui.fragment.NoticeFragment
 import com.example.dmsport_android.ui.fragment.VoteFragment
+import com.example.dmsport_android.util.isJoined
 import com.example.dmsport_android.util.isLogged
 import com.example.dmsport_android.util.showSnack
 
@@ -18,7 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         initNavigationBar()
-        snackBar()
+        showSnackBarMainActivity()
     }
 
     private fun initNavigationBar() {
@@ -46,10 +47,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             .commitAllowingStateLoss()
     }
 
-    fun snackBar() {
+    private fun showSnackBarMainActivity() {
         if(isLogged){
             showSnack(binding.root, getString(R.string.login_ok))
             isLogged = false
+        }else if(isJoined){
+            showSnack(binding.root, getString(R.string.register_created))
+            isJoined = false
         }
     }
 

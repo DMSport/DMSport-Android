@@ -121,8 +121,9 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         registerViewModel.registerResponse.observe(this, Observer {
             when (it.code()) {
                 CREATED -> {
-                    showSnack(binding.root, getString(R.string.register_created))
+                    ACCESS_TOKEN = "Bearer ${it.body()!!.access_token}"
                     startIntent(this, MainActivity::class.java)
+                    finish()
                 }
                 BAD_REQUEST -> showSnack(binding.root, getString(R.string.register_bad_request))
             }

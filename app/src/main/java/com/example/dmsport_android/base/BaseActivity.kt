@@ -16,7 +16,7 @@ abstract class BaseActivity<T : ViewDataBinding>(
     }
 
     protected  val pref : SharedPreferences by lazy {
-        initPref(this, MODE_PRIVATE)
+        initPref(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

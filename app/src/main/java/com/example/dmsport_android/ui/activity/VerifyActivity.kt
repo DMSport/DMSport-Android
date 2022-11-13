@@ -92,7 +92,7 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
         registerViewModel.registerResponse.observe(this, Observer {
             when(it.code()){
                 CREATED -> {
-                    showSnack(binding.root, getString(R.string.register_created))
+                    isJoined = true
                     startIntent(this, MainActivity::class.java)
                     ACCESS_TOKEN = "Bearer $ACCESS_TOKEN"
                 }
