@@ -23,5 +23,8 @@ object ApiProvider {
         retrofit.create(MyPageApi::class.java)
     }
 
+    val changePwApi : ChangePwApi by lazy {
+        retrofit.create(ChangePwApi::class.java)
+    }
 
 }
