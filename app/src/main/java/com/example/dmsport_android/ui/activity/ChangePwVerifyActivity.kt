@@ -28,31 +28,29 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        observeVerifyEmail()
         observeVerify()
     }
 
-    fun verifyButton() {
-        val auth_code = binding.etVerifyCode.text.toString()
-        val email = binding.etVerifyEmail.text.toString()
-        if (email.isNotEmpty()) {
-            emailChangePwViewModel.verify(auth_code, email)
-            putPref(pref.edit(), localEmail, email)
 
-        }else{
-            snack(binding.root, getString(R.string.verify_caution))
-        }
-    }
 
     fun completeButton(){
         val code = binding.etVerifyCode.text.toString()
         val email = binding.etVerifyEmail.text.toString()
         if(code.isNotEmpty() && email.isNotEmpty()){
-            emailChangePwViewModel.findVerifyEmail(email)
+            emailChangePwViewModel.verify(code, email)
         }else{
-            snack(binding.root, getString(R.string.change_pw_bad_request))
+            snack(binding.root, getString(R.string.register_bad_request))
         }
     }
 
+    fun observeVerifyEmail(){
+        emailChangePwViewModel.findVerifyEmailResponse.observe(this, Observer {
+            when(it.code()){
+                NO_CONTENT -> snack(binding.root, getString(R.string.duplicate_no_content))
+            }
+        })
+    }
 
     fun observeVerify(){
         emailChangePwViewModel.verifyResponse.observe(this, Observer {
