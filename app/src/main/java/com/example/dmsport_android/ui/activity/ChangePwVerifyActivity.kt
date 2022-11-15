@@ -27,6 +27,9 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+<<<<<<<<< Temporary merge branch 1
+=========
+
         observeVerifyEmail()
         observeVerify()
     }
@@ -34,8 +37,6 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
     fun verifyButton() {
         val email = binding.etVerifyEmail.text.toString()
         if (email.isNotEmpty()) {
-            showSnack(binding.root, getString(R.string.verify_caution))
-        }else{
             emailChangePwViewModel.verify(
                 auth_code = auth_code,
                 email = email,
@@ -45,7 +46,8 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
                 key = localEmail,
                 value = email,
             )
-
+        } else {
+            showSnack(binding.root, getString(R.string.verify_caution))
         }
     }
 
