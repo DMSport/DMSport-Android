@@ -2,6 +2,7 @@ package com.example.dmsport_android.ui.fragment
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -63,6 +64,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
                 OK->{
                     arrayList.run {
                         clear()
+                        Log.d("TEST", "add")
                         add(it.body()!!)
                     }
                 }

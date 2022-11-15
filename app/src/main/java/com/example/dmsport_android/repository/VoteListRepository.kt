@@ -12,7 +12,7 @@ class VoteListRepository {
     ) : Response<VoteListResponse> =
         voteApi.getVoteList(
             ACCESS_TOKEN,
-            type,
-            date,
+            "BASKETBALL",
+            "2022-11-11",
         )
 }
