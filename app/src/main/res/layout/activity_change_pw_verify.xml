@@ -14,14 +14,19 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/ll_verify_title"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
             android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/ll_change_pw_verify_title"
-            app:layout_constraintVertical_bias="0.85"
-            app:layout_constraintBottom_toTopOf="@id/ll_change_pw_verify_editText"
-            style="@style/Theme.DMSportAndroid.LinearLayout">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.22">
 
+        <TextView
+            android:id="@+id/tv_verify_dmSport"
+            style="@style/Theme.DMSportAndroid.TextView_Change_Password"
+            app:layout_constraintStart_toStartOf="@id/tv_verify_verify"
+            app:layout_constraintTop_toBottomOf="@id/tv_verify_verify" />
 
             <TextView
                 android:id="@+id/tv_verify_verify"
@@ -88,8 +93,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
-
         <Button
+            android:layout_marginHorizontal="16dp"
             android:id="@+id/bt_verify_next"
             style="@style/Button_Primary"
             android:layout_marginHorizontal="16dp"

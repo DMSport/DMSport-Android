@@ -19,5 +19,4 @@ class EmailChangePwRepository {
 
     suspend fun verify(verifyRequest: VerifyRequest): Response<Void> =
         registerApi.verifyEmail(verifyRequest)
-
 }
