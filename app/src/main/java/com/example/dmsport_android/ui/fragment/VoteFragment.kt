@@ -11,12 +11,14 @@ import com.example.dmsport_android.R
 import com.example.dmsport_android.adapter.VoteListAdapter
 import com.example.dmsport_android.base.BaseFragment
 import com.example.dmsport_android.databinding.FragmentVoteBinding
+import com.example.dmsport_android.dto.response.Vote
 import com.example.dmsport_android.dto.response.VoteListResponse
 import com.example.dmsport_android.repository.VoteListRepository
 import com.example.dmsport_android.util.OK
 import com.example.dmsport_android.util.initPref
 import com.example.dmsport_android.viewmodel.VoteListViewModel
 import com.example.dmsport_android.viewmodel.factory.VoteListViewModelFactory
+import kotlin.math.max
 
 class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
 
@@ -58,14 +60,13 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
     }
 
     private fun observeVoteListResponse() {
-        initRecyclerView()
         voteListViewModel.voteListResponse.observe(viewLifecycleOwner, Observer {
             when(it.code()){
                 OK->{
                     arrayList.run {
                         clear()
-                        Log.d("TEST", "add")
                         add(it.body()!!)
+                        initRecyclerView()
                     }
                 }
             }
