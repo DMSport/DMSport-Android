@@ -32,7 +32,15 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
         observeVerify()
     }
 
-
+    fun verifyButton() {
+        val email = binding.etVerifyEmail.text.toString()
+        if (email.isNotEmpty()) {
+            emailChangePwViewModel.findVerifyEmail(email)
+            putPref(pref.edit(), localEmail, email)
+        } else {
+            snack(binding.root, getString(R.string.verify_caution))
+        }
+    }
 
     fun completeButton(){
         val code = binding.etVerifyCode.text.toString()
