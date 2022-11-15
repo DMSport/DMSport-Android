@@ -2,6 +2,7 @@ package com.example.dmsport_android.ui.activity
 
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -35,41 +36,22 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
         observeChange()
     }
 
-    fun nextButton() {
-        val new_pw = binding.etChangePw.text.toString()
-        val new_pwRe = binding.etChangePwRe.text.toString()
-        val email = getPref(pref, getPref(pref, localEmail, "").toString(), false)
-        if (new_pw.isNotEmpty() &&
-            new_pwRe.isNotEmpty() &&
-            new_pw.equals(new_pwRe)
-        ) {
-            putPref(pref.edit(), localPassword, new_pw)
-            if (getPref(pref, getPref(pref, localEmail,"").toString(), false) as Boolean) {
-                emailChangePwViewModel.emailChangePw(email.toString(), new_pw)
-            } else {
-                startIntent(this, VerifyActivity::class.java)
-            }
-        } else {
-            showSnack(binding.root, getString(R.string.change_pw_bad_request))
-        }
-    }
-
     fun initVisible() {
         binding.imgChangeVisiblePw.setImageDrawable(
             AppCompatResources.getDrawable(
                 this,
-                R.drawable.ic_visible_on,
+                R.drawable.ic_visible_off,
             )
         )
         binding.imgChangeVisiblePwRe.setImageDrawable(
             AppCompatResources.getDrawable(
                 this,
-                R.drawable.ic_visible_on,
+                R.drawable.ic_visible_off,
             )
         )
         binding.etChangePw.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        binding.etChangePwRe.inputType =
+        binding.etChangePw.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
@@ -115,14 +97,35 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
         }
     }
 
+
+    fun nextButton() {
+        val new_pw = binding.etChangePw.text.toString()
+        val new_pwRe = binding.etChangePwRe.text.toString()
+        if (new_pw.isNotEmpty() &&
+            new_pwRe.isNotEmpty() &&
+            new_pw == new_pwRe
+        ) {
+            putPref(pref.edit(), localPassword, new_pw)
+            if (getPref(pref, getPref(pref, localEmail,"").toString(), false) as Boolean) {
+                emailChangePwViewModel.emailChangePw(getPref(pref, localEmail, "").toString(), new_pw)
+            } else {
+                startIntent(this, VerifyActivity::class.java)
+            }
+        } else {
+            showSnack(binding.root, getString(R.string.change_pw_bad_request))
+        }
+    }
+
     fun observeChange() {
         emailChangePwViewModel.emailChangePwResponse.observe(this, Observer {
+            Log.d("TEST", it.code().toString()+"hsdsaffa")
             when(it.code()) {
-                CREATED -> {
+                NO_CONTENT -> {
                     showSnack(binding.root, getString(R.string.change_pw_created))
                     startIntent(this, LoginActivity::class.java)
+                    finish()
                 }
-                BAD_REQUEST -> showSnack(binding.root, getString(R.string.change_pw_bad_request))
+                UNAUTHORIZED -> showSnack(binding.root, getString(R.string.register_unauthorized))
             }
         })
     }
