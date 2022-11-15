@@ -9,14 +9,14 @@ import retrofit2.Response
 class EmailChangePwRepository {
 
     suspend fun emailChangePw(emailChangePwRequest: EmailChangePwRequest): Response<Void> {
-        return ApiProvider.retrofit.emailChangePw(emailChangePwRequest)
+        return ApiProvider.changePwApi.emailChangePw(emailChangePwRequest)
     }
 
     suspend fun findVerifyEmail(findPwVerifyEmailRequest: FindPwVerifyEmailRequest): Response<Void> {
-        return ApiProvider.retrofit.findVerifyEmail(findPwVerifyEmailRequest)
+        return ApiProvider.changePwApi.findVerifyEmail(findPwVerifyEmailRequest)
     }
 
     suspend fun verify(verifyRequest: VerifyRequest): Response<Void> {
-        return ApiProvider.retrofit.verify(verifyRequest)
+        return ApiProvider.changePwApi.verify(verifyRequest)
     }
 }
