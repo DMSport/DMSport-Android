@@ -27,25 +27,18 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        observeVerifyEmail()
         observeVerify()
     }
 
     fun verifyButton() {
-        val auth_code = binding.etVerifyCode.text.toString()
         val email = binding.etVerifyEmail.text.toString()
         if (email.isNotEmpty()) {
-            emailChangePwViewModel.verify(
-                auth_code = auth_code,
-                email = email,
-            )
-            putPref(
-                editor = pref.edit(),
-                key = localEmail,
-                value = email,
-            )
-
-        }else{
-            showSnack(binding.root, getString(R.string.verify_caution))
+            emailChangePwViewModel.findVerifyEmail(email)
+            putPref(pref.edit(), localEmail, email)
+        } else {
+            snack(binding.root, getString(R.string.verify_caution))
         }
     }
 
@@ -53,12 +46,19 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
         val code = binding.etVerifyCode.text.toString()
         val email = binding.etVerifyEmail.text.toString()
         if(code.isNotEmpty() && email.isNotEmpty()){
-            emailChangePwViewModel.findVerifyEmail(email)
+            emailChangePwViewModel.verify(code, email)
         }else{
-            showSnack(binding.root, getString(R.string.change_pw_bad_request))
+            snack(binding.root, getString(R.string.register_bad_request))
         }
     }
 
+    fun observeVerifyEmail(){
+        emailChangePwViewModel.findVerifyEmailResponse.observe(this, Observer {
+            when(it.code()){
+                NO_CONTENT -> snack(binding.root, getString(R.string.duplicate_no_content))
+            }
+        })
+    }
 
     fun observeVerify(){
         emailChangePwViewModel.verifyResponse.observe(this, Observer {

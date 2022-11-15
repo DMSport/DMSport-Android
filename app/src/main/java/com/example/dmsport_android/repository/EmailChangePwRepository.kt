@@ -9,15 +9,15 @@ import retrofit2.Response
 
 class EmailChangePwRepository {
 
-    suspend fun emailChangePw(emailChangePwRequest: EmailChangePwRequest): Response<Void> =
-        myPageApi.changePassword(emailChangePwRequest)
+    suspend fun emailChangePw(emailChangePwRequest: EmailChangePwRequest): Response<Void> {
+        return ApiProvider.changePwApi.emailChangePw(emailChangePwRequest)
+    }
 
+    suspend fun findVerifyEmail(findPwVerifyEmailRequest: FindPwVerifyEmailRequest): Response<Void> {
+        return ApiProvider.changePwApi.findVerifyEmail(findPwVerifyEmailRequest)
+    }
 
-    suspend fun findVerifyEmail(findPwVerifyEmailRequest: FindPwVerifyEmailRequest): Response<Void> =
-        myPageApi.sendVerifyEmail(findPwVerifyEmailRequest)
-
-
-    suspend fun verify(verifyRequest: VerifyRequest): Response<Void> =
-        registerApi.verifyEmail(verifyRequest)
-
+    suspend fun verify(verifyRequest: VerifyRequest): Response<Void> {
+        return ApiProvider.changePwApi.verify(verifyRequest)
+    }
 }

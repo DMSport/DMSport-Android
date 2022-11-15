@@ -91,7 +91,6 @@
             android:id="@+id/tv_login_forgotPw"
             style="@style/TextView_Des"
             android:text="@string/login_forgotPw"
-            app:layout_constraintBottom_toTopOf="@id/ll_login_button"
             android:onClick="@{()->LoginActivity.forgotPw()}"
             app:layout_constraintEnd_toEndOf="@id/ll_login_edittext"
             app:layout_constraintStart_toStartOf="@id/ll_login_edittext"

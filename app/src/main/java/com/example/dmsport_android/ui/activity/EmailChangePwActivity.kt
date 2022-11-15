@@ -37,15 +37,15 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
 
     fun nextButton() {
         val new_pw = binding.etChangePw.text.toString()
-        val email = localEmail
         val new_pwRe = binding.etChangePwRe.text.toString()
+        val email = getPref(pref, getPref(pref, localEmail, "").toString(), false)
         if (new_pw.isNotEmpty() &&
             new_pwRe.isNotEmpty() &&
             new_pw.equals(new_pwRe)
         ) {
             putPref(pref.edit(), localPassword, new_pw)
             if (getPref(pref, getPref(pref, localEmail,"").toString(), false) as Boolean) {
-                emailChangePwViewModel.emailChangePw(email, new_pw)
+                emailChangePwViewModel.emailChangePw(email.toString(), new_pw)
             } else {
                 startIntent(this, VerifyActivity::class.java)
             }

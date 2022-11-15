@@ -25,7 +25,6 @@ class EmailChangePwViewModel(
     private val _findVerifyEmailResponse = MutableLiveData<Response<Void>>()
     val findVerifyEmailResponse: LiveData<Response<Void>> = _findVerifyEmailResponse
 
-
     private val _emailChangePwResponse = MutableLiveData<Response<Void>>()
     val emailChangePwResponse: LiveData<Response<Void>> = _emailChangePwResponse
 
