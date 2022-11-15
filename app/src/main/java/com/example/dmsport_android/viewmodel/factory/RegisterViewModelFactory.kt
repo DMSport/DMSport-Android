@@ -10,7 +10,7 @@ class RegisterViewModelFactory(
     private val registerRepository: RegisterRepository,
     private val sharedPreferences: SharedPreferences,
 ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return RegisterViewModel(registerRepository, sharedPreferences) as T
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        RegisterViewModel(registerRepository, sharedPreferences) as T
+
 }

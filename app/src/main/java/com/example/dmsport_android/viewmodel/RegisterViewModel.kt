@@ -1,12 +1,10 @@
 package com.example.dmsport_android.viewmodel
 
 import android.content.SharedPreferences
-import android.text.InputType
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dmsport_android.R
 import com.example.dmsport_android.dto.request.DuplicateRequest
 import com.example.dmsport_android.dto.request.RegisterRequest
 import com.example.dmsport_android.dto.request.VerifyEmailRequest
@@ -39,24 +37,31 @@ class RegisterViewModel(
     val registerResponse: LiveData<Response<RegisterResponse>> = _registerResponse
 
 
-    fun duplicate(email: String) {
+    fun emailDuplicate(
+        email: String,
+    ) {
         val duplicateRequest = DuplicateRequest(email)
         viewModelScope.launch(Dispatchers.IO) {
-            _duplicateResponse.postValue(registerRepository.duplicate(duplicateRequest))
+            _duplicateResponse.postValue(registerRepository.emailDuplicate(duplicateRequest))
         }
     }
 
-    fun verifyEmail(email: String) {
+    fun sendVerifyEmail(
+        email: String,
+    ) {
         val verifyEmailRequest = VerifyEmailRequest(email)
         viewModelScope.launch(Dispatchers.IO) {
-            _verifyEmailResponse.postValue(registerRepository.verifyEmail(verifyEmailRequest))
+            _verifyEmailResponse.postValue(registerRepository.sendVerifyEmail(verifyEmailRequest))
         }
     }
 
-    fun verify(code: String, email: String) {
+    fun verifyEmail(
+        code: String,
+        email: String,
+    ) {
         val verifyRequest = VerifyRequest(code, email)
         viewModelScope.launch(Dispatchers.IO) {
-            _verifyResponse.postValue(registerRepository.verify(verifyRequest))
+            _verifyResponse.postValue(registerRepository.verifyEmail(verifyRequest))
         }
     }
 
@@ -77,26 +82,27 @@ class RegisterViewModel(
 
     fun initVisible(){
         putPref(pref.edit(), registerVisible, false)
+        putPref(pref.edit(), registerVisibleRe, false)
     }
 
-    fun visible() : Boolean{
+    fun visible() : Boolean =
         if(getPref(pref, registerVisible, false) as Boolean){
             putPref(pref.edit(), registerVisible, false)
-            return true
+            true
+
         }else{
             putPref(pref.edit(), registerVisible, true)
-            return false
+            false
         }
-    }
 
-    fun visibleRe() : Boolean{
+
+    fun visibleRe() : Boolean =
         if(getPref(pref, registerVisibleRe, false) as Boolean){
             putPref(pref.edit(), registerVisibleRe, false)
-            return true
+            true
 
         }else{
             putPref(pref.edit(), registerVisibleRe, true)
-            return false
+            false
         }
-    }
 }

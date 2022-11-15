@@ -1,11 +1,9 @@
 package com.example.dmsport_android.ui.activity
 
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.content.res.AppCompatResources
@@ -17,14 +15,13 @@ import com.example.dmsport_android.viewmodel.LoginViewModel
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityLoginBinding
-import com.example.dmsport_android.databinding.ActivityMainBinding
 import com.example.dmsport_android.repository.LoginRepository
-import com.example.dmsport_android.ui.fragment.VoteFragment
 import com.example.dmsport_android.util.*
 import com.example.dmsport_android.viewmodel.factory.LoginViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
+
+    var email : String? = null
 
     private val loginRepository: LoginRepository by lazy {
         LoginRepository()
@@ -75,13 +72,23 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun initVisible(){
-        binding.imgLoginVisible.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_visible_off))
+        binding.imgLoginVisible.setImageDrawable(
+            AppCompatResources.getDrawable(
+                this,
+                R.drawable.ic_visible_off,
+            )
+        )
         binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
     fun visible(){
         if(loginViewModel.visible()){
-            binding.imgLoginVisible.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_visible_on))
+            binding.imgLoginVisible.setImageDrawable(
+                AppCompatResources.getDrawable(
+                    this,
+                    R.drawable.ic_visible_on,
+                )
+            )
             binding.etLoginPw.inputType = InputType.TYPE_CLASS_TEXT
         }else{
             initVisible()
@@ -101,16 +108,19 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     startIntent(this, MainActivity::class.java)
                     finish()
                 }
-                BAD_REQUEST -> snack(binding.root, getString(R.string.login_bad_request))
-                NOT_FOUND -> snack(binding.root, getString(R.string.login_not_found))
+                BAD_REQUEST -> showSnack(binding.root, getString(R.string.login_bad_request))
+                NOT_FOUND -> showSnack(binding.root, getString(R.string.login_not_found))
             }
         })
     }
 
     private fun snackBar(){
         if(isLogOuted){
-            snack(binding.root, "로그아웃 되었습니다!")
+            showSnack(binding.root, "로그아웃 되었습니다!")
             isLogOuted = false
+        }else if(isDeletedUser){
+            showSnack(binding.root, "성공적으로 진행되었습니다!")
+            isDeletedUser = false
         }
     }
 }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="ChangePwVerifyActivity"
             type="com.example.dmsport_android.ui.activity.ChangePwVerifyActivity" />

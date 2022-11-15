@@ -3,7 +3,8 @@ package com.example.dmsport_android.repository
 import com.example.dmsport_android.dto.request.EmailChangePwRequest
 import com.example.dmsport_android.dto.request.FindPwVerifyEmailRequest
 import com.example.dmsport_android.dto.request.VerifyRequest
-import com.example.dmsport_android.network.ApiProvider
+import com.example.dmsport_android.network.myPageApi
+import com.example.dmsport_android.network.registerApi
 import retrofit2.Response
 
 class EmailChangePwRepository {

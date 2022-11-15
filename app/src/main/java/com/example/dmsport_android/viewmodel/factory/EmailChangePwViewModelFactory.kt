@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.repository.EmailChangePwRepository
 import com.example.dmsport_android.viewmodel.EmailChangePwViewModel
 
-class EmailChangePwViewModelFactory (
-    private val changePwRepository: EmailChangePwRepository,
+class EmailChangePwViewModelFactory(
+    private val emailChangePwRepository: EmailChangePwRepository,
     private val sharedPreferences: SharedPreferences,
 ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return EmailChangePwViewModel(changePwRepository, sharedPreferences) as T
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        EmailChangePwViewModel(emailChangePwRepository, sharedPreferences) as T
+
 }

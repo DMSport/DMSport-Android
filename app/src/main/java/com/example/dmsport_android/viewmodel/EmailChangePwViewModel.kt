@@ -32,7 +32,10 @@ class EmailChangePwViewModel(
     val verifyResponse: LiveData<Response<Void>> = _verifyResponse
 
 
-    fun emailChangePw(email: String, new_password: String) {
+    fun emailChangePw(
+        email: String,
+        new_password: String,
+    ) {
         val emailChangePwRequest = EmailChangePwRequest(email, new_password)
         viewModelScope.launch(Dispatchers.IO) {
             _emailChangePwResponse.postValue(
@@ -43,7 +46,10 @@ class EmailChangePwViewModel(
         }
     }
 
-    fun verify(auth_code: String, email: String) {
+    fun verify(
+        auth_code: String,
+        email: String,
+    ) {
         val verifyRequest = VerifyRequest(auth_code, email)
         viewModelScope.launch(Dispatchers.IO) {
             _verifyResponse.postValue(
@@ -71,25 +77,22 @@ class EmailChangePwViewModel(
         putPref(preferences.edit(), emailChangePwVisible, false)
     }
 
-    fun visible(): Boolean {
-        if (getPref(preferences, emailChangePwVisible, false) as Boolean) {
+    fun visible() : Boolean =
+        if(getPref(preferences, emailChangePwVisible, false) as Boolean){
             putPref(preferences.edit(), emailChangePwVisible, false)
-            return true
-        } else {
+            true
+        }else{
             putPref(preferences.edit(), emailChangePwVisible, true)
-            return false
+            false
         }
-    }
 
-    fun visibleRe(): Boolean {
+    fun visibleRe(): Boolean =
         if (getPref(preferences, emailChangePwVisibleRe, false) as Boolean) {
             putPref(preferences.edit(), emailChangePwVisibleRe, false)
-            return true
+            true
 
         } else {
             putPref(preferences.edit(), emailChangePwVisibleRe, true)
-            return false
+            false
         }
-    }
-
 }

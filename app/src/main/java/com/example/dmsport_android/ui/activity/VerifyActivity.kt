@@ -37,10 +37,10 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
     fun verifyButton() {
         val email = binding.etVerifyEmail.text.toString()
         if (email.isNotEmpty()) {
-            registerViewModel.duplicate(email)
+            registerViewModel.emailDuplicate(email)
             putPref(pref.edit(), localEmail, email)
         }else{
-            snack(binding.root, getString(R.string.verify_caution))
+            showSnack(binding.root, getString(R.string.verify_caution))
         }
     }
 
@@ -48,18 +48,18 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
         val code = binding.etVerifyCode.text.toString()
         val email = binding.etVerifyEmail.text.toString()
         if(code.isNotEmpty() && email.isNotEmpty()){
-            registerViewModel.verify(code, email)
+            registerViewModel.verifyEmail(code, email)
         }else{
-            snack(binding.root, getString(R.string.register_bad_request))
+            showSnack(binding.root, getString(R.string.register_bad_request))
         }
     }
 
     fun observeDuplicate(){
         registerViewModel.duplicateResponse.observe(this, Observer {
             when(it.code()){
-                NO_CONTENT -> registerViewModel.verifyEmail(getPref(pref, localEmail, "").toString())
-                BAD_REQUEST -> snack(binding.root, getString(R.string.duplicate_bad_request))
-                CONFLICT -> snack(binding.root, getString(R.string.duplicate_conflict))
+                NO_CONTENT -> registerViewModel.sendVerifyEmail(getPref(pref, localEmail, "").toString())
+                BAD_REQUEST -> showSnack(binding.root, getString(R.string.duplicate_bad_request))
+                CONFLICT -> showSnack(binding.root, getString(R.string.duplicate_conflict))
             }
         })
     }
@@ -67,7 +67,7 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
     fun observeVerifyEmail(){
         registerViewModel.verifyEmailResponse.observe(this, Observer {
             when(it.code()){
-                NO_CONTENT -> snack(binding.root, getString(R.string.duplicate_no_content))
+                NO_CONTENT -> showSnack(binding.root, getString(R.string.duplicate_no_content))
             }
         })
     }
@@ -83,7 +83,7 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
                     )
                     putPref(pref.edit(), getPref(pref, localEmail, "").toString(), true)
                 }
-                UNAUTHORIZED -> snack(binding.root, getString(R.string.verify_unauthorized))
+                UNAUTHORIZED -> showSnack(binding.root, getString(R.string.verify_unauthorized))
             }
         })
     }
@@ -92,16 +92,17 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
         registerViewModel.registerResponse.observe(this, Observer {
             when(it.code()){
                 CREATED -> {
-                    snack(binding.root, getString(R.string.register_created))
+                    isJoined = true
                     startIntent(this, MainActivity::class.java)
+                    ACCESS_TOKEN = "Bearer $ACCESS_TOKEN"
                 }
                 BAD_REQUEST ->{
-                    snack(binding.root, getString(R.string.register_bad_request))
+                    showSnack(binding.root, getString(R.string.register_bad_request))
                     startIntent(this, RegisterActivity::class.java)
                     finish()
                 }
                 UNAUTHORIZED ->{
-                    snack(binding.root, getString(R.string.register_unauthorized))
+                    showSnack(binding.root, getString(R.string.register_unauthorized))
                 }
             }
         })

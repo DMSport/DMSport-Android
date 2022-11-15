@@ -66,7 +66,7 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
                 NO_CONTENT -> {
                     putPref(pref.edit(), getPref(pref, localEmail, "").toString(), true)
                 }
-                UNAUTHORIZED -> snack(binding.root, getString(R.string.verify_unauthorized))
+                UNAUTHORIZED -> showSnack(binding.root, getString(R.string.verify_unauthorized))
             }
         })
     }

@@ -43,13 +43,12 @@ class LoginViewModel(
         putPref(pref.edit(), loginVisible, false)
     }
 
-    fun visible(): Boolean {
+    fun visible(): Boolean =
         if (getPref(pref, loginVisible, false) as Boolean) {
             putPref(pref.edit(), loginVisible, false)
-            return true
+            true
         } else {
             putPref(pref.edit(), loginVisible, true)
-            return false
+            false
         }
-    }
 }
