@@ -9,10 +9,7 @@ import com.example.dmsport_android.dto.request.EmailChangePwRequest
 import com.example.dmsport_android.dto.request.FindPwVerifyEmailRequest
 import com.example.dmsport_android.dto.request.VerifyRequest
 import com.example.dmsport_android.repository.EmailChangePwRepository
-import com.example.dmsport_android.util.emailChangePwVisible
-import com.example.dmsport_android.util.emailChangePwVisibleRe
-import com.example.dmsport_android.util.getPref
-import com.example.dmsport_android.util.putPref
+import com.example.dmsport_android.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -32,6 +29,7 @@ class EmailChangePwViewModel(
     val verifyResponse: LiveData<Response<Void>> = _verifyResponse
 
 
+
     fun emailChangePw(
         email: String,
         new_password: String,
@@ -47,10 +45,10 @@ class EmailChangePwViewModel(
     }
 
     fun verify(
-        auth_code: String,
         email: String,
+        auth_code: String,
     ) {
-        val verifyRequest = VerifyRequest(auth_code, email)
+        val verifyRequest = VerifyRequest(email, auth_code)
         viewModelScope.launch(Dispatchers.IO) {
             _verifyResponse.postValue(
                 emailChangePwRepository.verify(
@@ -73,26 +71,29 @@ class EmailChangePwViewModel(
         }
     }
 
-    fun initVisible() {
-        putPref(preferences.edit(), emailChangePwVisible, false)
+    fun initVisible(){
+        putPref(preferences.edit(), registerVisible, false)
+        putPref(preferences.edit(), registerVisibleRe, false)
     }
 
     fun visible() : Boolean =
-        if(getPref(preferences, emailChangePwVisible, false) as Boolean){
-            putPref(preferences.edit(), emailChangePwVisible, false)
+        if(getPref(preferences, registerVisible, false) as Boolean){
+            putPref(preferences.edit(), registerVisible, false)
             true
+
         }else{
-            putPref(preferences.edit(), emailChangePwVisible, true)
+            putPref(preferences.edit(), registerVisible, true)
             false
         }
 
-    fun visibleRe(): Boolean =
-        if (getPref(preferences, emailChangePwVisibleRe, false) as Boolean) {
-            putPref(preferences.edit(), emailChangePwVisibleRe, false)
+
+    fun visibleRe() : Boolean =
+        if(getPref(preferences, registerVisibleRe, false) as Boolean){
+            putPref(preferences.edit(), registerVisibleRe, false)
             true
 
-        } else {
-            putPref(preferences.edit(), emailChangePwVisibleRe, true)
+        }else{
+            putPref(preferences.edit(), registerVisibleRe, true)
             false
         }
 }
