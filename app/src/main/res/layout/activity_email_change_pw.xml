@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/tv_change_pw"
-            style="@style/Theme.DMSportAndroid.TextView_Title"
+            style="@style/TextView_Title"
             android:layout_marginStart="24dp"
             android:layout_marginTop="224dp"
             android:text="@string/change_pw_text_ko"
@@ -29,10 +29,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_change_pw"
-            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            style="@style/TextInputLayout"
             android:layout_marginTop="32dp"
+            android:layout_width="358dp"
             app:errorEnabled="true"
-            app:helperTextTextColor="@color/color_highLight1"
+            app:helperTextTextColor="@color/color_highLight"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,14 +41,14 @@
 
             <EditText
                 android:id="@+id/et_change_pw"
-                style="@style/Theme.DMSportAndroid.EditText"
+                style="@style/EditText"
                 android:hint="@string/change_pw_edit_text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/img_change_visible_pw"
-            style="@style/Theme.DMSportAndroid.Toggle"
+            style="@style/Toggle"
             android:onClick="@{()->EmailChangePwActivity.visible()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_change_pw"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_change_pw"
@@ -56,7 +57,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_change_pw_re"
-            style="@style/Theme.DMSportAndroid.TextInputLayout"
+            style="@style/TextInputLayout"
+            android:layout_width="358dp"
             android:layout_marginTop="14dp"
             app:errorEnabled="true"
             app:hintEnabled="false"
@@ -66,14 +68,14 @@
 
             <EditText
                 android:id="@+id/et_change_pw_re"
-                style="@style/Theme.DMSportAndroid.EditText"
+                style="@style/EditText"
                 android:hint="@string/change_pw_re" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/img_change_visible_pw_re"
-            style="@style/Theme.DMSportAndroid.Toggle"
+            style="@style/Toggle"
             android:onClick="@{()->EmailChangePwActivity.visibleRe()}"
             app:layout_constraintBottom_toBottomOf="@id/textInputLayout_change_pw_re"
             app:layout_constraintEnd_toEndOf="@id/textInputLayout_change_pw_re"
@@ -81,7 +83,7 @@
 
         <Button
             android:id="@+id/bt_change_pw_next"
-            style="@style/Theme.DMSportAndroid.Button_Primary"
+            style="@style/Button_Primary"
             android:layout_marginBottom="42dp"
             android:text="@string/register_next"
             android:onClick="@{()->EmailChangePwActivity.nextButton()}"
