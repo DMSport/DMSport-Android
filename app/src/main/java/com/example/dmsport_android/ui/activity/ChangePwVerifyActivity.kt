@@ -1,6 +1,7 @@
 package com.example.dmsport_android.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
@@ -29,14 +30,13 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
         super.onCreate(savedInstanceState)
         observeVerifyEmail()
         observeVerify()
+        binding.changePwVerifyActivity = this
     }
 
     fun verifyButton() {
         val email = binding.etVerifyEmail.text.toString()
-        val auth_code = binding.etVerifyCode.text.toString()
         if (email.isNotEmpty()) {
-            emailChangePwViewModel.verify(
-                auth_code = auth_code,
+            emailChangePwViewModel.findVerifyEmail(
                 email = email,
             )
             putPref(
@@ -53,7 +53,7 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
         val code = binding.etVerifyCode.text.toString()
         val email = binding.etVerifyEmail.text.toString()
         if(code.isNotEmpty() && email.isNotEmpty()){
-            emailChangePwViewModel.verify(code, email)
+            emailChangePwViewModel.verify(email, code)
         }else{
             showSnack(binding.root, getString(R.string.change_pw_bad_request))
         }
@@ -69,9 +69,12 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
 
     fun observeVerify(){
         emailChangePwViewModel.verifyResponse.observe(this, Observer {
+            Log.d("TEST", it.code().toString())
             when(it.code()){
                 NO_CONTENT -> {
                     putPref(pref.edit(), getPref(pref, localEmail, "").toString(), true)
+                    startIntent(this, EmailChangePwActivity::class.java)
+                    finish()
                 }
                 UNAUTHORIZED -> showSnack(binding.root, getString(R.string.verify_unauthorized))
             }
