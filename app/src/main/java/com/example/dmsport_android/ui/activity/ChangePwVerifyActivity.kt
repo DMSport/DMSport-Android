@@ -69,7 +69,6 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
 
     fun observeVerify(){
         emailChangePwViewModel.verifyResponse.observe(this, Observer {
-            Log.d("TEST", it.code().toString())
             when(it.code()){
                 NO_CONTENT -> {
                     putPref(pref.edit(), getPref(pref, localEmail, "").toString(), true)
