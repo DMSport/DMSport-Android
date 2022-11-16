@@ -25,3 +25,7 @@ val myPageApi: MyPageApi by lazy {
 val voteApi : VoteApi by lazy {
     retrofit.create(VoteApi::class.java)
 }
+
+val changePwApi : ChangePwApi by lazy {
+    retrofit.create(ChangePwApi::class.java)
+}
