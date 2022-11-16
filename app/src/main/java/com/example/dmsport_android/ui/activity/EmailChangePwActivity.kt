@@ -118,7 +118,6 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
 
     fun observeChange() {
         emailChangePwViewModel.emailChangePwResponse.observe(this, Observer {
-            Log.d("TEST", it.code().toString()+"hsdsaffa")
             when(it.code()) {
                 NO_CONTENT -> {
                     showSnack(binding.root, getString(R.string.change_pw_created))
