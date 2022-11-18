@@ -18,25 +18,35 @@ import com.example.dmsport_android.util.initPref
 import com.example.dmsport_android.viewmodel.VoteListViewModel
 import com.example.dmsport_android.viewmodel.factory.VoteListViewModelFactory
 
-class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
+class VoteFragment : BaseFragment<FragmentVoteBinding>(
+    R.layout.fragment_vote,
+) {
 
     private val voteListRepository: VoteListRepository by lazy {
         VoteListRepository()
     }
 
     private val pref: SharedPreferences by lazy {
-        initPref(this.requireContext())
+        initPref(
+            context = this.requireContext(),
+        )
     }
 
     private val voteListViewModelFactory: VoteListViewModelFactory by lazy {
-        VoteListViewModelFactory(voteListRepository, pref)
+        VoteListViewModelFactory(
+            voteRepository = voteListRepository,
+            pref = pref,
+        )
     }
 
     private val voteListViewModel: VoteListViewModel by lazy {
-        ViewModelProvider(this, voteListViewModelFactory).get(VoteListViewModel::class.java)
+        ViewModelProvider(
+            owner = this,
+            factory = voteListViewModelFactory,
+        ).get(VoteListViewModel::class.java)
     }
 
-    private val voteViewList : ArrayList<View> by lazy {
+    private val voteViewList: ArrayList<View> by lazy {
         arrayListOf(
             binding.cvVoteBad,
             binding.cvVoteSoc,
@@ -45,7 +55,9 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
         )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = voteListViewModel
         observeVoteListResponse()
@@ -54,40 +66,66 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
     }
 
     private fun observeVoteListResponse() {
-        voteListViewModel.voteListResponse.observe(viewLifecycleOwner, Observer {
-            when(it.code()){
-                OK->{
-                    initRecyclerView(it.body()!!)
-                }
+        voteListViewModel.voteListResponse.observe(
+            viewLifecycleOwner,
+        ) {
+            when (it.code()) {
+                OK -> initRecyclerView(
+                    voteListResponse = it.body()!!
+                )
             }
-        })
-    }
-
-    private fun initRecyclerView(voteListResponse : VoteListResponse) {
-        binding.rvVoteList.adapter = VoteListAdapter(voteListResponse, voteListResponse.vote, voteListViewModel)
-        binding.rvVoteList.layoutManager = LinearLayoutManager(this.requireContext())
-    }
-
-    private fun observeSelectedVote(){
-        voteListViewModel.run {
-            selectedVote.observe(viewLifecycleOwner, Observer {
-                setBackgroundOff()
-                setBackgroundOn(voteViewList[it])
-            })
         }
     }
 
-    private fun initSelectedVote(){
+    private fun initRecyclerView(
+        voteListResponse: VoteListResponse,
+    ) {
+        binding.rvVoteList.run {
+            adapter = VoteListAdapter(
+                voteList = voteListResponse,
+                voteEventList = voteListResponse.vote,
+                voteListViewModel = voteListViewModel,
+            )
+            layoutManager = LinearLayoutManager(
+                this@VoteFragment.requireContext(),
+            )
+        }
+
+        binding.rvVoteList.layoutManager =
+            LinearLayoutManager(
+                this.requireContext(),
+            )
+    }
+
+    private fun observeSelectedVote() {
+        voteListViewModel.run {
+            selectedVote.observe(viewLifecycleOwner) {
+                setBackgroundOff()
+                setBackgroundOn(
+                    view = voteViewList[it],
+                )
+            }
+        }
+    }
+
+    private fun initSelectedVote() {
         setBackgroundOff()
         val number = voteListViewModel.initSelectedVote()
         voteListViewModel.selectVote(number)
-        setBackgroundOn(voteViewList[number])
+        setBackgroundOn(
+            view = voteViewList[number],
+        )
     }
 
     fun setBackgroundOff() {
-        for (i in 0..3) voteViewList[i].setBackgroundResource(R.drawable.vote_card_view_off)
+        for (i in 0..3)
+            voteViewList[i].setBackgroundResource(
+                R.drawable.vote_card_view_off,
+            )
     }
 
     fun setBackgroundOn(view: View) =
-        view.setBackgroundResource(R.drawable.vote_card_view_on)
+        view.setBackgroundResource(
+            R.drawable.vote_card_view_on,
+        )
 }
