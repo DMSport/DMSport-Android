@@ -14,34 +14,48 @@ import retrofit2.Response
 import java.time.LocalDate
 
 class VoteListViewModel(
-    private val voteListRepository : VoteListRepository,
-    private val pref : SharedPreferences,
-) : ViewModel(){
+    private val voteListRepository: VoteListRepository,
+    private val pref: SharedPreferences,
+) : ViewModel() {
 
-    private val _voteListResponse : MutableLiveData<Response<VoteListResponse>> = MutableLiveData()
-    val voteListResponse : LiveData<Response<VoteListResponse>> = _voteListResponse
+    private val _voteListResponse: MutableLiveData<Response<VoteListResponse>> = MutableLiveData()
+    val voteListResponse: LiveData<Response<VoteListResponse>> = _voteListResponse
 
-    private val _selectedVote : MutableLiveData<Int> = MutableLiveData()
-    val selectedVote : LiveData<Int> = _selectedVote
+    private val _selectedVote: MutableLiveData<Int> = MutableLiveData()
+    val selectedVote: LiveData<Int> = _selectedVote
 
-    private val _currentVote : MutableLiveData<String> = MutableLiveData()
-    val currentVote : LiveData<String> = _currentVote
+    private val _currentVote: MutableLiveData<String> = MutableLiveData()
+    val currentVote: LiveData<String> = _currentVote
 
     private fun getVoteList(
-        type : String,
-    ){
-        viewModelScope.launch(Dispatchers.IO){
-             _voteListResponse.postValue(voteListRepository.getVoteList(type, LocalDate.now().toString()))
+        type: String,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _voteListResponse.postValue(
+                voteListRepository
+                    .getVoteList(
+                        type = type,
+                        date = LocalDate.now().toString(),
+                    )
+            )
         }
     }
 
-    fun initSelectedVote() : Int =
-        getPref(pref, selectedVoteNumber, 0) as Int
+    fun initSelectedVote(): Int =
+        getPref(
+            preferences = pref,
+            key = selectedVoteNumber,
+            value = 0,
+        ) as Int
 
-    fun selectVote(number : Int) {
+    fun selectVote(number: Int) {
         _selectedVote.value = number
         _currentVote.value = typeListTitle[number]
         getVoteList(typeList[number])
-        putPref(pref.edit(), selectedVoteNumber, number)
+        putPref(
+            editor = pref.edit(),
+            key = selectedVoteNumber,
+            value = number,
+        )
     }
 }
