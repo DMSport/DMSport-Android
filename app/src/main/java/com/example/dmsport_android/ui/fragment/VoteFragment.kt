@@ -2,7 +2,6 @@ package com.example.dmsport_android.ui.fragment
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +17,6 @@ import com.example.dmsport_android.util.OK
 import com.example.dmsport_android.util.initPref
 import com.example.dmsport_android.viewmodel.VoteListViewModel
 import com.example.dmsport_android.viewmodel.factory.VoteListViewModelFactory
-import kotlin.math.max
 
 class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
 
@@ -36,10 +34,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
 
     private val voteListViewModel: VoteListViewModel by lazy {
         ViewModelProvider(this, voteListViewModelFactory).get(VoteListViewModel::class.java)
-    }
-
-    private val arrayList: ArrayList<VoteListResponse> by lazy {
-        ArrayList()
     }
 
     private val voteViewList : ArrayList<View> by lazy {
@@ -63,18 +57,14 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(R.layout.fragment_vote) {
         voteListViewModel.voteListResponse.observe(viewLifecycleOwner, Observer {
             when(it.code()){
                 OK->{
-                    arrayList.run {
-                        clear()
-                        add(it.body()!!)
-                        initRecyclerView()
-                    }
+                    initRecyclerView(it.body()!!)
                 }
             }
         })
     }
 
-    private fun initRecyclerView() {
-        binding.rvVoteList.adapter = VoteListAdapter(arrayList, voteListViewModel)
+    private fun initRecyclerView(voteListResponse : VoteListResponse) {
+        binding.rvVoteList.adapter = VoteListAdapter(voteListResponse, voteListResponse.vote, voteListViewModel)
         binding.rvVoteList.layoutManager = LinearLayoutManager(this.requireContext())
     }
 
