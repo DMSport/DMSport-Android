@@ -47,6 +47,7 @@ class VoteListViewModel(
         voteId : Int,
     ){
         viewModelScope.launch(Dispatchers.IO){
+            voteListRepository.vote(voteId.toLong())
             selectVote(
                 number = getPref(
                     preferences = pref,
@@ -54,7 +55,6 @@ class VoteListViewModel(
                     value = 0
                 ) as Int
             )
-            voteListRepository.vote(voteId.toLong())
         }
     }
 
