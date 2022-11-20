@@ -66,7 +66,7 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
         )
         binding.etChangePw.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        binding.etChangePw.inputType =
+        binding.etChangePwRe.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
