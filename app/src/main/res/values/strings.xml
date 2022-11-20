@@ -12,7 +12,7 @@
     <string name="login_pw_error">올바른 형식을 입력해 주세요 (8자 ~ 20자)</string>
 
     <string name="login_ok">로그인에 성공했습니다!</string>
-    <string name="login_bad_request">이메일 또는 비밀번호가 잘못되었습니다</string>
+    <string name="login_forbidden">비밀번호가 다릅니다</string>
     <string name="login_not_found">존재하지 않는 회원입니다</string>
 
     <string name="vote_event">종목</string>
@@ -54,6 +54,7 @@
     <string name="mypage_auto_participant">종목 빈자리 자동 참여</string>
     <string name="mypage_logout">로그아웃</string>
     <string name="mypage_delete_user">회원 탈퇴</string>
+    <string name="mypage_complete_change_password">성공적으로 변경되었습니다!</string>
 
     <string name="change_pw_edit_text">새로운 비밀번호를 입력해주세요</string>
     <string name="change_pw_created">비밀번호 변경이 완료되었습니다</string>
@@ -61,5 +62,6 @@
     <string name="change_pw_text_ko">변경하기</string>
     <string name="change_pw_text_en">Password</string>
     <string name="change_pw_bad_request">항목을 확인해주세요</string>
+    <string name="change_pw_old_password">현재 비밀번호를 입력해주세요</string>
 
 </resources>

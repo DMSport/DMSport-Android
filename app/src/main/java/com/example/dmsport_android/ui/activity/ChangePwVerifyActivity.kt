@@ -1,25 +1,24 @@
 package com.example.dmsport_android.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityChangePwVerifyBinding
-import com.example.dmsport_android.repository.EmailChangePwRepository
+import com.example.dmsport_android.repository.ChangePasswordRepository
 import com.example.dmsport_android.util.*
 import com.example.dmsport_android.viewmodel.EmailChangePwViewModel
 import com.example.dmsport_android.viewmodel.factory.EmailChangePwViewModelFactory
 
 class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.layout.activity_change_pw_verify) {
 
-    private val emailChangePwRepository: EmailChangePwRepository by lazy {
-        EmailChangePwRepository()
+    private val changePasswordRepository: ChangePasswordRepository by lazy {
+        ChangePasswordRepository()
     }
 
     private val emailChangePwViewModelFactory: EmailChangePwViewModelFactory by lazy {
-        EmailChangePwViewModelFactory(emailChangePwRepository, pref)
+        EmailChangePwViewModelFactory(changePasswordRepository, pref)
     }
 
     private val emailChangePwViewModel: EmailChangePwViewModel by lazy {

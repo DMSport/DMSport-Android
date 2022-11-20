@@ -24,6 +24,7 @@ var isLogged = false
 var isLogOuted = false
 var isDeletedUser = false
 var isJoined = false
+var isVerified = false
 
 val typeList = arrayListOf("BADMINTON", "SOCCER", "BASKETBALL", "VOLLEYBALL")
 val typeListTitle = arrayListOf("배드민턴", "축구", "농구", "배구")

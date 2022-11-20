@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.content.res.AppCompatResources
@@ -108,7 +109,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     startIntent(this, MainActivity::class.java)
                     finish()
                 }
-                BAD_REQUEST -> showSnack(binding.root, getString(R.string.login_bad_request))
+                FORBIDDEN -> showSnack(binding.root, getString(R.string.login_forbidden))
                 NOT_FOUND -> showSnack(binding.root, getString(R.string.login_not_found))
             }
         })
