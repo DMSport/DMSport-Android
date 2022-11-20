@@ -54,6 +54,7 @@
     <string name="mypage_auto_participant">종목 빈자리 자동 참여</string>
     <string name="mypage_logout">로그아웃</string>
     <string name="mypage_delete_user">회원 탈퇴</string>
+    <string name="mypage_complete_change_password">성공적으로 변경되었습니다!</string>
 
     <string name="change_pw_edit_text">새로운 비밀번호를 입력해주세요</string>
     <string name="change_pw_created">비밀번호 변경이 완료되었습니다</string>
@@ -61,5 +62,6 @@
     <string name="change_pw_text_ko">변경하기</string>
     <string name="change_pw_text_en">Password</string>
     <string name="change_pw_bad_request">항목을 확인해주세요</string>
+    <string name="change_pw_old_password">이전 비밀번호를 입력해주세요</string>
 
 </resources>

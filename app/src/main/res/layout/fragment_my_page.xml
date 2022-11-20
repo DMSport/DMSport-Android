@@ -75,6 +75,7 @@
                         android:id="@+id/cv_my_page_change_password"
                         style="@style/Theme.DMSportAndroid.CardView_Mypage"
                         app:cardCornerRadius="20dp"
+                        android:onClick="@{()->MyPageFragment.changePasswordButton()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
