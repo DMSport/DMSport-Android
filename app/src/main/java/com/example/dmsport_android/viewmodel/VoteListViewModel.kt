@@ -29,9 +29,6 @@ class VoteListViewModel(
     private val _currentVote: MutableLiveData<String> = MutableLiveData()
     val currentVote: LiveData<String> = _currentVote
 
-    private val _voteResponse : MutableLiveData<Response<Void>> = MutableLiveData()
-    val voteResponse : LiveData<Response<Void>> = _voteResponse
-
     private fun getVoteList(
         type: String,
     ) {
@@ -50,12 +47,6 @@ class VoteListViewModel(
         voteId : Int,
     ){
         viewModelScope.launch(Dispatchers.IO){
-            _voteResponse.postValue(
-                voteListRepository
-                    .vote(
-                        voteId = voteId.toLong(),
-                    )
-            )
             selectVote(
                 number = getPref(
                     preferences = pref,
@@ -63,6 +54,7 @@ class VoteListViewModel(
                     value = 0
                 ) as Int
             )
+            voteListRepository.vote(voteId.toLong())
         }
     }
 
