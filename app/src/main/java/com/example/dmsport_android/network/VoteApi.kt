@@ -2,9 +2,7 @@ package com.example.dmsport_android.network
 
 import com.example.dmsport_android.dto.response.VoteListResponse
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface VoteApi {
     @GET("clubs/vote")
@@ -13,4 +11,10 @@ interface VoteApi {
         @Query("type") type : String,
         @Query("date") date : String,
     ) : Response<VoteListResponse>
+
+    @POST("clubs/vote/{vote-id}")
+    suspend fun vote(
+        @Header("Authorization") accessToken: String,
+        @Path("vote-id") voteId : Long,
+    ) : Response<Void>
 }
