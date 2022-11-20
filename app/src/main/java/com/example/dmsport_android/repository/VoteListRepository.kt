@@ -12,7 +12,15 @@ class VoteListRepository {
     ) : Response<VoteListResponse> =
         voteApi.getVoteList(
             ACCESS_TOKEN,
-            "BASKETBALL",
-            "2022-11-11",
+            type,
+            date,
+        )
+
+    suspend fun vote(
+        voteId : Long,
+    ) : Response<Void> =
+        voteApi.vote(
+            accessToken = ACCESS_TOKEN,
+            voteId = voteId,
         )
 }

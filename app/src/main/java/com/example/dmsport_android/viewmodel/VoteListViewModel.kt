@@ -1,6 +1,8 @@
 package com.example.dmsport_android.viewmodel
 
+import android.content.LocusId
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,6 +43,21 @@ class VoteListViewModel(
         }
     }
 
+    fun vote(
+        voteId : Int,
+    ){
+        viewModelScope.launch(Dispatchers.IO){
+            selectVote(
+                number = getPref(
+                    preferences = pref,
+                    key = selectedVoteNumber,
+                    value = 0
+                ) as Int
+            )
+            voteListRepository.vote(voteId.toLong())
+        }
+    }
+
     fun initSelectedVote(): Int =
         getPref(
             preferences = pref,
@@ -49,8 +66,8 @@ class VoteListViewModel(
         ) as Int
 
     fun selectVote(number: Int) {
-        _selectedVote.value = number
-        _currentVote.value = typeListTitle[number]
+        _selectedVote.postValue(number)
+        _currentVote.postValue(typeListTitle[number])
         getVoteList(typeList[number])
         putPref(
             editor = pref.edit(),
