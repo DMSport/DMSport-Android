@@ -29,3 +29,7 @@ val voteApi : VoteApi by lazy {
 val changePwApi : ChangePwApi by lazy {
     retrofit.create(ChangePwApi::class.java)
 }
+
+val noticeApi: NoticeApi by lazy {
+    retrofit.create(NoticeApi::class.java)
+}
