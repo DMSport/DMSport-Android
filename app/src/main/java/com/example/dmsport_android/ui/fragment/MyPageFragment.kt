@@ -10,11 +10,9 @@ import com.example.dmsport_android.databinding.FragmentMyPageBinding
 import com.example.dmsport_android.dto.request.DeleteUserRequest
 import com.example.dmsport_android.repository.MyPageRepository
 import com.example.dmsport_android.ui.activity.DeleteUserActivity
+import com.example.dmsport_android.ui.activity.EmailChangePwActivity
 import com.example.dmsport_android.ui.activity.LoginActivity
-import com.example.dmsport_android.util.NO_CONTENT
-import com.example.dmsport_android.util.isDeletedUser
-import com.example.dmsport_android.util.isLogOuted
-import com.example.dmsport_android.util.startIntent
+import com.example.dmsport_android.util.*
 import com.example.dmsport_android.viewmodel.MyPageViewModel
 import com.example.dmsport_android.viewmodel.factory.MyPageViewModelFactory
 
@@ -34,17 +32,41 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.myPageFragment = this
         binding.myPageViewModel = myPageViewModel
         myPageViewModel.fetchMyPage()
         observeLogout()
         observeDeleteUser()
-        binding.myPageFragment = this
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showSnackChangePassword()
     }
 
     fun deleteUserButton(){
         startIntent(this.requireContext(), DeleteUserActivity::class.java)
     }
 
+    private fun showSnackChangePassword(){
+        if(isVerified){
+            showSnack(
+                view = binding.root,
+                message = getString(
+                    R.string.mypage_complete_change_password,
+                ),
+            )
+            myPageViewModel.initializeVerified()
+        }
+    }
+
+    fun changePasswordButton(){
+        startIntent(
+            context = requireContext(),
+            activity = EmailChangePwActivity::class.java,
+        )
+        myPageViewModel.initializeVerified()
+    }
 
     private fun observeLogout() {
         myPageViewModel.logoutResponse.observe(viewLifecycleOwner, Observer {
@@ -69,6 +91,4 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             }
         })
     }
-
-
 }

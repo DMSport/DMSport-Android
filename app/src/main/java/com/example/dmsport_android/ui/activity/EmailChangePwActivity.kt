@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityEmailChangePwBinding
-import com.example.dmsport_android.repository.EmailChangePwRepository
+import com.example.dmsport_android.repository.ChangePasswordRepository
 import com.example.dmsport_android.util.*
 import com.example.dmsport_android.viewmodel.EmailChangePwViewModel
 import com.example.dmsport_android.viewmodel.factory.EmailChangePwViewModelFactory
@@ -16,12 +16,12 @@ import com.example.dmsport_android.viewmodel.factory.EmailChangePwViewModelFacto
 class EmailChangePwActivity :
     BaseActivity<ActivityEmailChangePwBinding>(R.layout.activity_email_change_pw) {
 
-    private val emailChangePwRepository: EmailChangePwRepository by lazy {
-        EmailChangePwRepository()
+    private val changePasswordRepository: ChangePasswordRepository by lazy {
+        ChangePasswordRepository()
     }
 
     private val emailChangePwViewModelFactory: EmailChangePwViewModelFactory by lazy {
-        EmailChangePwViewModelFactory(emailChangePwRepository, pref)
+        EmailChangePwViewModelFactory(changePasswordRepository, pref)
     }
 
     private val emailChangePwViewModel: EmailChangePwViewModel by lazy {
@@ -37,6 +37,21 @@ class EmailChangePwActivity :
         emailChangePwViewModel.initVisible()
         initVisible()
         observeChange()
+        initializeView()
+        observeChangePasswordResponse()
+    }
+
+    private fun initializeView(){
+        if(isVerified){
+            binding.run {
+                etChangePw.hint = getString(
+                    R.string.change_pw_old_password,
+                )
+                etChangePwRe.hint = getString(
+                    R.string.change_pw_edit_text,
+                )
+            }
+        }
     }
 
     fun initVisible() {
@@ -54,7 +69,7 @@ class EmailChangePwActivity :
         )
         binding.etChangePw.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        binding.etChangePw.inputType =
+        binding.etChangePwRe.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
@@ -102,27 +117,39 @@ class EmailChangePwActivity :
 
 
     fun nextButton() {
-        val new_pw = binding.etChangePw.text.toString()
-        val new_pwRe = binding.etChangePwRe.text.toString()
-        if (new_pw.isNotEmpty() &&
-            new_pwRe.isNotEmpty() &&
-            new_pw == new_pwRe
-        ) {
-            putPref(pref.edit(), localPassword, new_pw)
-            if (getPref(pref, getPref(pref, localEmail, "").toString(), false) as Boolean) {
-                emailChangePwViewModel.emailChangePw(
-                    getPref(pref, localEmail, "").toString(),
-                    new_pw
+        if(isVerified){
+            if(
+                binding.etChangePw.text.isNotEmpty()
+                && binding.etChangePwRe.text.isNotEmpty()
+            ){
+                emailChangePwViewModel.changePassword(
+                    old_password = binding.etChangePw.text.toString(),
+                    new_password = binding.etChangePwRe.text.toString(),
                 )
-            } else {
-                startIntent(this, VerifyActivity::class.java)
             }
-        } else {
-            showSnack(binding.root, getString(R.string.change_pw_bad_request))
+        }else {
+            val new_pw = binding.etChangePw.text.toString()
+            val new_pwRe = binding.etChangePwRe.text.toString()
+            if (new_pw.isNotEmpty() &&
+                new_pwRe.isNotEmpty() &&
+                new_pw == new_pwRe
+            ) {
+                putPref(pref.edit(), localPassword, new_pw)
+                if (getPref(pref, getPref(pref, localEmail, "").toString(), false) as Boolean) {
+                    emailChangePwViewModel.emailChangePw(
+                        getPref(pref, localEmail, "").toString(),
+                        new_pw
+                    )
+                } else {
+                    startIntent(this, VerifyActivity::class.java)
+                }
+            } else {
+                showSnack(binding.root, getString(R.string.change_pw_bad_request))
+            }
         }
     }
 
-    fun observeChange() {
+    private fun observeChange() {
         emailChangePwViewModel.emailChangePwResponse.observe(this, Observer {
             when (it.code()) {
                 NO_CONTENT -> {
@@ -133,5 +160,39 @@ class EmailChangePwActivity :
                 UNAUTHORIZED -> showSnack(binding.root, getString(R.string.register_unauthorized))
             }
         })
+    }
+
+    private fun observeChangePasswordResponse(){
+        emailChangePwViewModel.changePasswordResponse.observe(this){
+            when(it.code()){
+                NO_CONTENT->{
+                    finish()
+                }
+                BAD_REQUEST ->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(
+                            R.string.change_pw_bad_request,
+                        ),
+                    )
+                }
+                FORBIDDEN ->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(
+                            R.string.login_forbidden,
+                        ),
+                    )
+                }
+                PASSWORD_MISMATCH->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(
+                            R.string.login_forbidden,
+                        ),
+                    )
+                }
+            }
+        }
     }
 }

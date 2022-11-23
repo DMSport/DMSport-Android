@@ -89,6 +89,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
                     android:text="@string/vote_event_apply"
+                    android:onClick="@{()->viewModel.vote(vote.vote_id)}"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
