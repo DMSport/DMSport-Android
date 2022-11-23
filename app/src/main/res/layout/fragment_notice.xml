@@ -8,6 +8,10 @@
         <variable
             name="fragment"
             type="com.example.dmsport_android.ui.fragment.NoticeFragment" />
+
+        <variable
+            name="viewmodel"
+            type="com.example.dmsport_android.viewmodel.NoticeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,6 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_marginTop="28dp"
                         android:layout_marginEnd="16dp"
+                        android:onClick="@{()->fragment.moreAllNotice()}"
                         android:text="@string/notice_tv_more_all"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -70,13 +75,22 @@
                         app:cardCornerRadius="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_notice_all" >
+                        app:layout_constraintTop_toBottomOf="@+id/tv_notice_all">
 
                         <TextView
-                            android:text=""
+                            android:id="@+id/tv_notice_title1"
                             style="@style/Theme.DMSportAndroid.TextView_notice_title"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_content1"
+                            style="@style/Theme.DMSportAndroid.TextView_notice_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
 
                     </androidx.cardview.widget.CardView>
 
@@ -87,13 +101,19 @@
                         app:cardCornerRadius="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cv_notice_all_1" >
+                        app:layout_constraintTop_toBottomOf="@+id/cv_notice_all_1">
 
                         <TextView
-                            android:text=""
                             style="@style/Theme.DMSportAndroid.TextView_notice_title"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                        <TextView
+                            style="@style/Theme.DMSportAndroid.TextView_notice_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -125,14 +145,20 @@
                         app:cardCornerRadius="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_notice_event" >
+                        app:layout_constraintTop_toBottomOf="@+id/tv_notice_event">
 
                         <TextView
-                            android:text=""
                             style="@style/Theme.DMSportAndroid.TextView_notice_title"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-@
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                        <TextView
+                            style="@style/Theme.DMSportAndroid.TextView_notice_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -142,13 +168,19 @@
                         app:cardCornerRadius="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cv_notice_event_1" >
+                        app:layout_constraintTop_toBottomOf="@+id/cv_notice_event_1">
 
                         <TextView
-                            android:text=""
                             style="@style/Theme.DMSportAndroid.TextView_notice_title"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                        <TextView
+                            style="@style/Theme.DMSportAndroid.TextView_notice_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
 
                     </androidx.cardview.widget.CardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
