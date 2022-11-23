@@ -32,6 +32,10 @@ class EmailChangePwViewModel(
     private val _changePasswordResponse = MutableLiveData<Response<Void>>()
     val changePasswordResponse : LiveData<Response<Void>> = _changePasswordResponse
 
+    fun completeChangePassword(){
+        isCompleteChangePassword = !isCompleteChangePassword
+    }
+
     fun changePassword(
         old_password : String,
         new_password : String,

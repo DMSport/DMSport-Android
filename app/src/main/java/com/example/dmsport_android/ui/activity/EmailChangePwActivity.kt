@@ -2,7 +2,6 @@ package com.example.dmsport_android.ui.activity
 
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,11 +33,11 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
         emailChangePwViewModel.initVisible()
         initVisible()
         observeChange()
-        initializeView()
+        initializeHint()
         observeChangePasswordResponse()
     }
 
-    private fun initializeView(){
+    private fun initializeHint(){
         if(isVerified){
             binding.run {
                 etChangePw.hint = getString(
@@ -163,6 +162,7 @@ class EmailChangePwActivity: BaseActivity<ActivityEmailChangePwBinding> (R.layou
         emailChangePwViewModel.changePasswordResponse.observe(this){
             when(it.code()){
                 NO_CONTENT->{
+                    emailChangePwViewModel.completeChangePassword()
                     finish()
                 }
                 BAD_REQUEST ->{
