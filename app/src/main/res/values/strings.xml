@@ -64,4 +64,8 @@
     <string name="change_pw_bad_request">항목을 확인해주세요</string>
     <string name="change_pw_old_password">현재 비밀번호를 입력해주세요</string>
 
+    <string name="notice_tv_all">전체 공지사항</string>
+    <string name="notice_tv_more_all">전체 공지사항 더 보기 ></string>
+    <string name="notice_tv_event">종목별 공지사항</string>
+    <string name="notice_tv_event_all">종목별 공지사항 더 보기 ></string>
 </resources>
