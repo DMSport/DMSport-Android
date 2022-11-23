@@ -3,7 +3,6 @@ package com.example.dmsport_android.ui.activity
 import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
@@ -20,11 +19,17 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     private val registerViewModelFactory: RegisterViewModelFactory by lazy {
-        RegisterViewModelFactory(registerRepository, pref)
+        RegisterViewModelFactory(
+            registerRepository = registerRepository,
+            sharedPreferences = pref,
+        )
     }
 
     private val registerViewModel: RegisterViewModel by lazy {
-        ViewModelProvider(this, registerViewModelFactory).get(RegisterViewModel::class.java)
+        ViewModelProvider(
+            this,
+            registerViewModelFactory,
+        ).get(RegisterViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,13 +44,18 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         val name = binding.etRegisterName.text.toString()
         val pw = binding.etRegisterPw.text.toString()
         val pwRe = binding.etRegisterPwRe.text.toString()
-        if (name.isNotEmpty() &&
-            pw.isNotEmpty() &&
-            pwRe.isNotEmpty() &&
-            pw.equals(pwRe)
+        if (name.isNotEmpty()
+            && pw.isNotEmpty()
+            && pwRe.isNotEmpty()
+            && pw.equals(pwRe)
         ) {
-            putPref(pref.edit(), localName, name)
-            putPref(pref.edit(), localPassword, pw)
+            putPref(
+                editor = pref.edit(),
+                key = localName,
+                value = name,
+            )
+            putPref(
+                editor = pref.edit(),localPassword, pw)
             if (getPref(pref, getPref(pref, localEmail, "").toString(), false) as Boolean) {
                 registerViewModel.register(pw, name, getPref(pref, localEmail, "").toString())
             } else {
@@ -71,12 +81,12 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         )
         binding.etRegisterPw.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-        binding.etRegisterPw.inputType =
+        binding.etRegisterPwRe.inputType =
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
     fun visible() {
-        if (registerViewModel.visible()) {
+        if (!registerViewModel.visible()) {
             binding.imgRegisterVisiblePw.setImageDrawable(
                 AppCompatResources.getDrawable(
                     this,
@@ -97,7 +107,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     fun visibleRe() {
-        if (registerViewModel.visibleRe()) {
+        if (!registerViewModel.visibleRe()) {
             binding.imgRegisterVisiblePwRe.setImageDrawable(
                 AppCompatResources.getDrawable(
                     this,
@@ -118,7 +128,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     fun observeRegister() {
-        registerViewModel.registerResponse.observe(this, Observer {
+        registerViewModel.registerResponse.observe(this){
             when (it.code()) {
                 CREATED -> {
                     ACCESS_TOKEN = "Bearer ${it.body()!!.access_token}"
@@ -127,6 +137,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 }
                 BAD_REQUEST -> showSnack(binding.root, getString(R.string.register_bad_request))
             }
-        })
+        }
     }
 }

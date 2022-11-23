@@ -56,10 +56,10 @@ class RegisterViewModel(
     }
 
     fun verifyEmail(
-        code: String,
-        email: String,
+        email : String,
+        code : String,
     ) {
-        val verifyRequest = VerifyRequest(code, email)
+        val verifyRequest = VerifyRequest(email, code)
         viewModelScope.launch(Dispatchers.IO) {
             _verifyResponse.postValue(registerRepository.verifyEmail(verifyRequest))
         }
@@ -94,7 +94,6 @@ class RegisterViewModel(
             putPref(pref.edit(), registerVisible, true)
             false
         }
-
 
     fun visibleRe() : Boolean =
         if(getPref(pref, registerVisibleRe, false) as Boolean){

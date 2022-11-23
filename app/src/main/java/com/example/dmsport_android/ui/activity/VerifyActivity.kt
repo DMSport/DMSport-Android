@@ -1,6 +1,7 @@
 package com.example.dmsport_android.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
@@ -45,10 +46,10 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
     }
 
     fun completeButton(){
-        val code = binding.etVerifyCode.text.toString()
         val email = binding.etVerifyEmail.text.toString()
+        val code = binding.etVerifyCode.text.toString()
         if(code.isNotEmpty() && email.isNotEmpty()){
-            registerViewModel.verifyEmail(code, email)
+            registerViewModel.verifyEmail(email, code)
         }else{
             showSnack(binding.root, getString(R.string.register_bad_request))
         }
@@ -74,6 +75,7 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
 
     fun observeVerify(){
         registerViewModel.verifyResponse.observe(this, Observer {
+            Log.d("TEST", it.errorBody()!!.string())
             when(it.code()){
                 NO_CONTENT -> {
                     registerViewModel.register(
