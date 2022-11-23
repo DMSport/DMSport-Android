@@ -12,6 +12,7 @@ import com.example.dmsport_android.dto.request.LoginRequest
 import com.example.dmsport_android.dto.response.LoginResponse
 import com.example.dmsport_android.repository.LoginRepository
 import com.example.dmsport_android.util.getPref
+import com.example.dmsport_android.util.isVerified
 import com.example.dmsport_android.util.loginVisible
 import com.example.dmsport_android.util.putPref
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +38,10 @@ class LoginViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             _loginResponse.postValue(loginRepository.login(loginRequest))
         }
+    }
+
+    fun falseVerified(){
+        isVerified = false
     }
 
     fun initVisible(){

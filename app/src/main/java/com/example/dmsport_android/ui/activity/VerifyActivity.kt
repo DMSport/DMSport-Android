@@ -19,11 +19,17 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
     }
 
     private val registerViewModelFactory: RegisterViewModelFactory by lazy {
-        RegisterViewModelFactory(registerRepository, pref)
+        RegisterViewModelFactory(
+            registerRepository = registerRepository,
+            sharedPreferences = pref,
+        )
     }
 
     private val registerViewModel: RegisterViewModel by lazy {
-        ViewModelProvider(this, registerViewModelFactory).get(RegisterViewModel::class.java)
+        ViewModelProvider(
+            this,
+            registerViewModelFactory,
+        ).get(RegisterViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,75 +45,133 @@ class VerifyActivity : BaseActivity<ActivityVerifyBinding>(R.layout.activity_ver
         val email = binding.etVerifyEmail.text.toString()
         if (email.isNotEmpty()) {
             registerViewModel.emailDuplicate(email)
-            putPref(pref.edit(), localEmail, email)
-        }else{
-            showSnack(binding.root, getString(R.string.verify_caution))
+            putPref(
+                editor = pref.edit(),
+                key = localEmail,
+                value = email,
+            )
+        } else {
+            showSnack(
+                view = binding.root,
+                message = getString(R.string.verify_caution),
+            )
         }
     }
 
-    fun completeButton(){
+    fun completeButton() {
         val email = binding.etVerifyEmail.text.toString()
         val code = binding.etVerifyCode.text.toString()
-        if(code.isNotEmpty() && email.isNotEmpty()){
-            registerViewModel.verifyEmail(email, code)
-        }else{
-            showSnack(binding.root, getString(R.string.register_bad_request))
+        if (code.isNotEmpty() && email.isNotEmpty()) {
+            registerViewModel.verifyEmail(
+                email = email,
+                code = code,
+            )
+        } else {
+            showSnack(
+                view = binding.root,
+                message = getString(R.string.register_bad_request),
+            )
         }
     }
 
-    fun observeDuplicate(){
-        registerViewModel.duplicateResponse.observe(this, Observer {
-            when(it.code()){
-                NO_CONTENT -> registerViewModel.sendVerifyEmail(getPref(pref, localEmail, "").toString())
-                BAD_REQUEST -> showSnack(binding.root, getString(R.string.duplicate_bad_request))
-                CONFLICT -> showSnack(binding.root, getString(R.string.duplicate_conflict))
+    fun observeDuplicate() {
+        registerViewModel.duplicateResponse.observe(this) {
+            when (it.code()) {
+                NO_CONTENT -> registerViewModel.sendVerifyEmail(
+                    getPref(
+                        preferences = pref,
+                        key = localEmail,
+                        value = "",
+                    ).toString()
+                )
+                BAD_REQUEST -> showSnack(
+                    view = binding.root,
+                    message = getString(R.string.duplicate_bad_request),
+                )
+                CONFLICT -> showSnack(
+                    view = binding.root,
+                    message = getString(R.string.duplicate_conflict),
+                )
             }
-        })
+        }
     }
 
-    fun observeVerifyEmail(){
-        registerViewModel.verifyEmailResponse.observe(this, Observer {
-            when(it.code()){
-                NO_CONTENT -> showSnack(binding.root, getString(R.string.duplicate_no_content))
+    fun observeVerifyEmail() {
+        registerViewModel.verifyEmailResponse.observe(this) {
+            when (it.code()) {
+                NO_CONTENT -> showSnack(
+                    view = binding.root,
+                    message = getString(R.string.duplicate_no_content),
+                )
             }
-        })
+        }
     }
 
-    fun observeVerify(){
-        registerViewModel.verifyResponse.observe(this, Observer {
-            Log.d("TEST", it.errorBody()!!.string())
-            when(it.code()){
+    fun observeVerify() {
+        registerViewModel.verifyResponse.observe(this) {
+            when (it.code()) {
                 NO_CONTENT -> {
                     registerViewModel.register(
-                        getPref(pref, localPassword, "").toString(),
-                        getPref(pref, localName, "").toString(),
-                        getPref(pref, localEmail, "").toString(),
+                        password = getPref(
+                            preferences = pref,
+                            key = localPassword,
+                            value = "",
+                        ).toString(),
+                        name = getPref(
+                            preferences = pref,
+                            key = localName,
+                            value = "",
+                        ).toString(),
+                        email = getPref(
+                            preferences = pref,
+                            key = localEmail,
+                            value = "",
+                        ).toString(),
                     )
-                    putPref(pref.edit(), getPref(pref, localEmail, "").toString(), true)
+                    putPref(
+                        editor = pref.edit(),
+                        key = getPref(
+                            preferences = pref,
+                            key = localEmail,
+                            value = "",
+                        ).toString(),
+                        value = true,
+                    )
                 }
-                UNAUTHORIZED -> showSnack(binding.root, getString(R.string.verify_unauthorized))
+                UNAUTHORIZED -> showSnack(
+                    view = binding.root,
+                    message = getString(R.string.verify_unauthorized),
+                )
             }
-        })
+        }
     }
 
-    fun observeRegister(){
-        registerViewModel.registerResponse.observe(this, Observer {
-            when(it.code()){
+    fun observeRegister() {
+        registerViewModel.registerResponse.observe(this) {
+            when (it.code()) {
                 CREATED -> {
                     isJoined = true
                     startIntent(this, MainActivity::class.java)
                     ACCESS_TOKEN = "Bearer $ACCESS_TOKEN"
                 }
-                BAD_REQUEST ->{
-                    showSnack(binding.root, getString(R.string.register_bad_request))
-                    startIntent(this, RegisterActivity::class.java)
+                BAD_REQUEST -> {
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.register_bad_request),
+                    )
+                    startIntent(
+                        context = this,
+                        activity = RegisterActivity::class.java,
+                    )
                     finish()
                 }
-                UNAUTHORIZED ->{
-                    showSnack(binding.root, getString(R.string.register_unauthorized))
+                UNAUTHORIZED -> {
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.register_unauthorized),
+                    )
                 }
             }
-        })
+        }
     }
-
 }

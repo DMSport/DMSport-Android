@@ -34,7 +34,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onViewCreated(view, savedInstanceState)
         binding.myPageFragment = this
         binding.myPageViewModel = myPageViewModel
-        myPageViewModel.fetchMyPage()
+        myPageViewModel.run {
+            falseVerified()
+            fetchMyPage()
+        }
         observeLogout()
         observeDeleteUser()
     }
@@ -44,28 +47,27 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         showSnackChangePassword()
     }
 
-    fun deleteUserButton(){
+    fun deleteUserButton() {
         startIntent(this.requireContext(), DeleteUserActivity::class.java)
     }
 
-    private fun showSnackChangePassword(){
-        if(isVerified){
+    private fun showSnackChangePassword() {
+        if (isCompleteChangePassword) {
             showSnack(
                 view = binding.root,
                 message = getString(
                     R.string.mypage_complete_change_password,
                 ),
             )
-            myPageViewModel.initializeVerified()
         }
     }
 
-    fun changePasswordButton(){
+    fun changePasswordButton() {
         startIntent(
             context = requireContext(),
             activity = EmailChangePwActivity::class.java,
         )
-        myPageViewModel.initializeVerified()
+        myPageViewModel.trueVerified()
     }
 
     private fun observeLogout() {
@@ -74,15 +76,16 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                 NO_CONTENT -> {
                     startIntent(this.requireContext(), LoginActivity::class.java)
                     isLogOuted = true
+                    myPageViewModel.falseVerified()
                     this.requireActivity().finish()
                 }
             }
         })
     }
 
-    private fun observeDeleteUser(){
+    private fun observeDeleteUser() {
         myPageViewModel.deleteUserResponse.observe(viewLifecycleOwner, Observer {
-            when(it.code()){
+            when (it.code()) {
                 NO_CONTENT -> {
                     startIntent(this.requireContext(), LoginActivity::class.java)
                     isDeletedUser = true

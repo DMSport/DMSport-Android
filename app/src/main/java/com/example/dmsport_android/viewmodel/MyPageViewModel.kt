@@ -25,8 +25,12 @@ class MyPageViewModel(
     private val _deleteUserResponse : MutableLiveData<Response<Void>> = MutableLiveData()
     val deleteUserResponse : LiveData<Response<Void>> = _deleteUserResponse
 
-    fun initializeVerified(){
-        isVerified = !isVerified
+    fun falseVerified(){
+        isVerified = false
+    }
+
+    fun trueVerified(){
+        isVerified = true
     }
 
     fun fetchMyPage(){

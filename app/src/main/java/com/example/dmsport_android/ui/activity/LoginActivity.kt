@@ -98,6 +98,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     fun forgotPw() {
         startIntent(this, ChangePwVerifyActivity::class.java)
+        loginViewModel.falseVerified()
     }
 
     private fun observeLogin() {
