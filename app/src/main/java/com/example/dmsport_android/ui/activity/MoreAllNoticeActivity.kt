@@ -44,22 +44,19 @@ class MoreAllNoticeActivity :
 
     }
 
-
     private fun observeAllNoticeListResponse() {
         noticeViewModel.allNoticeResponse.observe(this) {
             when (it.code()) {
                 OK -> {
                     initRecyclerView(it.body()!!.notices)
                 }
-
             }
         }
     }
 
-
     private fun initRecyclerView(allNoticeList: ArrayList<AllNoticeList>) {
         binding.rvNoticeList.run {
-            adapter = AllNoticeAdapter(allNoticeList, noticeViewModel)
+            adapter = AllNoticeAdapter(allNoticeList, noticeViewModel, applicationContext)
             layoutManager = LinearLayoutManager(applicationContext)
         }
 
