@@ -55,7 +55,7 @@ class MoreAllNoticeActivity :
     }
 
     private fun initRecyclerView(allNoticeList: ArrayList<AllNoticeList>) {
-        binding.rvNoticeList.run {
+        binding.rvNoticeAllNoticeList.run {
             adapter = AllNoticeAdapter(allNoticeList, noticeViewModel, applicationContext)
             layoutManager = LinearLayoutManager(applicationContext)
         }
