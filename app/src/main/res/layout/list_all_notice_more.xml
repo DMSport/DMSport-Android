@@ -23,7 +23,7 @@
 
         <variable
             name="adpater"
-            type="com.example.dmsport_android.adapter.AllNoticeAdapter" />
+            type="com.example.dmsport_android.adapter.notice.AllNoticeAdapter" />
 
     </data>
 

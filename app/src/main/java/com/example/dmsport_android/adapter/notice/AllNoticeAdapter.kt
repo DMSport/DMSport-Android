@@ -1,10 +1,9 @@
-package com.example.dmsport_android.adapter
+package com.example.dmsport_android.adapter.notice
 
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -15,13 +14,19 @@ import com.example.dmsport_android.dto.response.AllNoticeList
 import com.example.dmsport_android.ui.activity.DetailNoticeActivity
 import com.example.dmsport_android.util.noticeId
 import com.example.dmsport_android.util.putPref
-import com.example.dmsport_android.util.startIntent
+import com.example.dmsport_android.util.startIntentWithFlag
 import com.example.dmsport_android.viewmodel.NoticeViewModel
-import java.text.SimpleDateFormat
 import java.util.*
-
+/**
+ * AllNoticeList에 사용되는 Recyclerview Adapter 입니다.
+ *
+ * @param allNoticeList 전체 공지 사항 response
+ * @param noticeViewModel 공지사항 vm
+ * @param context intent, sharedpreferences 로직 처리를 위한 context
+ * @param editor sharedpreferences 저장을 위한 sharedpreferences editor
+ */
 class AllNoticeAdapter(
-    private val arrayList: ArrayList<AllNoticeList>,
+    private val allNoticeList: ArrayList<AllNoticeList>,
     private val noticeViewModel: NoticeViewModel,
     private val context : Context,
     private val editor : SharedPreferences.Editor,
@@ -29,13 +34,19 @@ class AllNoticeAdapter(
 
     class AllNoticeViewHolder(val binding: ListAllNoticeMoreBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(allNoticeList: AllNoticeList, noticeViewModel: NoticeViewModel) {
+        fun bind(
+            allNoticeList: AllNoticeList,
+            noticeViewModel: NoticeViewModel,
+        ) {
             binding.viewModel = noticeViewModel
             binding.allNoticeList = allNoticeList
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllNoticeViewHolder =
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): AllNoticeViewHolder =
         AllNoticeViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
@@ -45,25 +56,27 @@ class AllNoticeAdapter(
             )
         )
 
-    override fun onBindViewHolder(holder: AllNoticeViewHolder, position: Int) {
-        holder.bind(arrayList[position], noticeViewModel)
+    override fun onBindViewHolder(
+        holder: AllNoticeViewHolder,
+        position: Int,
+    ) {
+        holder.bind(
+            allNoticeList = allNoticeList[position],
+            noticeViewModel = noticeViewModel,
+        )
         holder.itemView.setOnClickListener {
             putPref(
                 editor = editor,
                 key = noticeId,
-                value = arrayList[position].id,
+                value = allNoticeList[position].id,
             )
-            context.startActivity(
-                Intent(
-                    context,
-                    DetailNoticeActivity::class.java,
-                ).addFlags(
-                    FLAG_ACTIVITY_NEW_TASK
-                )
+            startIntentWithFlag(
+                context = context,
+                activity = DetailNoticeActivity::class.java,
             )
         }
     }
 
     override fun getItemCount(): Int =
-        arrayList.size
+        allNoticeList.size
 }

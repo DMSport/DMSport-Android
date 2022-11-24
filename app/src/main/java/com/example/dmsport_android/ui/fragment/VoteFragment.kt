@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
-import com.example.dmsport_android.adapter.VoteListAdapter
+import com.example.dmsport_android.adapter.notice.VoteListAdapter
 import com.example.dmsport_android.base.BaseFragment
 import com.example.dmsport_android.databinding.FragmentVoteBinding
 import com.example.dmsport_android.dto.response.Vote
@@ -27,9 +27,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
     }
 
     private val pref: SharedPreferences by lazy {
-        initPref(
-            context = this.requireContext(),
-        )
+        initPref(this.requireContext())
     }
 
     private val voteListViewModelFactory: VoteListViewModelFactory by lazy {
@@ -57,8 +55,12 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(
+            view,
+            savedInstanceState,
+        )
         binding.viewModel = voteListViewModel
         observeVoteListResponse()
         observeSelectedVote()
@@ -70,9 +72,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             viewLifecycleOwner,
         ) {
             when (it.code()) {
-                OK -> initRecyclerView(
-                    voteListResponse = it.body()!!
-                )
+                OK -> initRecyclerView(it.body()!!)
             }
         }
     }
@@ -92,28 +92,25 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         }
 
         binding.rvVoteList.layoutManager =
-            LinearLayoutManager(
-                this.requireContext(),
-            )
+            LinearLayoutManager(this.requireContext(),)
     }
 
     private fun observeSelectedVote() {
         voteListViewModel.run {
             selectedVote.observe(viewLifecycleOwner) {
                 setBackgroundOff()
-                setBackgroundOn(
-                    view = voteViewList[it],
-                )
+                setBackgroundOn(voteViewList[it])
             }
         }
     }
 
     private fun initSelectedVote() {
         setBackgroundOff()
-        val number = voteListViewModel.initSelectedVote()
-        voteListViewModel.selectVote(number)
+        voteListViewModel.run {
+            selectVote(initSelectedVote())
+        }
         setBackgroundOn(
-            view = voteViewList[number],
+            voteViewList[voteListViewModel.initSelectedVote()],
         )
     }
 

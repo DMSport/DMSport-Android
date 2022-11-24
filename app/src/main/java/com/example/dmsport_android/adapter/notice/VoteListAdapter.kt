@@ -1,4 +1,4 @@
-package com.example.dmsport_android.adapter
+package com.example.dmsport_android.adapter.notice
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

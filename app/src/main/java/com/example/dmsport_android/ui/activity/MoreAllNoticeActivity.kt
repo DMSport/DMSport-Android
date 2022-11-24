@@ -5,21 +5,19 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
-import com.example.dmsport_android.adapter.AllNoticeAdapter
+import com.example.dmsport_android.adapter.notice.AllNoticeAdapter
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityMoreAllNoticeBinding
 import com.example.dmsport_android.dto.response.AllNoticeList
 import com.example.dmsport_android.repository.NoticeRepository
 import com.example.dmsport_android.util.OK
-import com.example.dmsport_android.util.initPref
 import com.example.dmsport_android.viewmodel.NoticeViewModel
 import com.example.dmsport_android.viewmodel.factory.NoticeViewModelFactory
 import kotlin.collections.ArrayList
 
-class MoreAllNoticeActivity :
-    BaseActivity<ActivityMoreAllNoticeBinding>(R.layout.activity_more_all_notice) {
-
-
+class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
+    R.layout.activity_more_all_notice,
+) {
 
     private val noticeRepository: NoticeRepository by lazy {
         NoticeRepository()
@@ -55,7 +53,7 @@ class MoreAllNoticeActivity :
     private fun initRecyclerView(allNoticeList: ArrayList<AllNoticeList>) {
         binding.rvNoticeAllNoticeList.run {
             adapter = AllNoticeAdapter(
-                arrayList = allNoticeList,
+                allNoticeList  = allNoticeList,
                 noticeViewModel = noticeViewModel,
                 context = applicationContext,
                 editor = pref.edit(),
