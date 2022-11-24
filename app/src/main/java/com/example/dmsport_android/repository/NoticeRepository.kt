@@ -1,6 +1,7 @@
 package com.example.dmsport_android.repository
 
 import com.example.dmsport_android.dto.response.AllNoticeResponse
+import com.example.dmsport_android.dto.response.DetailNoticeResponse
 import com.example.dmsport_android.dto.response.RecentNoticeResponse
 import com.example.dmsport_android.network.NoticeApi
 import com.example.dmsport_android.network.noticeApi
@@ -15,5 +16,13 @@ class NoticeRepository {
     suspend fun getAllNotice(
     ): Response<AllNoticeResponse> =
         noticeApi.getAllNotice(ACCESS_TOKEN)
+
+    suspend fun getDetailNotice(
+        noticeId : Long,
+    ): Response<DetailNoticeResponse> =
+        noticeApi.getDetailNotice(
+            accessToken = ACCESS_TOKEN,
+            noticeId = noticeId,
+        )
 
 }

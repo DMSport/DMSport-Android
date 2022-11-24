@@ -172,22 +172,19 @@
     </style>
 
     <style name="Theme.DMSportAndroid.TextView_notice_title">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/bold</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_marginTop">12dp</item>
-        <item name="android:layout_marginStart">16dp</item>
     </style>
 
     <style name="Theme.DMSportAndroid.TextView_notice_content">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/light</item>
         <item name="android:textColor">@color/color_hint</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:layout_marginTop">34dp</item>
-        <item name="android:layout_marginStart">16dp</item>
     </style>
 
     <style name="Theme.DMSportAndroid.TextView_notice_time">
@@ -196,8 +193,16 @@
         <item name="android:fontFamily">@font/light</item>
         <item name="android:textColor">@color/color_hint</item>
         <item name="android:textSize">10sp</item>
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
         <item name="android:layout_marginStart">4dp</item>
+    </style>
+
+    <style name="AllBackButton">
+        <item name="android:layout_width">8dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/all_notice_back</item>
     </style>
 
 </resources>
