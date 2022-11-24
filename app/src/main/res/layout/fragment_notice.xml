@@ -2,16 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragment.NoticeFragment">
+    tools:context=".feature.notice.fragment.NoticeFragment">
 
     <data>
         <variable
             name="fragment"
-            type="com.example.dmsport_android.ui.fragment.NoticeFragment" />
+            type="com.example.dmsport_android.feature.notice.fragment.NoticeFragment" />
 
         <variable
             name="viewmodel"
-            type="com.example.dmsport_android.viewmodel.NoticeViewModel" />
+            type="com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

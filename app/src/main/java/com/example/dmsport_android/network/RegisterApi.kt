@@ -1,10 +1,10 @@
 package com.example.dmsport_android.network
 
-import com.example.dmsport_android.dto.request.DuplicateRequest
-import com.example.dmsport_android.dto.request.RegisterRequest
-import com.example.dmsport_android.dto.request.VerifyEmailRequest
-import com.example.dmsport_android.dto.request.VerifyRequest
-import com.example.dmsport_android.dto.response.RegisterResponse
+import com.example.dmsport_android.feature.register.model.DuplicateRequest
+import com.example.dmsport_android.feature.register.model.RegisterRequest
+import com.example.dmsport_android.feature.verifyuser.model.VerifyEmailRequest
+import com.example.dmsport_android.feature.verifyuser.model.VerifyRequest
+import com.example.dmsport_android.feature.register.model.RegisterResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -2,16 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragment.MyPageFragment">
+    tools:context=".feature.mypage.fragment.MyPageFragment">
 
     <data>
         <variable
             name="MyPageFragment"
-            type="com.example.dmsport_android.ui.fragment.MyPageFragment" />
+            type="com.example.dmsport_android.feature.mypage.fragment.MyPageFragment" />
 
         <variable
             name="MyPageViewModel"
-            type="com.example.dmsport_android.viewmodel.MyPageViewModel" />
+            type="com.example.dmsport_android.feature.mypage.viewmodel.MyPageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

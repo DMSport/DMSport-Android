@@ -1,9 +1,9 @@
 package com.example.dmsport_android.network
 
-import com.example.dmsport_android.dto.request.DeleteUserRequest
-import com.example.dmsport_android.dto.request.EmailChangePwRequest
-import com.example.dmsport_android.dto.request.FindPwVerifyEmailRequest
-import com.example.dmsport_android.dto.response.MyPageResponse
+import com.example.dmsport_android.feature.deleteuser.DeleteUserRequest
+import com.example.dmsport_android.feature.register.model.DuplicateRequest
+import com.example.dmsport_android.feature.changepassword.model.EmailChangePwRequest
+import com.example.dmsport_android.feature.mypage.model.MyPageResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -31,6 +31,6 @@ interface MyPageApi {
 
     @POST("users/mail/find")
     suspend fun sendVerifyEmail(
-        @Body findPwVerifyEmailRequest: FindPwVerifyEmailRequest,
+        @Body duplicateRequest : DuplicateRequest,
     ) : Response<Void>
 }

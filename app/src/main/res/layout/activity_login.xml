@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.activity.LoginActivity">
+    tools:context=".feature.login.activity.LoginActivity">
 
     <data>
 
         <variable
             name="LoginActivity"
-            type="com.example.dmsport_android.ui.activity.LoginActivity" />
+            type="com.example.dmsport_android.feature.login.activity.LoginActivity" />
 
     </data>
 
