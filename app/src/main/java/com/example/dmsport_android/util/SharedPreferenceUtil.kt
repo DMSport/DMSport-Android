@@ -20,6 +20,8 @@ const val selectedVoteNumber = "SelectedNumber"
 const val LUNCH = "LUNCH"
 const val DINNER = "DINNER"
 
+const val noticeId = "NoticeId"
+
 var isLogged = false
 var isLogOuted = false
 var isDeletedUser = false
