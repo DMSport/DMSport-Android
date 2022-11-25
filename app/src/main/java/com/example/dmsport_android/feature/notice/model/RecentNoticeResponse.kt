@@ -1,11 +1,11 @@
 package com.example.dmsport_android.feature.notice.model
 
 data class RecentNoticeResponse(
-    val manager: String,
-    val admin: String,
+    val manager: ArrayList<Notice>,
+    val admin: ArrayList<Notice>,
 )
 
-data class Recent(
+data class Notice(
     val id: Int,
     val title: String,
     val content_preview: String,

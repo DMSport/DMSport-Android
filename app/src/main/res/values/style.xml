@@ -205,4 +205,9 @@
         <item name="android:background">@drawable/all_notice_back</item>
     </style>
 
+    <style name="RecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
 </resources>

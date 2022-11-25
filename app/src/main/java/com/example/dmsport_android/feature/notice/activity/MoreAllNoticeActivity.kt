@@ -2,7 +2,6 @@ package com.example.dmsport_android.feature.notice.activity
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
@@ -37,7 +36,7 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        noticeViewModel.getAllNotice()
+        noticeViewModel.getNoticeList()
         observeAllNoticeListResponse()
     }
 
@@ -54,8 +53,7 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
     private fun initRecyclerView(allNoticeList: ArrayList<AllNoticeList>) {
         binding.rvNoticeAllNoticeList.run {
             adapter = AllNoticeAdapter(
-                allNoticeList  = allNoticeList,
-                noticeViewModel = noticeViewModel,
+                allNoticeList = allNoticeList,
                 context = applicationContext,
                 editor = pref.edit(),
             )

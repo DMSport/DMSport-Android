@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
-import com.example.dmsport_android.databinding.ListAllNoticeMoreBinding
+import com.example.dmsport_android.databinding.ListAllNoticeBinding
+import com.example.dmsport_android.databinding.ListNoticeBinding
 import com.example.dmsport_android.feature.notice.model.AllNoticeList
 import com.example.dmsport_android.feature.notice.activity.DetailNoticeActivity
-import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.util.noticeId
 import com.example.dmsport_android.util.putPref
 import com.example.dmsport_android.util.startIntentWithFlag
@@ -19,24 +19,20 @@ import java.util.*
  * AllNoticeList에 사용되는 Recyclerview Adapter 입니다.
  *
  * @param allNoticeList 전체 공지 사항 response
- * @param noticeViewModel 공지사항 vm
  * @param context intent, sharedpreferences 로직 처리를 위한 context
  * @param editor sharedpreferences 저장을 위한 sharedpreferences editor
  */
 class AllNoticeAdapter(
     private val allNoticeList: ArrayList<AllNoticeList>,
-    private val noticeViewModel: NoticeViewModel,
     private val context : Context,
     private val editor : SharedPreferences.Editor,
 ) : RecyclerView.Adapter<AllNoticeAdapter.AllNoticeViewHolder>() {
 
-    class AllNoticeViewHolder(val binding: ListAllNoticeMoreBinding) :
+    class AllNoticeViewHolder(val binding: ListAllNoticeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             allNoticeList: AllNoticeList,
-            noticeViewModel: NoticeViewModel,
         ) {
-            binding.viewModel = noticeViewModel
             binding.allNoticeList = allNoticeList
         }
     }
@@ -48,7 +44,7 @@ class AllNoticeAdapter(
         AllNoticeViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.list_all_notice_more,
+                R.layout.list_all_notice,
                 parent,
                 false
             )
@@ -60,7 +56,6 @@ class AllNoticeAdapter(
     ) {
         holder.bind(
             allNoticeList = allNoticeList[position],
-            noticeViewModel = noticeViewModel,
         )
         holder.itemView.setOnClickListener {
             putPref(

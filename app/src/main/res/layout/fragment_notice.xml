@@ -6,10 +6,6 @@
 
     <data>
         <variable
-            name="fragment"
-            type="com.example.dmsport_android.feature.notice.fragment.NoticeFragment" />
-
-        <variable
             name="viewmodel"
             type="com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel" />
     </data>
@@ -33,159 +29,69 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/gl_notice_horizon">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none"
+            <TextView
+                android:id="@+id/tv_notice_all"
+                style="@style/TextView_Hint20"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/notice_tv_all"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_notice_admin"
+                style="@style/RecyclerView"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_notice_event"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/tv_notice_all" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_notice_more_all"
+                style="@style/TextView_Light"
+                android:layout_width="wrap_content"
+                android:text="@string/notice_tv_more_all"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_notice_all"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.86"
+                app:layout_constraintStart_toEndOf="@+id/tv_notice_all"
+                app:layout_constraintTop_toTopOf="@+id/tv_notice_all" />
 
-                    <TextView
-                        android:id="@+id/tv_notice_all"
-                        style="@style/TextView_Hint20"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/notice_tv_all"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_notice_event"
+                style="@style/TextView_Hint20"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/notice_tv_event"
+                app:layout_constraintVertical_bias="0.45"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_notice_all" />
 
-                    <TextView
-                        android:id="@+id/tv_notice_more_all"
-                        style="@style/TextView_Light"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="28dp"
-                        android:layout_marginEnd="16dp"
-                        android:onClick="@{()->fragment.moreAllNotice()}"
-                        android:text="@string/notice_tv_more_all"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/tv_notice_all"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_notice_event_all"
+                style="@style/TextView_Light"
+                android:text="@string/notice_tv_event_all"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0.86"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_notice_event"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_notice_event"
+                app:layout_constraintTop_toTopOf="@id/tv_notice_event"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_notice_all_1"
-                        style="@style/Theme.DMSportAndroid.CardView_notice"
-                        android:outlineProvider="none"
-                        app:cardCornerRadius="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_notice_all">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_notice_manager"
+                style="@style/RecyclerView"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_notice_event" />
 
-                        <TextView
-                            android:id="@+id/tv_notice_title1"
-                            style="@style/Theme.DMSportAndroid.TextView_notice_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="" />
-
-                        <TextView
-                            android:id="@+id/tv_notice_content1"
-                            style="@style/Theme.DMSportAndroid.TextView_notice_content"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="" />
-
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_notice_all_2"
-                        style="@style/Theme.DMSportAndroid.CardView_notice"
-                        android:outlineProvider="none"
-                        app:cardCornerRadius="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cv_notice_all_1">
-
-                        <TextView
-                            style="@style/Theme.DMSportAndroid.TextView_notice_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="" />
-
-                        <TextView
-                            style="@style/Theme.DMSportAndroid.TextView_notice_content"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:id="@+id/tv_notice_event"
-                        style="@style/TextView_Hint20"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/notice_tv_event"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cv_notice_all_2" />
-
-                    <TextView
-                        android:id="@+id/tv_notice_event_all"
-                        style="@style/TextView_Light"
-                        android:layout_marginTop="27dp"
-                        android:layout_marginEnd="16dp"
-                        android:text="@string/notice_tv_event_all"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/tv_notice_event"
-                        app:layout_constraintTop_toBottomOf="@+id/cv_notice_all_2" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_notice_event_1"
-                        style="@style/Theme.DMSportAndroid.CardView_notice"
-                        android:outlineProvider="none"
-                        app:cardCornerRadius="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_notice_event">
-
-                        <TextView
-                            style="@style/Theme.DMSportAndroid.TextView_notice_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="" />
-
-                        <TextView
-                            style="@style/Theme.DMSportAndroid.TextView_notice_content"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_notice_event_2"
-                        style="@style/Theme.DMSportAndroid.CardView_notice"
-                        android:outlineProvider="none"
-                        app:cardCornerRadius="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cv_notice_event_1">
-
-                        <TextView
-                            style="@style/Theme.DMSportAndroid.TextView_notice_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="" />
-
-                        <TextView
-                            style="@style/Theme.DMSportAndroid.TextView_notice_content"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="" />
-
-                    </androidx.cardview.widget.CardView>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
