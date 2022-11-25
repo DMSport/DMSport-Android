@@ -37,10 +37,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onViewCreated(view, savedInstanceState)
         binding.myPageFragment = this
         binding.myPageViewModel = myPageViewModel
-        myPageViewModel.saveUserAuth()
         myPageViewModel.fetchMyPage()
         observeLogout()
         observeDeleteUser()
+        observeMyPageResponse()
     }
 
     override fun onResume() {
@@ -73,7 +73,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun observeLogout() {
-        myPageViewModel.logoutResponse.observe(viewLifecycleOwner, Observer {
+        myPageViewModel.logoutResponse.observe(viewLifecycleOwner) {
             when (it.code()) {
                 NO_CONTENT -> {
                     startIntent(this.requireContext(), LoginActivity::class.java)
@@ -81,11 +81,11 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     this.requireActivity().finish()
                 }
             }
-        })
+        }
     }
 
     private fun observeDeleteUser(){
-        myPageViewModel.deleteUserResponse.observe(viewLifecycleOwner, Observer {
+        myPageViewModel.deleteUserResponse.observe(viewLifecycleOwner) {
             when(it.code()){
                 NO_CONTENT -> {
                     startIntent(this.requireContext(), LoginActivity::class.java)
@@ -93,6 +93,14 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     this.requireActivity().finish()
                 }
             }
-        })
+        }
+    }
+
+    private fun observeMyPageResponse(){
+        myPageViewModel.myPageResponse.observe(viewLifecycleOwner){
+            when(it.code()){
+                OK-> myPageViewModel.saveUserAuth(it.body()!!.authority)
+            }
+        }
     }
 }

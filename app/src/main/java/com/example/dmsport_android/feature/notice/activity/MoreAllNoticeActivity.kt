@@ -2,6 +2,7 @@ package com.example.dmsport_android.feature.notice.activity
 
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
@@ -24,7 +25,10 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
     }
 
     private val noticeViewModelFactory: NoticeViewModelFactory by lazy {
-        NoticeViewModelFactory(noticeRepository)
+        NoticeViewModelFactory(
+            noticeRepository = noticeRepository,
+            pref = pref,
+        )
     }
 
     private val noticeViewModel: NoticeViewModel by lazy {
@@ -38,6 +42,7 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         super.onCreate(savedInstanceState)
         noticeViewModel.getNoticeList()
         observeAllNoticeListResponse()
+        initCreateNoticeButton()
     }
 
     private fun observeAllNoticeListResponse() {
@@ -55,10 +60,20 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
             adapter = AllNoticeAdapter(
                 allNoticeList = allNoticeList,
                 context = applicationContext,
-                editor = pref.edit(),
+                editor = editor,
             )
             layoutManager = LinearLayoutManager(applicationContext)
         }
+    }
 
+    private fun initCreateNoticeButton() {
+        if (noticeViewModel.checkUserAuth()) {
+            binding.fabNoticeAllCreate.run {
+                visibility = View.VISIBLE
+                setOnClickListener {
+
+                }
+            }
+        }
     }
 }
