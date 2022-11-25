@@ -10,8 +10,9 @@ import com.example.dmsport_android.databinding.FragmentNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.activity.MoreAllNoticeActivity
-import com.example.dmsport_android.feature.notice.adapter.AdminNoticeAdapter
-import com.example.dmsport_android.feature.notice.model.Admin
+import com.example.dmsport_android.feature.notice.adapter.AllNoticeAdapter
+import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
+import com.example.dmsport_android.feature.notice.model.Notice
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.startIntent
 
@@ -53,19 +54,35 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
         }
     }
 
-    private fun observeAdminNoticeResponse(){
-        noticeViewModel.recentNoticeResponse.observe(viewLifecycleOwner){
-            when(it.code()){
-                200-> initAdminNoticeRecyclerView(it.body()!!.admin)
+    private fun observeAdminNoticeResponse() {
+        noticeViewModel.recentNoticeResponse.observe(viewLifecycleOwner) {
+            when (it.code()) {
+                200 -> initAdminNoticeRecyclerView(
+                    adminNoticeList = it.body()!!.admin,
+                    mangerNoticeList = it.body()!!.manager,
+                )
             }
         }
     }
 
-    private fun initAdminNoticeRecyclerView(adminNoticeList : ArrayList<Admin>){
-        binding.rvNoticeAdmin.run {
-            adapter = AdminNoticeAdapter(adminNoticeList)
-            layoutManager = LinearLayoutManager(requireContext())
+    private fun initAdminNoticeRecyclerView(
+        adminNoticeList: ArrayList<Notice>,
+        mangerNoticeList: ArrayList<Notice>,
+    ) {
+        binding.run {
+            rvNoticeAdmin.run {
+                adapter = NoticeAdapter(adminNoticeList)
+                layoutManager = setLayoutManger()
+            }
+            rvNoticeManager.run {
+                adapter = NoticeAdapter(mangerNoticeList)
+                layoutManager = setLayoutManger()
+            }
         }
+
     }
+
+    private fun setLayoutManger(): LinearLayoutManager =
+        LinearLayoutManager(requireContext())
 
 }
