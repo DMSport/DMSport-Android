@@ -44,3 +44,5 @@
 .idea/deploymentTargetDropDown.xml
 
 .idea/vcs.xml
+
+gradle.properties

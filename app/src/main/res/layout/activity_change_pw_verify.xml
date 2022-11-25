@@ -6,7 +6,7 @@
 
         <variable
             name="ChangePwVerifyActivity"
-            type="com.example.dmsport_android.ui.activity.ChangePwVerifyActivity" />
+            type="com.example.dmsport_android.feature.changepassword.activity.ChangePwVerifyActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

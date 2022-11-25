@@ -11,7 +11,7 @@
             type="com.example.dmsport_android.dto.response.Vote" />
         <variable
             name="viewModel"
-            type="com.example.dmsport_android.viewmodel.VoteListViewModel" />
+            type="com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel" />
         <variable
             name="util"
             type="com.example.dmsport_android.util.ConvertTextUtil" />

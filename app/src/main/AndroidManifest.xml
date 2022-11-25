@@ -15,36 +15,36 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.DetailNoticeActivity"
+            android:name=".feature.notice.activity.DetailNoticeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.activity.MoreAllNoticeActivity"
+            android:name=".feature.notice.activity.MoreAllNoticeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.activity.DeleteUserActivity"
+            android:name=".feature.deleteuser.DeleteUserActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.EmailChangePwActivity"
+            android:name=".feature.changepassword.activity.EmailChangePwActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.ChangePwVerifyActivity"
+            android:name=".feature.changepassword.activity.ChangePwVerifyActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.VerifyActivity"
+            android:name=".feature.verifyuser.activity.VerifyActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.RegisterActivity"
+            android:name=".feature.register.activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".feature.login.activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Start">
             <intent-filter>
@@ -54,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".feature.home.MainActivity"
             android:exported="false" />
     </application>
 

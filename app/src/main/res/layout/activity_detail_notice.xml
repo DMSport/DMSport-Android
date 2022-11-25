@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.activity.DetailNoticeActivity">
+    tools:context=".feature.notice.activity.DetailNoticeActivity">
 
     <data>
         <variable
             name="viewModel"
-            type="com.example.dmsport_android.viewmodel.NoticeViewModel" />
+            type="com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

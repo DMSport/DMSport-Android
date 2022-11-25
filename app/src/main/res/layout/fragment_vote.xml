@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragment.VoteFragment">
+    tools:context=".feature.vote.fragment.VoteFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.dmsport_android.viewmodel.VoteListViewModel" />
+            type="com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

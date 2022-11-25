@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.activity.DeleteUserActivity">
+    tools:context=".feature.deleteuser.DeleteUserActivity">
 
     <data>
         <variable
             name="DeleteUserActivity"
-            type="com.example.dmsport_android.ui.activity.DeleteUserActivity" />
+            type="com.example.dmsport_android.feature.deleteuser.DeleteUserActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

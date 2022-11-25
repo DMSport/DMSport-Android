@@ -7,23 +7,23 @@
 
         <variable
             name="model"
-            type="com.example.dmsport_android.dto.response.AllNoticeResponse" />
+            type="com.example.dmsport_android.feature.notice.model.AllNoticeResponse" />
 
         <variable
             name="viewModel"
-            type="com.example.dmsport_android.viewmodel.NoticeViewModel" />
+            type="com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel" />
 
         <variable
             name="allNoticeList"
-            type="com.example.dmsport_android.dto.response.AllNoticeList" />
+            type="com.example.dmsport_android.feature.notice.model.AllNoticeList" />
 
         <variable
             name="activity"
-            type="com.example.dmsport_android.ui.activity.MoreAllNoticeActivity" />
+            type="com.example.dmsport_android.feature.notice.activity.MoreAllNoticeActivity" />
 
         <variable
             name="adpater"
-            type="com.example.dmsport_android.adapter.AllNoticeAdapter" />
+            type="com.example.dmsport_android.feature.notice.adapter.AllNoticeAdapter" />
 
     </data>
 

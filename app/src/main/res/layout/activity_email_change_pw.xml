@@ -6,7 +6,7 @@
 
         <variable
             name="EmailChangePwActivity"
-            type="com.example.dmsport_android.ui.activity.EmailChangePwActivity" />
+            type="com.example.dmsport_android.feature.changepassword.activity.EmailChangePwActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
