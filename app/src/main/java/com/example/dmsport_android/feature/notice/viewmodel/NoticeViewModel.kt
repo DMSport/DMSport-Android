@@ -1,5 +1,6 @@
 package com.example.dmsport_android.feature.notice.viewmodel
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,12 +9,15 @@ import com.example.dmsport_android.feature.notice.model.AllNoticeResponse
 import com.example.dmsport_android.feature.notice.model.DetailNoticeResponse
 import com.example.dmsport_android.feature.notice.model.RecentNoticeResponse
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
+import com.example.dmsport_android.util.getPref
+import com.example.dmsport_android.util.isManaged
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class NoticeViewModel(
     private val noticeRepository: NoticeRepository,
+    private val pref : SharedPreferences,
 ) : ViewModel() {
 
     private val _recentNoticeListResponse: MutableLiveData<Response<RecentNoticeResponse>> by lazy {
@@ -62,4 +66,11 @@ class NoticeViewModel(
             )
         }
     }
+
+    fun checkUserAuth() : Boolean =
+        getPref(
+            preferences = pref,
+            key = isManaged,
+            value = false
+        ) as Boolean
 }

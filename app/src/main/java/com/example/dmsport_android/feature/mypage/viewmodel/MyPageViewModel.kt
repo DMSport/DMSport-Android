@@ -1,5 +1,6 @@
 package com.example.dmsport_android.feature.mypage.viewmodel
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,13 +8,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.dmsport_android.feature.deleteuser.DeleteUserRequest
 import com.example.dmsport_android.feature.mypage.repository.MyPageRepository
 import com.example.dmsport_android.feature.mypage.model.MyPageResponse
+import com.example.dmsport_android.util.isManaged
 import com.example.dmsport_android.util.isVerified
+import com.example.dmsport_android.util.putPref
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MyPageViewModel(
     private val myPageRepository: MyPageRepository,
+    private val editor : SharedPreferences.Editor,
 ) : ViewModel() {
 
     private val _myPageResponse : MutableLiveData<Response<MyPageResponse>> = MutableLiveData()
@@ -45,6 +49,14 @@ class MyPageViewModel(
         viewModelScope.launch(Dispatchers.IO){
             _deleteUserResponse.postValue(myPageRepository.deleteUser(deleteUserRequest))
         }
+    }
+
+    fun saveUserAuth(){
+        putPref(
+            editor = editor,
+            key = isManaged,
+            myPageResponse.value?.body()!!.authority.split('_')[1].equals("MANAGER")
+        )
     }
 
 }

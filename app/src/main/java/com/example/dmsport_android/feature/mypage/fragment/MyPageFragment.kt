@@ -23,7 +23,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private val myPageViewModelFactory: MyPageViewModelFactory by lazy {
-        MyPageViewModelFactory(myPageRepository)
+        MyPageViewModelFactory(
+            myPageRepository = myPageRepository,
+            editor = editor,
+        )
     }
 
     private val myPageViewModel: MyPageViewModel by lazy {
@@ -34,6 +37,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onViewCreated(view, savedInstanceState)
         binding.myPageFragment = this
         binding.myPageViewModel = myPageViewModel
+        myPageViewModel.saveUserAuth()
         myPageViewModel.fetchMyPage()
         observeLogout()
         observeDeleteUser()
