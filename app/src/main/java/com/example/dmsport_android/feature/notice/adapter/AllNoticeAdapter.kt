@@ -10,6 +10,8 @@ import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListAllNoticeMoreBinding
 import com.example.dmsport_android.feature.notice.model.AllNoticeList
 import com.example.dmsport_android.feature.notice.activity.DetailNoticeActivity
+import com.example.dmsport_android.feature.notice.model.Admin
+import com.example.dmsport_android.feature.notice.model.Manager
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.util.noticeId
 import com.example.dmsport_android.util.putPref
@@ -19,13 +21,11 @@ import java.util.*
  * AllNoticeList에 사용되는 Recyclerview Adapter 입니다.
  *
  * @param allNoticeList 전체 공지 사항 response
- * @param noticeViewModel 공지사항 vm
  * @param context intent, sharedpreferences 로직 처리를 위한 context
  * @param editor sharedpreferences 저장을 위한 sharedpreferences editor
  */
 class AllNoticeAdapter(
     private val allNoticeList: ArrayList<AllNoticeList>,
-    private val noticeViewModel: NoticeViewModel,
     private val context : Context,
     private val editor : SharedPreferences.Editor,
 ) : RecyclerView.Adapter<AllNoticeAdapter.AllNoticeViewHolder>() {
@@ -34,9 +34,7 @@ class AllNoticeAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             allNoticeList: AllNoticeList,
-            noticeViewModel: NoticeViewModel,
         ) {
-            binding.viewModel = noticeViewModel
             binding.allNoticeList = allNoticeList
         }
     }
@@ -60,7 +58,6 @@ class AllNoticeAdapter(
     ) {
         holder.bind(
             allNoticeList = allNoticeList[position],
-            noticeViewModel = noticeViewModel,
         )
         holder.itemView.setOnClickListener {
             putPref(
