@@ -6,15 +6,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListAdminNoticeBinding
-import com.example.dmsport_android.feature.notice.model.Admin
+import com.example.dmsport_android.feature.notice.model.Notice
 
 class AdminNoticeAdapter(
-    private val adminNoticeList : ArrayList<Admin>,
+    private val adminNoticeList : ArrayList<Notice>,
 ) : RecyclerView.Adapter<AdminNoticeAdapter.NoticeViewHolder>(){
 
     class NoticeViewHolder(val binding : ListAdminNoticeBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(adminNoticeList : Admin){
+        fun bind(adminNoticeList : Notice){
             binding.model = adminNoticeList
         }
     }
