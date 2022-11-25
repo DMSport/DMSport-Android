@@ -10,7 +10,7 @@ import com.example.dmsport_android.databinding.ActivityMoreAllNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.model.AllNoticeList
-import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
+import com.example.dmsport_android.feature.notice.adapter.AllNoticeAdapter
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.OK
 import kotlin.collections.ArrayList
@@ -52,7 +52,7 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
 
     private fun initRecyclerView(allNoticeList: ArrayList<AllNoticeList>) {
         binding.rvNoticeAllNoticeList.run {
-            adapter = NoticeAdapter(
+            adapter = AllNoticeAdapter(
                 allNoticeList = allNoticeList,
                 context = applicationContext,
                 editor = pref.edit(),
