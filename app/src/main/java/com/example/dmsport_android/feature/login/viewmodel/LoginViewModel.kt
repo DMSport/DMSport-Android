@@ -9,6 +9,7 @@ import com.example.dmsport_android.feature.login.repository.LoginRepository
 import com.example.dmsport_android.feature.login.model.LoginRequest
 import com.example.dmsport_android.feature.login.model.LoginResponse
 import com.example.dmsport_android.util.getPref
+import com.example.dmsport_android.util.isManaged
 import com.example.dmsport_android.util.loginVisible
 import com.example.dmsport_android.util.putPref
 import kotlinx.coroutines.Dispatchers
@@ -48,4 +49,12 @@ class LoginViewModel(
             putPref(pref.edit(), loginVisible, true)
             false
         }
+
+    fun initUserAuth(){
+        putPref(
+            editor = pref.edit(),
+            key = isManaged,
+            value = false,
+        )
+    }
 }
