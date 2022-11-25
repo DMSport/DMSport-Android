@@ -2,7 +2,6 @@ package com.example.dmsport_android.feature.notice.activity
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
@@ -11,9 +10,7 @@ import com.example.dmsport_android.databinding.ActivityMoreAllNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.model.AllNoticeList
-import com.example.dmsport_android.feature.notice.adapter.AllNoticeAdapter
-import com.example.dmsport_android.feature.notice.model.Admin
-import com.example.dmsport_android.feature.notice.model.Manager
+import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.OK
 import kotlin.collections.ArrayList
@@ -39,7 +36,7 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        noticeViewModel.getAllNotice()
+        noticeViewModel.getNoticeList()
         observeAllNoticeListResponse()
     }
 
@@ -55,7 +52,7 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
 
     private fun initRecyclerView(allNoticeList: ArrayList<AllNoticeList>) {
         binding.rvNoticeAllNoticeList.run {
-            adapter = AllNoticeAdapter(
+            adapter = NoticeAdapter(
                 allNoticeList = allNoticeList,
                 context = applicationContext,
                 editor = pref.edit(),

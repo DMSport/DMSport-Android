@@ -16,20 +16,20 @@ class NoticeViewModel(
     private val noticeRepository: NoticeRepository,
 ) : ViewModel() {
 
-    private val _recentNoticeResponse: MutableLiveData<Response<RecentNoticeResponse>> by lazy {
+    private val _recentNoticeListResponse: MutableLiveData<Response<RecentNoticeResponse>> by lazy {
         MutableLiveData()
     }
 
     val recentNoticeResponse: LiveData<Response<RecentNoticeResponse>> by lazy {
-        _recentNoticeResponse
+        _recentNoticeListResponse
     }
 
-    private val _allNoticeResponse: MutableLiveData<Response<AllNoticeResponse>> by lazy {
+    private val _noticeListResponse: MutableLiveData<Response<AllNoticeResponse>> by lazy {
         MutableLiveData()
     }
 
     val allNoticeResponse: LiveData<Response<AllNoticeResponse>> by lazy {
-        _allNoticeResponse
+        _noticeListResponse
     }
 
     private val _detailNoticeResponse: MutableLiveData<Response<DetailNoticeResponse>> by lazy {
@@ -41,15 +41,15 @@ class NoticeViewModel(
     }
 
 
-    fun getAllNotice() {
+    fun getNoticeList() {
         viewModelScope.launch(Dispatchers.IO) {
-            _allNoticeResponse.postValue(noticeRepository.getAllNotice())
+            _noticeListResponse.postValue(noticeRepository.getAllNotice())
         }
     }
 
-    fun recentNotice() {
+    fun getRecentNoticeList() {
         viewModelScope.launch(Dispatchers.IO) {
-            _recentNoticeResponse.postValue(noticeRepository.getRecentNotice())
+            _recentNoticeListResponse.postValue(noticeRepository.getRecentNotice())
         }
     }
 
