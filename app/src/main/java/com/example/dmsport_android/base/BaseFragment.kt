@@ -1,5 +1,7 @@
 package com.example.dmsport_android.base
 
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +10,21 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.example.dmsport_android.util.initPref
 
 abstract class BaseFragment<V : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
     ) : Fragment(){
 
     protected lateinit var binding: V
+
+    protected val pref : SharedPreferences by lazy {
+        initPref(requireContext())
+    }
+
+    protected val editor : SharedPreferences.Editor by lazy {
+        pref.edit()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

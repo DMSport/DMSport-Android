@@ -24,10 +24,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         VoteListRepository()
     }
 
-    private val pref: SharedPreferences by lazy {
-        initPref(this.requireContext())
-    }
-
     private val voteListViewModelFactory: VoteListViewModelFactory by lazy {
         VoteListViewModelFactory(
             voteRepository = voteListRepository,

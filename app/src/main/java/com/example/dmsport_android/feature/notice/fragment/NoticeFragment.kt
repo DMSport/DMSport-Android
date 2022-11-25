@@ -24,7 +24,10 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
     }
 
     private val noticeViewModelFactory: NoticeViewModelFactory by lazy {
-        NoticeViewModelFactory(noticeRepository)
+        NoticeViewModelFactory(
+            noticeRepository = noticeRepository,
+            pref = pref,
+        )
     }
 
     private val noticeViewModel: NoticeViewModel by lazy {
