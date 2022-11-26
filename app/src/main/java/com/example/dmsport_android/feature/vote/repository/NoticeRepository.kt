@@ -35,4 +35,14 @@ class NoticeRepository {
             accessToken = ACCESS_TOKEN,
             noticeId = noticeId,
         )
+
+    suspend fun editNotice(
+        noticeId : Long,
+        createNoticeRequest: CreateNoticeRequest,
+    ) : Response<Void> =
+        noticeApi.editNotice(
+            accessToken = ACCESS_TOKEN,
+            noticeId = noticeId,
+            createNoticeRequest = createNoticeRequest,
+        )
 }
