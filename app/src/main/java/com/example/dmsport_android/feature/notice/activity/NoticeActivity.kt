@@ -47,6 +47,7 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         initMoreAllNoticeActivity()
         initBackButton()
         observeCreateNoticeResponse()
+        observeDeleteNoticeResponse()
     }
 
     private fun initMoreAllNoticeActivity() {
@@ -107,21 +108,37 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
                     )
                     dialog.dismiss()
                 }
-                FORBIDDEN ->{
-                    showSnack(
-                        view = binding.root,
-                        message = getString(R.string.create_notice_forbidden)
-                    )
-                }
+                FORBIDDEN -> showSnackbarForbidden()
                 BAD_REQUEST->{
                     showSnack(
                         view = binding.root,
                         message = getString(R.string.register_bad_request)
                     )
                 }
-
             }
         }
+    }
+
+    private fun observeDeleteNoticeResponse(){
+        noticeViewModel.deleteNoticeResponse.observe(this){
+            when(it.code()){
+                NO_CONTENT->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.delete_notice_success)
+                    )
+                    dialog.dismiss()
+                }
+                FORBIDDEN -> showSnackbarForbidden()
+            }
+        }
+    }
+
+    private fun showSnackbarForbidden(){
+        showSnack(
+            view = binding.root,
+            message = getString(R.string.create_notice_forbidden)
+        )
     }
 
     private fun initBackButton() {

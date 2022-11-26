@@ -77,6 +77,7 @@
     <string name="create_notice_forbidden">권한이 없습니다</string>
 
     <string name="delete_notice">공지사항을 삭제하시겠습니까?</string>
+    <string name="delete_notice_success">공지가 성공적으로 삭제되었습니다</string>
 
     <string-array name="spinner">
         <item>수정</item>

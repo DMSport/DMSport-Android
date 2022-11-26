@@ -1,7 +1,6 @@
 package com.example.dmsport_android.feature.mypage.viewmodel
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -52,11 +51,11 @@ class MyPageViewModel(
         }
     }
 
-    fun saveUserAuth(auth : String,){
+    fun saveUserAuth(auth : String?){
         putPref(
             editor = editor,
             key = isManaged,
-            auth?.split('_')?.get(1)?.equals("MANAGER")
+            value = auth?.split('_')?.get(1)?.equals("MANAGER") ?: "USER"
         )
     }
 
