@@ -21,4 +21,10 @@ interface NoticeApi {
         @Header("Authorization") accessToken: String,
         @Body createNoticeRequest: CreateNoticeRequest,
     ) : Response<Void>
+
+    @DELETE("notices/{notice-id}")
+    suspend fun deleteNotice(
+        @Header("Authorization") accessToken: String,
+        @Path("notice-id") noticeId : Long,
+    ) : Response<Void>
 }
