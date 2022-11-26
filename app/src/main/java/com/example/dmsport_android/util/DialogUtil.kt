@@ -61,6 +61,10 @@ fun createDeleteNoticeDialog(
         show()
     }
 
+    binding.btDeleteNoticeComplete.setOnClickListener {
+        noticeViewModel.deleteNotice(noticeViewModel.loadNoticeId())
+    }
+
     binding.tvDeleteNoticeCancel.setOnClickListener {
         dialog.dismiss()
     }

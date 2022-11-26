@@ -105,6 +105,7 @@ class NoticeAdapter(
                                 context = context,
                                 noticeViewModel = noticeViewModel
                             )
+                            noticeViewModel.saveNoticeId(noticeList[position].id)
                         }
                     }
                 }
