@@ -56,7 +56,7 @@ class MyPageViewModel(
         putPref(
             editor = editor,
             key = isManaged,
-            auth?.split('_')?.get(1).equals("MANAGER")
+            auth?.split('_')?.get(1)?.equals("MANAGER")
         )
     }
 

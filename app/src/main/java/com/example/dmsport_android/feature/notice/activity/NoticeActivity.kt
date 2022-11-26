@@ -1,6 +1,7 @@
 package com.example.dmsport_android.feature.notice.activity
 
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -45,6 +46,7 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         initCreateNoticeButton()
         initMoreAllNoticeActivity()
         initBackButton()
+        observeCreateNoticeResponse()
     }
 
     private fun initMoreAllNoticeActivity() {
@@ -87,10 +89,37 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
                 visibility = View.VISIBLE
                 setOnClickListener {
                     createNoticeDialog(
-                        context = applicationContext,
+                        context = this@NoticeActivity,
                         noticeViewModel = noticeViewModel,
                     )
                 }
+            }
+        }
+    }
+
+    private fun observeCreateNoticeResponse(){
+        noticeViewModel.createNoticeResponse.observe(this){
+            when(it.code()){
+                CREATED->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.create_notice_created)
+                    )
+                    dialog.dismiss()
+                }
+                FORBIDDEN ->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.create_notice_forbidden)
+                    )
+                }
+                BAD_REQUEST->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.register_bad_request)
+                    )
+                }
+
             }
         }
     }
@@ -105,5 +134,4 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         super.onDestroy()
         noticeViewModel.setNoticeTypeFalse()
     }
-
 }
