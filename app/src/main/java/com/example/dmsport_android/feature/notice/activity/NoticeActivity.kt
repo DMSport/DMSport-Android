@@ -11,13 +11,12 @@ import com.example.dmsport_android.databinding.ActivityMoreAllNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
-import com.example.dmsport_android.feature.notice.fragment.CreateNoticeFragment
 import com.example.dmsport_android.feature.notice.model.NoticeList
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.*
 import kotlin.collections.ArrayList
 
-class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
+class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
     R.layout.activity_more_all_notice,
 ) {
 
@@ -75,6 +74,7 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
                 noticeList = allNoticeList,
                 context = applicationContext,
                 editor = editor,
+                resources = resources,
                 noticeViewModel = noticeViewModel,
             )
             layoutManager = LinearLayoutManager(applicationContext)
@@ -82,11 +82,14 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
     }
 
     private fun initCreateNoticeButton() {
-        if (noticeViewModel.checkUserAuth()) {
+        if (noticeViewModel.checkUserAuth() && isAllEventNotice) {
             binding.fabNoticeAllCreate.run {
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    CreateNoticeFragment().show(supportFragmentManager, CreateNoticeFragment().tag)
+                    createNoticeDialog(
+                        context = applicationContext,
+                        noticeViewModel = noticeViewModel,
+                    )
                 }
             }
         }
