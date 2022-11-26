@@ -10,7 +10,7 @@ import com.example.dmsport_android.base.BaseFragment
 import com.example.dmsport_android.databinding.FragmentNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
-import com.example.dmsport_android.feature.notice.activity.MoreAllNoticeActivity
+import com.example.dmsport_android.feature.notice.activity.NoticeActivity
 import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
 import com.example.dmsport_android.feature.notice.model.NoticeList
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
@@ -56,14 +56,14 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
     private fun moreAllNotice() {
         binding.tvNoticeMoreAll.setOnClickListener {
             noticeViewModel.setNoticeTypeFalse()
-            startIntent(this.requireContext(), MoreAllNoticeActivity::class.java)
+            startIntent(this.requireContext(), NoticeActivity::class.java)
         }
     }
 
     private fun eventNotice() {
         binding.tvNoticeEventAll.setOnClickListener {
             noticeViewModel.setNoticeTypeTrue()
-            startIntent(requireContext(), MoreAllNoticeActivity::class.java)
+            startIntent(requireContext(), NoticeActivity::class.java)
         }
     }
 
@@ -103,6 +103,7 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
                 noticeList = noticeList,
                 context = requireContext(),
                 editor = editor,
+                resources = resources,
                 noticeViewModel = noticeViewModel,
             )
             layoutManager = LinearLayoutManager(requireContext())

@@ -18,7 +18,7 @@
             android:name=".feature.notice.activity.DetailNoticeActivity"
             android:exported="false"/>
         <activity
-            android:name=".feature.notice.activity.MoreAllNoticeActivity"
+            android:name=".feature.notice.activity.NoticeActivity"
             android:exported="false"/>
         <activity
             android:name=".feature.deleteuser.DeleteUserActivity"
