@@ -10,7 +10,6 @@ import com.example.dmsport_android.databinding.FragmentNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.activity.MoreAllNoticeActivity
-import com.example.dmsport_android.feature.notice.adapter.AllNoticeAdapter
 import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
 import com.example.dmsport_android.feature.notice.model.Notice
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
@@ -54,13 +53,14 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
 
     private fun moreAllNotice() {
         binding.tvNoticeMoreAll.setOnClickListener {
+            noticeViewModel.setNoticeTypeFalse()
             startIntent(this.requireContext(), MoreAllNoticeActivity::class.java)
         }
     }
 
     private fun eventNotice(){
         binding.tvNoticeEventAll.setOnClickListener {
-            noticeViewModel.setNoticeType()
+            noticeViewModel.setNoticeTypeTrue()
             startIntent(requireContext(), MoreAllNoticeActivity::class.java)
         }
     }

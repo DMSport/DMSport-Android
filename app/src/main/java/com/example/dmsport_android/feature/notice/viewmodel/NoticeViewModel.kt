@@ -113,7 +113,11 @@ class NoticeViewModel(
         else return allNoticeList
     }
 
-    fun setNoticeType() {
+    fun setNoticeTypeTrue() {
         isAllEventNotice = true
+    }
+
+    fun setNoticeTypeFalse(){
+        isAllEventNotice = false
     }
 }

@@ -45,6 +45,7 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         observeAllNoticeListResponse()
         initCreateNoticeButton()
         initMoreAllNoticeActivity()
+        initBackButton()
     }
 
     private fun initMoreAllNoticeActivity() {
@@ -58,7 +59,6 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
             when (it.code()) {
                 OK -> {
                     initRecyclerView(noticeViewModel.setNoticeListType(it.body()!!.notices))
-
                 }
             }
         }
@@ -84,6 +84,12 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
                     CreateNoticeFragment().show(supportFragmentManager, CreateNoticeFragment().tag)
                 }
             }
+        }
+    }
+
+    private fun initBackButton(){
+        binding.imgNoticeAllBack.setOnClickListener {
+            finish()
         }
     }
 }
