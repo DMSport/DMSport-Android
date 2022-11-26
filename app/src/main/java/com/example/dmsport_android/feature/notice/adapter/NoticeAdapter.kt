@@ -80,7 +80,10 @@ class NoticeAdapter(
             )
         }
         if (noticeViewModel.checkUserAuth()) {
-            holder.binding.spinnerNoticeDetail.visibility = View.VISIBLE
+            if(noticeList[position].type != "ALL" && noticeViewModel.checkUserAuth()){
+                holder.binding.spinnerNoticeDetail.visibility = View.VISIBLE
+            }
+
             holder.binding.spinnerNoticeDetail.run {
                 adapter = ArrayAdapter(
                     context,
