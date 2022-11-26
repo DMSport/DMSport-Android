@@ -2,12 +2,12 @@ package com.example.dmsport_android.feature.notice.activity
 
 
 import android.app.AlertDialog
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.view.Window
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
@@ -17,8 +17,9 @@ import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.model.AllNoticeList
 import com.example.dmsport_android.feature.notice.adapter.AllNoticeAdapter
+import com.example.dmsport_android.feature.notice.fragment.CreateNoticeFragment
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
-import com.example.dmsport_android.util.OK
+import com.example.dmsport_android.util.*
 import kotlin.collections.ArrayList
 
 class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
@@ -76,15 +77,9 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
             binding.fabNoticeAllCreate.run {
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    AlertDialog.Builder(layoutInflater.context).run {
-                        setView(R.layout.dialog_create_notice)
-                        show()
-                    }
+                    CreateNoticeFragment().show(supportFragmentManager, CreateNoticeFragment().tag)
                 }
             }
         }
     }
-
-
-
 }

@@ -1,19 +1,24 @@
 package com.example.dmsport_android.feature.notice.fragment
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
+import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.base.BaseFragment
 import com.example.dmsport_android.databinding.DialogCreateNoticeBinding
 import com.example.dmsport_android.databinding.FragmentNoticeBinding
@@ -27,16 +32,18 @@ import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.*
 
 
-class CreateNoticeFragment : DialogFragment() {
+class CreateNoticeFragment : DialogFragment(
+    R.layout.dialog_create_notice
+) {
 
     private lateinit var binding : DialogCreateNoticeBinding
 
-    private val pref by lazy {
-        initPref(requireContext())
-    }
-
     private val noticeRepository by lazy {
         NoticeRepository()
+    }
+
+    private val pref by lazy {
+        initPref(requireContext())
     }
 
     private val noticeViewModelFactory by lazy {
@@ -54,10 +61,14 @@ class CreateNoticeFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.dialog_create_notice, container, false)
-        binding.lifecycleOwner = this
+    ): View? {
+        binding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.dialog_create_notice,
+            container,
+            false,
+        )
+        initCancelButton()
         initCompleteButton()
         observeCreateNoticeResponse()
         return binding.root
@@ -77,8 +88,14 @@ class CreateNoticeFragment : DialogFragment() {
         }
     }
 
+    private fun initCancelButton(){
+        binding.tvCreateNoticeCancel.setOnClickListener {
+            dismiss()
+        }
+    }
+
     private fun observeCreateNoticeResponse() {
-        noticeViewModel.createNoticeResponse.observe(this) {
+        noticeViewModel.createNoticeResponse.observe(viewLifecycleOwner) {
             Log.d("TEST", it.errorBody()?.string() ?: it.code().toString())
             when (it.code()) {
                 CREATED -> {
@@ -86,7 +103,7 @@ class CreateNoticeFragment : DialogFragment() {
                         view = binding.root,
                         message = getString(R.string.create_notice_complete)
                     )
-                    dialog?.dismiss()
+                    dismiss()
                 }
                 BAD_REQUEST -> {
                     showSnack(
