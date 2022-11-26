@@ -1,6 +1,7 @@
 package com.example.dmsport_android.feature.notice.activity
 
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -11,13 +12,12 @@ import com.example.dmsport_android.databinding.ActivityMoreAllNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
-import com.example.dmsport_android.feature.notice.fragment.CreateNoticeFragment
 import com.example.dmsport_android.feature.notice.model.NoticeList
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.*
 import kotlin.collections.ArrayList
 
-class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
+class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
     R.layout.activity_more_all_notice,
 ) {
 
@@ -46,6 +46,8 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         initCreateNoticeButton()
         initMoreAllNoticeActivity()
         initBackButton()
+        observeCreateNoticeResponse()
+        observeDeleteNoticeResponse()
     }
 
     private fun initMoreAllNoticeActivity() {
@@ -82,14 +84,60 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
     }
 
     private fun initCreateNoticeButton() {
-        if (noticeViewModel.checkUserAuth()) {
+        if (noticeViewModel.checkUserAuth() && isAllEventNotice) {
             binding.fabNoticeAllCreate.run {
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    CreateNoticeFragment().show(supportFragmentManager, CreateNoticeFragment().tag)
+                    createNoticeDialog(
+                        context = this@NoticeActivity,
+                        noticeViewModel = noticeViewModel,
+                    )
                 }
             }
         }
+    }
+
+    private fun observeCreateNoticeResponse(){
+        noticeViewModel.createNoticeResponse.observe(this){
+            when(it.code()){
+                CREATED->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.create_notice_created)
+                    )
+                    dialog.dismiss()
+                }
+                FORBIDDEN -> showSnackbarForbidden()
+                BAD_REQUEST->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.register_bad_request)
+                    )
+                }
+            }
+        }
+    }
+
+    private fun observeDeleteNoticeResponse(){
+        noticeViewModel.deleteNoticeResponse.observe(this){
+            when(it.code()){
+                NO_CONTENT->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.delete_notice_success)
+                    )
+                    dialog.dismiss()
+                }
+                FORBIDDEN -> showSnackbarForbidden()
+            }
+        }
+    }
+
+    private fun showSnackbarForbidden(){
+        showSnack(
+            view = binding.root,
+            message = getString(R.string.create_notice_forbidden)
+        )
     }
 
     private fun initBackButton() {
@@ -102,5 +150,4 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         super.onDestroy()
         noticeViewModel.setNoticeTypeFalse()
     }
-
 }

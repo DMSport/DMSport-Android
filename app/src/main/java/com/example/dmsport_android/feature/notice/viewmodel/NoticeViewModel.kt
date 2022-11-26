@@ -10,6 +10,7 @@ import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.getPref
 import com.example.dmsport_android.util.isAllEventNotice
 import com.example.dmsport_android.util.isManaged
+import com.example.dmsport_android.util.putPref
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -43,6 +44,14 @@ class NoticeViewModel(
         _createNoticeResponse
     }
 
+    private val _deleteNoticeResponse : MutableLiveData<Response<Void>> by lazy {
+        MutableLiveData()
+    }
+
+    val deleteNoticeResponse : LiveData<Response<Void>> by lazy {
+        _deleteNoticeResponse
+    }
+
 
     fun getNoticeList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -72,6 +81,16 @@ class NoticeViewModel(
                         content = content,
                     )
                 )
+            )
+        }
+    }
+
+    fun deleteNotice(
+        noticeId : Int,
+    ){
+        viewModelScope.launch(Dispatchers.IO){
+            _deleteNoticeResponse.postValue(
+                noticeRepository.deleteNotice(noticeId.toLong())
             )
         }
     }
@@ -117,4 +136,19 @@ class NoticeViewModel(
     fun setNoticeTypeFalse() {
         isAllEventNotice = false
     }
+
+    fun saveNoticeId(noticeId : Int){
+        putPref(
+            editor = pref.edit(),
+            key = "noticeId",
+            value = noticeId,
+        )
+    }
+
+    fun loadNoticeId() : Int =
+        getPref(
+            preferences = pref,
+            key = "noticeId",
+            value = 0,
+        ) as Int
 }

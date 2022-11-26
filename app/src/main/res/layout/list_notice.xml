@@ -28,31 +28,43 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/tv_notice_title1"
+                    android:id="@+id/tv_notice_title"
                     style="@style/Theme.DMSportAndroid.TextView_notice_title"
                     android:text="@{model.title}"
+                    android:layout_marginEnd="4dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="32dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tv_notice_list_time"/>
 
                 <TextView
-                    android:id="@+id/tv_notice_content1"
+                    android:id="@+id/tv_notice_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     style="@style/Theme.DMSportAndroid.TextView_notice_content"
                     android:text="@{model.content_preview}"
                     android:layout_marginHorizontal="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_notice_title1" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_notice_title" />
 
                 <TextView
                     android:id="@+id/tv_notice_list_time"
                     style="@style/Theme.DMSportAndroid.TextView_notice_time"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="108dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_notice_title"
+                    app:layout_constraintEnd_toStartOf="@id/spinner_notice_detail"
+                    app:layout_constraintTop_toTopOf="@id/spinner_notice_detail" />
+                
+                <Spinner
+                    android:id="@+id/spinner_notice_detail"
+                    android:layout_width="6dp"
+                    android:visibility="invisible"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="14dp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_notice_content"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/ic_notice_detail"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

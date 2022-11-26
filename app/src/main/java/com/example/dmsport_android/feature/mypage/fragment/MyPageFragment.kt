@@ -99,7 +99,11 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     private fun observeMyPageResponse(){
         myPageViewModel.myPageResponse.observe(viewLifecycleOwner){
             when(it.code()){
-                OK-> myPageViewModel.saveUserAuth(it.body()!!.authority)
+                OK-> {
+                    if(it.body()!!.authority != "USER") {
+                        myPageViewModel.saveUserAuth(it.body()!!.authority)
+                    }
+                }
             }
         }
     }

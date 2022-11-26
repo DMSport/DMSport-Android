@@ -27,4 +27,12 @@ class NoticeRepository {
             accessToken = ACCESS_TOKEN,
             createNoticeRequest = createNoticeRequest,
         )
+
+    suspend fun deleteNotice(
+        noticeId: Long,
+    ) : Response<Void> =
+        noticeApi.deleteNotice(
+            accessToken = ACCESS_TOKEN,
+            noticeId = noticeId,
+        )
 }
