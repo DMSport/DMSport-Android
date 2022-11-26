@@ -1,15 +1,11 @@
 package com.example.dmsport_android.feature.notice.viewmodel
 
-import android.content.MutableContextWrapper
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dmsport_android.feature.notice.model.AllNoticeResponse
-import com.example.dmsport_android.feature.notice.model.CreateNoticeRequest
-import com.example.dmsport_android.feature.notice.model.DetailNoticeResponse
-import com.example.dmsport_android.feature.notice.model.RecentNoticeResponse
+import com.example.dmsport_android.feature.notice.model.*
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.getPref
 import com.example.dmsport_android.util.isManaged
@@ -99,4 +95,16 @@ class NoticeViewModel(
             key = isManaged,
             value = false
         ) as Boolean
+
+    fun setAllNoticeList(allNoticeList : ArrayList<AllNoticeList>) : ArrayList<AllNoticeList>{
+        var arrayList : ArrayList<AllNoticeList> = arrayListOf()
+        allNoticeList.removeAll(allNoticeList)
+        for(i in 0.until(arrayList.size)){
+            if(arrayList[i].type.equals("ALL")){
+                allNoticeList.add(arrayList[i])
+            }
+        }
+
+        return allNoticeList
+    }
 }

@@ -1,13 +1,8 @@
 package com.example.dmsport_android.feature.notice.activity
 
 
-import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
@@ -55,13 +50,14 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         noticeViewModel.allNoticeResponse.observe(this) {
             when (it.code()) {
                 OK -> {
-                    initRecyclerView(it.body()!!.notices)
+                    initRecyclerView(noticeViewModel.setAllNoticeList(it.body()!!.notices))
                 }
             }
         }
     }
 
     private fun initRecyclerView(allNoticeList: ArrayList<AllNoticeList>) {
+
         binding.rvNoticeAllNoticeList.run {
             adapter = AllNoticeAdapter(
                 allNoticeList = allNoticeList,
