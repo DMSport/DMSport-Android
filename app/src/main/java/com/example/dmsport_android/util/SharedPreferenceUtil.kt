@@ -20,7 +20,9 @@ const val selectedVoteNumber = "SelectedNumber"
 const val LUNCH = "LUNCH"
 const val DINNER = "DINNER"
 
-const val noticeId = "NoticeId"
+const val notice_Id = "NoticeId"
+const val notice_title = "NoticeTitle"
+const val notice_content = "NoticeContent"
 
 const val isManaged = "isManaged"
 

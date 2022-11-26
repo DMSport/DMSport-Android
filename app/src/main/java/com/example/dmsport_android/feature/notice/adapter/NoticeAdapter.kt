@@ -22,10 +22,7 @@ import com.example.dmsport_android.databinding.ListNoticeBinding
 import com.example.dmsport_android.feature.notice.activity.DetailNoticeActivity
 import com.example.dmsport_android.feature.notice.model.NoticeList
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
-import com.example.dmsport_android.util.createDeleteNoticeDialog
-import com.example.dmsport_android.util.noticeId
-import com.example.dmsport_android.util.putPref
-import com.example.dmsport_android.util.startIntentWithFlag
+import com.example.dmsport_android.util.*
 import java.util.*
 
 /**
@@ -66,7 +63,7 @@ class NoticeAdapter(
 
     override fun onBindViewHolder(
         holder: AllNoticeViewHolder,
-        position: Int,
+        position : Int,
     ) {
         holder.bind(
             allNoticeList = noticeList[position],
@@ -74,7 +71,7 @@ class NoticeAdapter(
         holder.itemView.setOnClickListener {
             putPref(
                 editor = editor,
-                key = noticeId,
+                key = notice_Id,
                 value = noticeList[position].id,
             )
             startIntentWithFlag(
@@ -94,19 +91,31 @@ class NoticeAdapter(
                     override fun onItemSelected(
                         parent: AdapterView<*>?,
                         view: View?,
-                        position: Int,
+                        pos: Int,
                         id: Long
                     ) {
-                        when (position) {
-                            0 -> {
-
-                            }
+                        setSelection(0)
+                        when (pos) {
                             1 -> {
+                                noticeViewModel.run {
+                                    saveNoticeId(noticeList[position].id)
+                                    saveNoticeTitle(noticeList[position].title)
+                                    saveNoticeContent(noticeList[position].content_preview)
+                                }
+                                createEditNoticeDialog(
+                                    context = context,
+                                    noticeViewModel = noticeViewModel,
+                                )
+                            }
+                            2 -> {
+                                noticeViewModel.saveNoticeId(noticeList[position].id)
                                 createDeleteNoticeDialog(
                                     context = context,
                                     noticeViewModel = noticeViewModel
                                 )
-                                noticeViewModel.saveNoticeId(noticeList[position].id)
+                            }
+                            0->{
+
                             }
                         }
                     }

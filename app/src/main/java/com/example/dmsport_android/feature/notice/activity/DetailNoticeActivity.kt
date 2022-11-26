@@ -9,7 +9,7 @@ import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.getPref
-import com.example.dmsport_android.util.noticeId
+import com.example.dmsport_android.util.notice_Id
 
 class DetailNoticeActivity : BaseActivity<ActivityDetailNoticeBinding>(
     R.layout.activity_detail_notice,
@@ -40,7 +40,7 @@ class DetailNoticeActivity : BaseActivity<ActivityDetailNoticeBinding>(
         noticeViewModel.getDetailNotice(
             getPref(
                 preferences = pref,
-                key = noticeId,
+                key = notice_Id,
                 value = 0
             ) as Int
         )
