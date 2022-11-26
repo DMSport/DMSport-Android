@@ -19,20 +19,12 @@ class NoticeViewModel(
     private val pref: SharedPreferences,
 ) : ViewModel() {
 
-    private val _recentNoticeListResponse: MutableLiveData<Response<RecentNoticeResponse>> by lazy {
+    private val _getNoticeResponse: MutableLiveData<Response<NoticeListResponse>> by lazy {
         MutableLiveData()
     }
 
-    val recentNoticeResponse: LiveData<Response<RecentNoticeResponse>> by lazy {
-        _recentNoticeListResponse
-    }
-
-    private val _noticeListResponse: MutableLiveData<Response<AllNoticeResponse>> by lazy {
-        MutableLiveData()
-    }
-
-    val allNoticeResponse: LiveData<Response<AllNoticeResponse>> by lazy {
-        _noticeListResponse
+    val getNoticeResponse: LiveData<Response<NoticeListResponse>> by lazy {
+        _getNoticeResponse
     }
 
     private val _detailNoticeResponse: MutableLiveData<Response<DetailNoticeResponse>> by lazy {
@@ -54,13 +46,7 @@ class NoticeViewModel(
 
     fun getNoticeList() {
         viewModelScope.launch(Dispatchers.IO) {
-            _noticeListResponse.postValue(noticeRepository.getAllNotice())
-        }
-    }
-
-    fun getRecentNoticeList() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _recentNoticeListResponse.postValue(noticeRepository.getRecentNotice())
+            _getNoticeResponse.postValue(noticeRepository.getAllNotice())
         }
     }
 
@@ -97,27 +83,38 @@ class NoticeViewModel(
             value = false
         ) as Boolean
 
-    fun setNoticeListType(noticeList: ArrayList<AllNoticeList>): ArrayList<AllNoticeList> {
-        val allNoticeList = arrayListOf<AllNoticeList>()
-        val eventNoticeList = arrayListOf<AllNoticeList>()
-
-        for(i in 0.until(noticeList.size)){
-            if(noticeList[i].type.equals("ALL")){
-                allNoticeList.add(noticeList[i])
-            }else{
-                eventNoticeList.add(noticeList[i])
+    fun setAllNoticeList(noticeList: ArrayList<NoticeList>): ArrayList<NoticeList> {
+        val tempList = arrayListOf<NoticeList>()
+        var count = 0
+        for (i in 0.until(noticeList.size)) {
+            if (noticeList[i].type == "ALL") {
+                tempList.add(noticeList[i])
+                if(isAllEventNotice) count++
             }
+            if(count == 2) break
         }
-
-        if(isAllEventNotice) return eventNoticeList
-        else return allNoticeList
+        return tempList
     }
+
+    fun setEventNoticeList(noticeList: ArrayList<NoticeList>): ArrayList<NoticeList> {
+        val tempList = arrayListOf<NoticeList>()
+        var count = 0
+        for (i in 0.until(noticeList.size)) {
+            if (noticeList[i].type != "ALL") {
+                tempList.add(noticeList[i])
+                if(!isAllEventNotice) count++
+            }
+            if(count == 2) break
+        }
+        return tempList
+    }
+
 
     fun setNoticeTypeTrue() {
         isAllEventNotice = true
     }
 
-    fun setNoticeTypeFalse(){
+    fun setNoticeTypeFalse() {
         isAllEventNotice = false
     }
 }
