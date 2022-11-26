@@ -1,8 +1,13 @@
 package com.example.dmsport_android.feature.notice.activity
 
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
@@ -71,9 +76,15 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
             binding.fabNoticeAllCreate.run {
                 visibility = View.VISIBLE
                 setOnClickListener {
-
+                    AlertDialog.Builder(layoutInflater.context).run {
+                        setView(R.layout.dialog_create_notice)
+                        show()
+                    }
                 }
             }
         }
     }
+
+
+
 }
