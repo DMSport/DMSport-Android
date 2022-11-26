@@ -71,21 +71,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private fun showSnackBarMainActivity() {
-        if(isLogged){
+        if (isLogged) {
             showSnack(binding.root, getString(R.string.login_ok))
             isLogged = false
-        }else if(isJoined){
+        } else if (isJoined) {
             showSnack(binding.root, getString(R.string.register_created))
             isJoined = false
         }
     }
 
-    private fun observeMyPageResponse(){
-        myPageViewModel.myPageResponse.observe(this){
-            when(it.code()){
-                OK->myPageViewModel.saveUserAuth(it.body()!!.authority)
+    private fun observeMyPageResponse() {
+        myPageViewModel.myPageResponse.observe(this) {
+            when (it.code()) {
+                OK -> if (it.body()!!.authority != "USER") {
+                    myPageViewModel.saveUserAuth(it.body()!!.authority)
+                }
             }
         }
     }
-
 }
