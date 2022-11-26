@@ -19,7 +19,10 @@ class DeleteUserActivity : BaseActivity<ActivityDeleteUserBinding>(R.layout.acti
     }
 
     private val myPageViewModelFactory : MyPageViewModelFactory by lazy {
-        MyPageViewModelFactory(myPageRepository)
+        MyPageViewModelFactory(
+            myPageRepository = myPageRepository,
+            editor = editor,
+        )
     }
 
     private val myPageViewModel : MyPageViewModel by lazy {

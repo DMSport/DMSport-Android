@@ -22,6 +22,8 @@ const val DINNER = "DINNER"
 
 const val noticeId = "NoticeId"
 
+const val isManaged = "isManaged"
+
 var isLogged = false
 var isLogOuted = false
 var isDeletedUser = false

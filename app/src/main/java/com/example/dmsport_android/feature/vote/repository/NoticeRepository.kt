@@ -1,6 +1,7 @@
 package com.example.dmsport_android.feature.vote.repository
 
 import com.example.dmsport_android.feature.notice.model.AllNoticeResponse
+import com.example.dmsport_android.feature.notice.model.CreateNoticeRequest
 import com.example.dmsport_android.feature.notice.model.DetailNoticeResponse
 import com.example.dmsport_android.feature.notice.model.RecentNoticeResponse
 import com.example.dmsport_android.network.noticeApi
@@ -24,4 +25,11 @@ class NoticeRepository {
             noticeId = noticeId,
         )
 
+    suspend fun createNotice(
+        createNoticeRequest: CreateNoticeRequest,
+    ) : Response<Void> =
+        noticeApi.createNotice(
+            accessToken = ACCESS_TOKEN,
+            createNoticeRequest = createNoticeRequest,
+        )
 }

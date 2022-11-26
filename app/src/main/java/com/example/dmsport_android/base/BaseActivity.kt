@@ -15,8 +15,12 @@ abstract class BaseActivity<T : ViewDataBinding>(
         DataBindingUtil.setContentView(this, layoutId)
     }
 
-    protected  val pref : SharedPreferences by lazy {
+    protected val pref : SharedPreferences by lazy {
         initPref(this)
+    }
+
+    protected val editor : SharedPreferences.Editor by lazy {
+        pref.edit()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

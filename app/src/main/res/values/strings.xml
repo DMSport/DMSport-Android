@@ -68,4 +68,12 @@
     <string name="notice_tv_more_all">전체 공지사항 더 보기 ></string>
     <string name="notice_tv_event">종목별 공지사항</string>
     <string name="notice_tv_event_all">종목별 공지사항 더 보기 ></string>
+
+    <string name="create_notice_title">공지 제목</string>
+    <string name="create_notice_content">공지 내용</string>
+    <string name="create_notice_complete">확인</string>
+    <string name="create_notice_cancel">취소</string>
+    <string name="create_notice_created">공지가 성공적으로 등록되었습니다</string>
+    <string name="create_notice_forbidden">권한이 없습니다</string>
+
 </resources>

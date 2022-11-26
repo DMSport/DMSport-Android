@@ -23,7 +23,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private val myPageViewModelFactory: MyPageViewModelFactory by lazy {
-        MyPageViewModelFactory(myPageRepository)
+        MyPageViewModelFactory(
+            myPageRepository = myPageRepository,
+            editor = editor,
+        )
     }
 
     private val myPageViewModel: MyPageViewModel by lazy {
@@ -37,6 +40,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         myPageViewModel.fetchMyPage()
         observeLogout()
         observeDeleteUser()
+        observeMyPageResponse()
     }
 
     override fun onResume() {
@@ -69,7 +73,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun observeLogout() {
-        myPageViewModel.logoutResponse.observe(viewLifecycleOwner, Observer {
+        myPageViewModel.logoutResponse.observe(viewLifecycleOwner) {
             when (it.code()) {
                 NO_CONTENT -> {
                     startIntent(this.requireContext(), LoginActivity::class.java)
@@ -77,11 +81,11 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     this.requireActivity().finish()
                 }
             }
-        })
+        }
     }
 
     private fun observeDeleteUser(){
-        myPageViewModel.deleteUserResponse.observe(viewLifecycleOwner, Observer {
+        myPageViewModel.deleteUserResponse.observe(viewLifecycleOwner) {
             when(it.code()){
                 NO_CONTENT -> {
                     startIntent(this.requireContext(), LoginActivity::class.java)
@@ -89,6 +93,14 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     this.requireActivity().finish()
                 }
             }
-        })
+        }
+    }
+
+    private fun observeMyPageResponse(){
+        myPageViewModel.myPageResponse.observe(viewLifecycleOwner){
+            when(it.code()){
+                OK-> myPageViewModel.saveUserAuth(it.body()!!.authority)
+            }
+        }
     }
 }

@@ -43,7 +43,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         installSplashScreen()
         super.onCreate(savedInstanceState)
         binding.loginActivity = this
-        loginViewModel.initVisible()
+        loginViewModel.run {
+            initVisible()
+            initUserAuth()
+        }
         initVisible()
         observeLogin()
         initSplashScreen()

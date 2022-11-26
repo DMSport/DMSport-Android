@@ -20,7 +20,10 @@ class DetailNoticeActivity : BaseActivity<ActivityDetailNoticeBinding>(
     }
 
     private val noticeViewModelFactory by lazy {
-        NoticeViewModelFactory(noticeRepository)
+        NoticeViewModelFactory(
+            noticeRepository = noticeRepository,
+            pref = pref,
+        )
     }
 
     private val noticeViewModel by lazy {
