@@ -103,7 +103,6 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
                 noticeList = noticeList,
                 context = requireContext(),
                 editor = editor,
-                resources = resources,
                 noticeViewModel = noticeViewModel,
             )
             layoutManager = LinearLayoutManager(requireContext())

@@ -77,7 +77,6 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
                 noticeList = allNoticeList,
                 context = applicationContext,
                 editor = editor,
-                resources = resources,
                 noticeViewModel = noticeViewModel,
             )
             layoutManager = LinearLayoutManager(applicationContext)

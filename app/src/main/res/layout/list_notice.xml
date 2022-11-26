@@ -57,6 +57,7 @@
                 <Spinner
                     android:id="@+id/spinner_notice_detail"
                     android:layout_width="6dp"
+                    android:visibility="invisible"
                     android:layout_height="20dp"
                     android:layout_marginTop="14dp"
                     app:layout_constraintBottom_toTopOf="@id/tv_notice_content"
