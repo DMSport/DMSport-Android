@@ -1,11 +1,13 @@
 package com.example.dmsport_android.feature.notice.viewmodel
 
+import android.content.MutableContextWrapper
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dmsport_android.feature.notice.model.AllNoticeResponse
+import com.example.dmsport_android.feature.notice.model.CreateNoticeRequest
 import com.example.dmsport_android.feature.notice.model.DetailNoticeResponse
 import com.example.dmsport_android.feature.notice.model.RecentNoticeResponse
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
@@ -44,6 +46,14 @@ class NoticeViewModel(
         _detailNoticeResponse
     }
 
+    private val _createNoticeResponse : MutableLiveData<Response<Void>> by lazy {
+        MutableLiveData()
+    }
+
+    val createNoticeResponse : LiveData<Response<Void>> by lazy {
+        _createNoticeResponse
+    }
+
 
     fun getNoticeList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -62,6 +72,22 @@ class NoticeViewModel(
             _detailNoticeResponse.postValue(
                 noticeRepository.getDetailNotice(
                     noticeId = noticeId.toLong()
+                )
+            )
+        }
+    }
+
+    fun createNotice(
+        title : String,
+        content : String,
+    ){
+        viewModelScope.launch(Dispatchers.IO){
+            _createNoticeResponse.postValue(
+                noticeRepository.createNotice(
+                    CreateNoticeRequest(
+                        title = title,
+                        content = content,
+                    )
                 )
             )
         }
