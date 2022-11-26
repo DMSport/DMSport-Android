@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.dmsport_android.feature.notice.model.*
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.getPref
+import com.example.dmsport_android.util.isAllEventNotice
 import com.example.dmsport_android.util.isManaged
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,7 +16,7 @@ import retrofit2.Response
 
 class NoticeViewModel(
     private val noticeRepository: NoticeRepository,
-    private val pref : SharedPreferences,
+    private val pref: SharedPreferences,
 ) : ViewModel() {
 
     private val _recentNoticeListResponse: MutableLiveData<Response<RecentNoticeResponse>> by lazy {
@@ -42,11 +43,11 @@ class NoticeViewModel(
         _detailNoticeResponse
     }
 
-    private val _createNoticeResponse : MutableLiveData<Response<Void>> by lazy {
+    private val _createNoticeResponse: MutableLiveData<Response<Void>> by lazy {
         MutableLiveData()
     }
 
-    val createNoticeResponse : LiveData<Response<Void>> by lazy {
+    val createNoticeResponse: LiveData<Response<Void>> by lazy {
         _createNoticeResponse
     }
 
@@ -74,10 +75,10 @@ class NoticeViewModel(
     }
 
     fun createNotice(
-        title : String,
-        content : String,
-    ){
-        viewModelScope.launch(Dispatchers.IO){
+        title: String,
+        content: String,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
             _createNoticeResponse.postValue(
                 noticeRepository.createNotice(
                     CreateNoticeRequest(
@@ -89,22 +90,30 @@ class NoticeViewModel(
         }
     }
 
-    fun checkUserAuth() : Boolean =
+    fun checkUserAuth(): Boolean =
         getPref(
             preferences = pref,
             key = isManaged,
             value = false
         ) as Boolean
 
-    fun setAllNoticeList(allNoticeList : ArrayList<AllNoticeList>) : ArrayList<AllNoticeList>{
-        var arrayList : ArrayList<AllNoticeList> = arrayListOf()
-        allNoticeList.removeAll(allNoticeList)
-        for(i in 0.until(arrayList.size)){
-            if(arrayList[i].type.equals("ALL")){
-                allNoticeList.add(arrayList[i])
+    fun setNoticeListType(noticeList: ArrayList<AllNoticeList>): ArrayList<AllNoticeList> {
+        val allNoticeList = arrayListOf<AllNoticeList>()
+        val eventNoticeList = arrayListOf<AllNoticeList>()
+
+        for(i in 0.until(noticeList.size)){
+            if(noticeList[i].type.equals("ALL")){
+                allNoticeList.add(noticeList[i])
+            }else{
+                eventNoticeList.add(noticeList[i])
             }
         }
 
-        return allNoticeList
+        if(isAllEventNotice) return eventNoticeList
+        else return allNoticeList
+    }
+
+    fun setNoticeType() {
+        isAllEventNotice = true
     }
 }

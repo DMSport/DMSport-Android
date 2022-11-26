@@ -48,12 +48,20 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
         binding.viewmodel = noticeViewModel
         moreAllNotice()
         observeAdminNoticeResponse()
+        eventNotice()
         noticeViewModel.getRecentNoticeList()
     }
 
-    fun moreAllNotice() {
+    private fun moreAllNotice() {
         binding.tvNoticeMoreAll.setOnClickListener {
             startIntent(this.requireContext(), MoreAllNoticeActivity::class.java)
+        }
+    }
+
+    private fun eventNotice(){
+        binding.tvNoticeEventAll.setOnClickListener {
+            noticeViewModel.setNoticeType()
+            startIntent(requireContext(), MoreAllNoticeActivity::class.java)
         }
     }
 

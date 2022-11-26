@@ -44,13 +44,21 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         noticeViewModel.getNoticeList()
         observeAllNoticeListResponse()
         initCreateNoticeButton()
+        initMoreAllNoticeActivity()
+    }
+
+    private fun initMoreAllNoticeActivity() {
+        if (isAllEventNotice) {
+            binding.tvNoticeAllAllNotice.text = getString(R.string.notice_tv_event)
+        }
     }
 
     private fun observeAllNoticeListResponse() {
         noticeViewModel.allNoticeResponse.observe(this) {
             when (it.code()) {
                 OK -> {
-                    initRecyclerView(noticeViewModel.setAllNoticeList(it.body()!!.notices))
+                    initRecyclerView(noticeViewModel.setNoticeListType(it.body()!!.notices))
+
                 }
             }
         }
