@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="com.example.dmsport_android.feature.notice.model.Notice" />
+            type="com.example.dmsport_android.feature.notice.model.NoticeList" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,13 +1,8 @@
 package com.example.dmsport_android.feature.notice.activity
 
 
-import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
@@ -15,9 +10,9 @@ import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityMoreAllNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
-import com.example.dmsport_android.feature.notice.model.AllNoticeList
-import com.example.dmsport_android.feature.notice.adapter.AllNoticeAdapter
+import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
 import com.example.dmsport_android.feature.notice.fragment.CreateNoticeFragment
+import com.example.dmsport_android.feature.notice.model.NoticeList
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.*
 import kotlin.collections.ArrayList
@@ -49,24 +44,38 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         noticeViewModel.getNoticeList()
         observeAllNoticeListResponse()
         initCreateNoticeButton()
+        initMoreAllNoticeActivity()
+        initBackButton()
+    }
+
+    private fun initMoreAllNoticeActivity() {
+        if (isAllEventNotice) {
+            binding.tvNoticeAllAllNotice.text = getString(R.string.notice_tv_event)
+        }
     }
 
     private fun observeAllNoticeListResponse() {
-        noticeViewModel.allNoticeResponse.observe(this) {
+        noticeViewModel.getNoticeResponse.observe(this) {
             when (it.code()) {
                 OK -> {
-                    initRecyclerView(it.body()!!.notices)
+                    if (isAllEventNotice) {
+                        initRecyclerView(noticeViewModel.setEventNoticeList(it.body()!!.notices))
+                    } else {
+                        initRecyclerView(noticeViewModel.setAllNoticeList(it.body()!!.notices))
+                    }
+
                 }
             }
         }
     }
 
-    private fun initRecyclerView(allNoticeList: ArrayList<AllNoticeList>) {
+    private fun initRecyclerView(allNoticeList: ArrayList<NoticeList>) {
         binding.rvNoticeAllNoticeList.run {
-            adapter = AllNoticeAdapter(
-                allNoticeList = allNoticeList,
+            adapter = NoticeAdapter(
+                noticeList = allNoticeList,
                 context = applicationContext,
                 editor = editor,
+                noticeViewModel = noticeViewModel,
             )
             layoutManager = LinearLayoutManager(applicationContext)
         }
@@ -82,4 +91,16 @@ class MoreAllNoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
             }
         }
     }
+
+    private fun initBackButton() {
+        binding.imgNoticeAllBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        noticeViewModel.setNoticeTypeFalse()
+    }
+
 }

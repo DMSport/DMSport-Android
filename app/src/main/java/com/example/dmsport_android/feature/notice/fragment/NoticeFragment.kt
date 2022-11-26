@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseFragment
 import com.example.dmsport_android.databinding.FragmentNoticeBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.activity.MoreAllNoticeActivity
-import com.example.dmsport_android.feature.notice.adapter.AllNoticeAdapter
 import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
-import com.example.dmsport_android.feature.notice.model.Notice
+import com.example.dmsport_android.feature.notice.model.NoticeList
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
+import com.example.dmsport_android.util.OK
 import com.example.dmsport_android.util.startIntent
 
 
@@ -46,46 +47,65 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
             savedInstanceState,
         )
         binding.viewmodel = noticeViewModel
+        noticeViewModel.getNoticeList()
         moreAllNotice()
-        observeAdminNoticeResponse()
-        noticeViewModel.getRecentNoticeList()
+        eventNotice()
+        observeAllNoticeListResponse()
     }
 
-    fun moreAllNotice() {
+    private fun moreAllNotice() {
         binding.tvNoticeMoreAll.setOnClickListener {
+            noticeViewModel.setNoticeTypeFalse()
             startIntent(this.requireContext(), MoreAllNoticeActivity::class.java)
         }
     }
 
-    private fun observeAdminNoticeResponse() {
-        noticeViewModel.recentNoticeResponse.observe(viewLifecycleOwner) {
+    private fun eventNotice() {
+        binding.tvNoticeEventAll.setOnClickListener {
+            noticeViewModel.setNoticeTypeTrue()
+            startIntent(requireContext(), MoreAllNoticeActivity::class.java)
+        }
+    }
+
+    private fun observeAllNoticeListResponse() {
+        noticeViewModel.getNoticeResponse.observe(viewLifecycleOwner) {
             when (it.code()) {
-                200 -> initAdminNoticeRecyclerView(
-                    adminNoticeList = it.body()!!.admin,
-                    mangerNoticeList = it.body()!!.manager,
-                )
+                OK -> {
+                    setNoticeRecyclerView(
+                        allNoticeList = noticeViewModel.setAllNoticeList(it.body()!!.notices),
+                        eventNoticeList = noticeViewModel.setEventNoticeList(it.body()!!.notices)
+                    )
+                }
             }
         }
     }
 
-    private fun initAdminNoticeRecyclerView(
-        adminNoticeList: ArrayList<Notice>,
-        mangerNoticeList: ArrayList<Notice>,
+    private fun setNoticeRecyclerView(
+        allNoticeList: ArrayList<NoticeList>,
+        eventNoticeList: ArrayList<NoticeList>,
     ) {
-        binding.run {
-            rvNoticeAdmin.run {
-                adapter = NoticeAdapter(adminNoticeList)
-                layoutManager = setLayoutManger()
-            }
-            rvNoticeManager.run {
-                adapter = NoticeAdapter(mangerNoticeList)
-                layoutManager = setLayoutManger()
-            }
-        }
-
+        setRecyclerView(
+            rv = binding.rvNoticeAdmin,
+            noticeList = allNoticeList,
+        )
+        setRecyclerView(
+            rv = binding.rvNoticeManager,
+            noticeList = eventNoticeList,
+        )
     }
 
-    private fun setLayoutManger(): LinearLayoutManager =
-        LinearLayoutManager(requireContext())
-
+    private fun setRecyclerView(
+        rv: RecyclerView,
+        noticeList: ArrayList<NoticeList>,
+    ) {
+        rv.run {
+            adapter = NoticeAdapter(
+                noticeList = noticeList,
+                context = requireContext(),
+                editor = editor,
+                noticeViewModel = noticeViewModel,
+            )
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
 }

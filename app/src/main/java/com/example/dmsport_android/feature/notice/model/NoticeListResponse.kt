@@ -1,10 +1,10 @@
 package com.example.dmsport_android.feature.notice.model
 
-data class AllNoticeResponse(
-    val notices: ArrayList<AllNoticeList>
+data class NoticeListResponse(
+    val notices: ArrayList<NoticeList>
 )
 
-data class AllNoticeList(
+data class NoticeList(
     val id: Int,
     val type: String,
     val title: String,
