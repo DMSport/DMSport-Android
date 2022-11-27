@@ -48,6 +48,7 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         initBackButton()
         observeCreateNoticeResponse()
         observeDeleteNoticeResponse()
+        observeEditNoticeResponse()
     }
 
     private fun initMoreAllNoticeActivity() {
@@ -149,5 +150,27 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
     override fun onDestroy() {
         super.onDestroy()
         noticeViewModel.setNoticeTypeFalse()
+    }
+
+    private fun observeEditNoticeResponse(){
+        noticeViewModel.editNoticeResponse.observe(this){
+            when(it.code()){
+                NO_CONTENT->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.edit_notice),
+                    )
+                    dialog.dismiss()
+                }
+                BAD_REQUEST->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.register_bad_request)
+                    )
+                }
+                FORBIDDEN  -> showSnackbarForbidden()
+
+            }
+        }
     }
 }

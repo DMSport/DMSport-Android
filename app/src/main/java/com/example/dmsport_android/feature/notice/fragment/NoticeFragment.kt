@@ -14,8 +14,7 @@ import com.example.dmsport_android.feature.notice.activity.NoticeActivity
 import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
 import com.example.dmsport_android.feature.notice.model.NoticeList
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
-import com.example.dmsport_android.util.OK
-import com.example.dmsport_android.util.startIntent
+import com.example.dmsport_android.util.*
 
 
 class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_notice) {
@@ -51,6 +50,8 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
         moreAllNotice()
         eventNotice()
         observeAllNoticeListResponse()
+        observeDeleteNoticeResponse()
+        observeEditNoticeResponse()
     }
 
     private fun moreAllNotice() {
@@ -80,6 +81,28 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
         }
     }
 
+    private fun observeDeleteNoticeResponse(){
+        noticeViewModel.deleteNoticeResponse.observe(this){
+            when(it.code()){
+                NO_CONTENT ->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.delete_notice_success)
+                    )
+                    dialog.dismiss()
+                }
+                FORBIDDEN -> showSnackbarForbidden()
+            }
+        }
+    }
+
+    private fun showSnackbarForbidden(){
+        showSnack(
+            view = binding.root,
+            message = getString(R.string.create_notice_forbidden)
+        )
+    }
+
     private fun setNoticeRecyclerView(
         allNoticeList: ArrayList<NoticeList>,
         eventNoticeList: ArrayList<NoticeList>,
@@ -106,6 +129,28 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
                 noticeViewModel = noticeViewModel,
             )
             layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
+    private fun observeEditNoticeResponse(){
+        noticeViewModel.editNoticeResponse.observe(viewLifecycleOwner){
+            when(it.code()){
+                NO_CONTENT->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.edit_notice),
+                    )
+                    dialog.dismiss()
+                }
+                BAD_REQUEST->{
+                    showSnack(
+                        view = binding.root,
+                        message = getString(R.string.register_bad_request)
+                    )
+                }
+                FORBIDDEN  -> showSnackbarForbidden()
+
+            }
         }
     }
 }

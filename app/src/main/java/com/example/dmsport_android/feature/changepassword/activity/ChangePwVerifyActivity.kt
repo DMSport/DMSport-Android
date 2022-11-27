@@ -54,7 +54,7 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
         if(code.isNotEmpty() && email.isNotEmpty()){
             emailChangePwViewModel.verify(email, code)
         }else{
-            showSnack(binding.root, getString(R.string.change_pw_bad_request))
+            showSnack(binding.root, getString(R.string.register_bad_request))
         }
     }
 

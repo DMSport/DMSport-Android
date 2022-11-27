@@ -61,7 +61,6 @@
     <string name="change_pw_re">비밀번호를 다시 입력해주세요</string>
     <string name="change_pw_text_ko">변경하기</string>
     <string name="change_pw_text_en">Password</string>
-    <string name="change_pw_bad_request">항목을 확인해주세요</string>
     <string name="change_pw_old_password">현재 비밀번호를 입력해주세요</string>
 
     <string name="notice_tv_all">전체 공지사항</string>
@@ -79,7 +78,10 @@
     <string name="delete_notice">공지사항을 삭제하시겠습니까?</string>
     <string name="delete_notice_success">공지가 성공적으로 삭제되었습니다</string>
 
+    <string name="edit_notice">공지가 성공적으로 수정되었습니다</string>
+
     <string-array name="spinner">
+        <item>취소</item>
         <item>수정</item>
         <item>삭제</item>
     </string-array>

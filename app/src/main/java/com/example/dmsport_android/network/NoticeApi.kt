@@ -27,4 +27,11 @@ interface NoticeApi {
         @Header("Authorization") accessToken: String,
         @Path("notice-id") noticeId : Long,
     ) : Response<Void>
+
+    @PATCH("notices/{notice-id}")
+    suspend fun editNotice(
+        @Header("Authorization") accessToken: String,
+        @Path("notice-id") noticeId: Long,
+        @Body createNoticeRequest: CreateNoticeRequest,
+    ) : Response<Void>
 }

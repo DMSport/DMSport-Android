@@ -7,10 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dmsport_android.feature.notice.model.*
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
-import com.example.dmsport_android.util.getPref
-import com.example.dmsport_android.util.isAllEventNotice
-import com.example.dmsport_android.util.isManaged
-import com.example.dmsport_android.util.putPref
+import com.example.dmsport_android.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -52,6 +49,14 @@ class NoticeViewModel(
         _deleteNoticeResponse
     }
 
+    private val _editNoticeResponse : MutableLiveData<Response<Void>> by lazy {
+        MutableLiveData()
+    }
+
+    val editNoticeResponse : LiveData<Response<Void>> by lazy {
+        _editNoticeResponse
+    }
+
 
     fun getNoticeList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -91,6 +96,23 @@ class NoticeViewModel(
         viewModelScope.launch(Dispatchers.IO){
             _deleteNoticeResponse.postValue(
                 noticeRepository.deleteNotice(noticeId.toLong())
+            )
+        }
+    }
+
+    fun editNotice(
+        title : String,
+        content : String,
+    ){
+        viewModelScope.launch(Dispatchers.IO){
+            _editNoticeResponse.postValue(
+                noticeRepository.editNotice(
+                    noticeId = loadNoticeId().toLong(),
+                    createNoticeRequest = CreateNoticeRequest(
+                        title = title,
+                        content = content,
+                    )
+                )
             )
         }
     }
@@ -140,7 +162,7 @@ class NoticeViewModel(
     fun saveNoticeId(noticeId : Int){
         putPref(
             editor = pref.edit(),
-            key = "noticeId",
+            key = notice_Id,
             value = noticeId,
         )
     }
@@ -148,7 +170,38 @@ class NoticeViewModel(
     fun loadNoticeId() : Int =
         getPref(
             preferences = pref,
-            key = "noticeId",
+            key = notice_Id,
             value = 0,
         ) as Int
+
+    fun saveNoticeTitle(title : String,){
+        putPref(
+            editor = pref.edit(),
+            key = notice_title,
+            value = title,
+        )
+    }
+
+    fun saveNoticeContent(content : String){
+        putPref(
+            editor = pref.edit(),
+            key = notice_content,
+            value = content,
+        )
+    }
+
+    fun loadNoticeTitle() : String =
+        getPref(
+            preferences = pref,
+            key = notice_title,
+            value = "",
+        ).toString()
+
+    fun loadNoticeContent() : String =
+        getPref(
+            preferences = pref,
+            key = notice_content,
+            value = "",
+        ).toString()
+
 }

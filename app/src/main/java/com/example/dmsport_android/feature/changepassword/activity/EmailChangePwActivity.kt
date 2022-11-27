@@ -146,7 +146,7 @@ class EmailChangePwActivity :
                     startIntent(this, VerifyActivity::class.java)
                 }
             } else {
-                showSnack(binding.root, getString(R.string.change_pw_bad_request))
+                showSnack(binding.root, getString(R.string.register_bad_request))
             }
         }
     }
@@ -174,7 +174,7 @@ class EmailChangePwActivity :
                     showSnack(
                         view = binding.root,
                         message = getString(
-                            R.string.change_pw_bad_request,
+                            R.string.register_bad_request,
                         ),
                     )
                 }
