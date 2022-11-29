@@ -66,18 +66,18 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             viewLifecycleOwner,
         ) {
             when (it.code()) {
-                OK -> initRecyclerView(it.body()!!)
+                OK -> initRecyclerView(it.body())
             }
         }
     }
 
     private fun initRecyclerView(
-        voteListResponse: VoteListResponse,
+        voteListResponse: VoteListResponse?,
     ) {
         binding.rvVoteList.run {
             adapter = VoteListAdapter(
                 voteList = voteListResponse,
-                voteEventList = voteListResponse.vote,
+                voteEventList = voteListResponse?.vote,
                 voteListViewModel = voteListViewModel,
             )
             layoutManager = LinearLayoutManager(

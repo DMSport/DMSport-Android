@@ -19,8 +19,8 @@ import com.example.dmsport_android.util.ConvertTextUtil
  * @param voteListViewModel vote 로직 처리를 위한 vm
  */
 internal class VoteListAdapter(
-    private val voteList: VoteListResponse,
-    private val voteEventList: ArrayList<Vote>,
+    private val voteList: VoteListResponse?,
+    private val voteEventList: ArrayList<Vote>?,
     private val voteListViewModel: VoteListViewModel,
 ) : RecyclerView.Adapter<VoteListAdapter.VoteListViewHolder>() {
 
@@ -28,8 +28,8 @@ internal class VoteListAdapter(
         val binding: ListVoteBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            voteList: VoteListResponse,
-            voteEventList: Vote,
+            voteList: VoteListResponse?,
+            voteEventList: Vote?,
             voteListViewModel: VoteListViewModel,
         ) {
             binding.run {
@@ -61,11 +61,11 @@ internal class VoteListAdapter(
     ) {
         holder.bind(
             voteList = voteList,
-            voteEventList = voteEventList[position],
+            voteEventList = voteEventList?.get(position),
             voteListViewModel = voteListViewModel,
         )
     }
 
     override fun getItemCount(): Int =
-        voteEventList.size
+        voteEventList?.size ?: 0
 }
