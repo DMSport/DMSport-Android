@@ -124,6 +124,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             when (it.code()) {
                 CREATED -> {
                     ACCESS_TOKEN = "Bearer ${it.body()!!.access_token}"
+                    REFRESH_TOKEN = it.body()!!.refresh_token
                     startIntent(this, MainActivity::class.java)
                     finish()
                 }
