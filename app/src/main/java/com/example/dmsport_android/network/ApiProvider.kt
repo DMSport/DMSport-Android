@@ -23,3 +23,7 @@ val changePwApi : ChangePwApi by lazy {
 val noticeApi: NoticeApi by lazy {
     RetrofitClient.getRetrofit().create(NoticeApi::class.java)
 }
+
+val refreshApi : RefreshApi by lazy {
+    RetrofitClient.getRetrofit().create(RefreshApi::class.java)
+}

@@ -111,6 +111,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             when (it.code()) {
                 OK -> {
                     ACCESS_TOKEN = "Bearer ${it.body()!!.access_token}"
+                    REFRESH_TOKEN = it.body()!!.refresh_token
                     isLogged = true
                     startIntent(this, MainActivity::class.java)
                     finish()
