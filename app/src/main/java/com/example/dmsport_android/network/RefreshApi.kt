@@ -8,6 +8,6 @@ import retrofit2.http.PUT
 interface RefreshApi {
     @PUT("users/auth")
     suspend fun getRefreshToken(
-        @Header("X-Refresh-Token") refreshToken : String?,
+        @Header("X-Refresh-Token") refreshToken : String,
     ) : Response<RefreshResponse>
 }

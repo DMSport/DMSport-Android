@@ -1,5 +1,6 @@
 package com.example.dmsport_android.network
 
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.BuildConfig
 import com.example.dmsport_android.feature.refresh.*
@@ -11,16 +12,13 @@ import com.example.dmsport_android.util.UNAUTHORIZED
 import kotlinx.coroutines.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     private lateinit var retrofit: Retrofit
-
-    private val refreshRepository by lazy {
-        RefreshRepository()
-    }
 
     fun getRetrofit(): Retrofit {
         retrofit = Retrofit.Builder()
@@ -29,10 +27,10 @@ object RetrofitClient {
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(
-                        RequestInterceptor(refreshRepository)
+                        RequestInterceptor()
                     )
                     .addInterceptor(
-                        ResponseInterceptor(refreshRepository)
+                        ResponseInterceptor()
                     )
                     .build()
             )
@@ -41,55 +39,48 @@ object RetrofitClient {
     }
 }
 
-class RequestInterceptor(
-    private val refreshRepository: RefreshRepository
-) : Interceptor {
+class RequestInterceptor() : Interceptor {
+    private lateinit var request: Request
+    override fun intercept(chain: Interceptor.Chain): Response {
 
-    override fun intercept(
-        chain: Interceptor.Chain,
-    ): Response {
-        CoroutineScope(Dispatchers.IO).launch {
-            kotlin.runCatching {
-                refreshRepository.getRefreshToken()
-            }.onSuccess{
-                if(it.isSuccessful) {
-                    ACCESS_TOKEN = it.body()!!.access_token
-                }
-            }
-        }
-        val addAuthorization = chain.request().newBuilder()
-            .addHeader(
+        val ignorePath = arrayListOf(
+            "/users/auth",
+            "/users/mail/duplicate",
+            "/users/mail/signup",
+            "/users",
+            "/users/mail/find",
+            "/users/password",
+        )
+        if (ignorePath.contains(chain.request().url().encodedPath()))
+            request = chain.request().newBuilder().build()
+        else
+            request = chain.request().newBuilder().addHeader(
                 "Authorization",
                 "Bearer $ACCESS_TOKEN",
-            )
-            .build()
+            ).build()
 
-        return chain.proceed(addAuthorization)
+
+        return chain.proceed(request)
     }
+
 }
 
-class ResponseInterceptor(
-    private val refreshRepository: RefreshRepository
-) : Interceptor {
-
+class ResponseInterceptor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val request = chain.request()
         val response = chain.proceed(request)
 
-        when (response.code()) {
-            UNAUTHORIZED -> {
+        when(response.code()){
+            UNAUTHORIZED ->{
                 CoroutineScope(Dispatchers.IO).launch {
-                    kotlin.runCatching {
-                        refreshRepository.getRefreshToken()
-                    }.onSuccess{
-                        if(it.isSuccessful) {
-                            ACCESS_TOKEN = "Bearer ${it.body()!!.access_token}"
-                        }
-                    }
+                    ACCESS_TOKEN =
+                        "Bearer ${refreshApi.getRefreshToken(REFRESH_TOKEN).body()!!.access_token}"
+
                 }
             }
         }
+
         return response
     }
 }
