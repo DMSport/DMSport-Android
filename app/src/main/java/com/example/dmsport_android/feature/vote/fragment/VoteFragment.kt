@@ -29,6 +29,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         VoteListViewModelFactory(
             voteRepository = voteListRepository,
             pref = pref,
+            context = requireContext(),
         )
     }
 

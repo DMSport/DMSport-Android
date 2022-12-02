@@ -1,5 +1,6 @@
 package com.example.dmsport_android.feature.vote.viewmodel
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -17,6 +18,7 @@ import java.time.LocalDate
 class VoteListViewModel(
     private val voteListRepository: VoteListRepository,
     private val pref: SharedPreferences,
+    private val context : Context,
 ) : ViewModel() {
 
     private val _voteListResponse: MutableLiveData<Response<VoteListResponse>> = MutableLiveData()
@@ -65,6 +67,11 @@ class VoteListViewModel(
 
     fun selectVote(number: Int) {
         _selectedVote.postValue(number)
+        putPref(
+            editor = pref.edit(),
+            key = selectedVoteNumber,
+            value = number
+        )
         _currentVote.postValue(typeListTitle[number])
         getVoteList(typeList[number])
         putPref(
@@ -73,4 +80,11 @@ class VoteListViewModel(
             value = number,
         )
     }
+
+    fun getSelectedNumber() : Int =
+        getPref(
+            preferences = pref,
+            key = selectedVoteNumber,
+            0,
+        ) as Int
 }

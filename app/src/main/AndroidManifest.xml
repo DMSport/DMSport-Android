@@ -18,6 +18,9 @@
             android:name=".feature.notice.activity.DetailNoticeActivity"
             android:exported="false"/>
         <activity
+            android:name=".feature.vote.activity.VotePositionActivity"
+            android:exported="false"/>
+        <activity
             android:name=".feature.notice.activity.NoticeActivity"
             android:exported="false"/>
         <activity

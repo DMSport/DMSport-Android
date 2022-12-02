@@ -1,5 +1,6 @@
 package com.example.dmsport_android.feature.vote.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,8 +9,10 @@ import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListVoteBinding
 import com.example.dmsport_android.dto.response.Vote
 import com.example.dmsport_android.dto.response.VoteListResponse
+import com.example.dmsport_android.feature.vote.activity.VotePositionActivity
 import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
 import com.example.dmsport_android.util.ConvertTextUtil
+import com.example.dmsport_android.util.startIntent
 
 /**
  * VoteList에 사용되는 Recyclerview Adapter 입니다.
@@ -22,6 +25,7 @@ internal class VoteListAdapter(
     private val voteList: VoteListResponse?,
     private val voteEventList: ArrayList<Vote>?,
     private val voteListViewModel: VoteListViewModel,
+    private val context : Context,
 ) : RecyclerView.Adapter<VoteListAdapter.VoteListViewHolder>() {
 
     class VoteListViewHolder(
@@ -64,6 +68,13 @@ internal class VoteListAdapter(
             voteEventList = voteEventList?.get(position),
             voteListViewModel = voteListViewModel,
         )
+        holder.binding.btVoteApply.setOnClickListener {
+            voteListViewModel.vote(voteEventList!![position].vote_id)
+            startIntent(
+                context = context,
+                activity = VotePositionActivity::class.java
+            )
+        }
     }
 
     override fun getItemCount(): Int =
