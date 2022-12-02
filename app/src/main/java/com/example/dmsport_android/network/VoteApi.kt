@@ -9,7 +9,6 @@ interface VoteApi {
     suspend fun getVoteList(
         @Header("Authorization") accessToken : String,
         @Query("type") type : String,
-        @Query("date") date : String,
     ) : Response<VoteListResponse>
 
     @POST("clubs/vote/{vote-id}")

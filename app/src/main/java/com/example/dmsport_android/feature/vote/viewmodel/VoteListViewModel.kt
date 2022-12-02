@@ -1,6 +1,7 @@
 package com.example.dmsport_android.feature.vote.viewmodel
 
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,7 +36,6 @@ class VoteListViewModel(
                 voteListRepository
                     .getVoteList(
                         type = type,
-                        date = LocalDate.now().toString(),
                     )
             )
         }

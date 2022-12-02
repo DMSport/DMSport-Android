@@ -8,12 +8,10 @@ import retrofit2.Response
 class VoteListRepository {
     suspend fun getVoteList(
         type : String,
-        date : String,
     ) : Response<VoteListResponse> =
         voteApi.getVoteList(
             ACCESS_TOKEN,
             type,
-            date,
         )
 
     suspend fun vote(

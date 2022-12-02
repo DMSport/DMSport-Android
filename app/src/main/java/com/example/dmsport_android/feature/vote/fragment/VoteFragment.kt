@@ -2,6 +2,7 @@ package com.example.dmsport_android.feature.vote.fragment
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -66,19 +67,20 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             viewLifecycleOwner,
         ) {
             when (it.code()) {
-                OK -> initRecyclerView(it.body())
+                OK -> initRecyclerView(it.body()!!)
             }
         }
     }
 
     private fun initRecyclerView(
-        voteListResponse: VoteListResponse?,
+        voteListResponse: VoteListResponse,
     ) {
         binding.rvVoteList.run {
             adapter = VoteListAdapter(
                 voteList = voteListResponse,
-                voteEventList = voteListResponse?.vote,
+                voteEventList = voteListResponse.vote_list,
                 voteListViewModel = voteListViewModel,
+                context = context,
             )
             layoutManager = LinearLayoutManager(
                 this@VoteFragment.requireContext(),
