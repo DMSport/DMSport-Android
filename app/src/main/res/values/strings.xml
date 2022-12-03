@@ -82,6 +82,9 @@
 
     <string name="edit_notice">공지가 성공적으로 수정되었습니다</string>
 
+    <string name="dialog_team1">1팀</string>
+    <string name="dialog_team2">2팀</string>
+
     <string-array name="spinner">
         <item>취소</item>
         <item>수정</item>
