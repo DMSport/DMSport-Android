@@ -7,8 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListVoteBinding
-import com.example.dmsport_android.dto.response.Vote
-import com.example.dmsport_android.dto.response.VoteListResponse
+import com.example.dmsport_android.feature.vote.model.Vote
+import com.example.dmsport_android.feature.vote.model.VoteListResponse
 import com.example.dmsport_android.feature.vote.activity.VotePositionActivity
 import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
 import com.example.dmsport_android.util.*
@@ -85,6 +85,14 @@ internal class VoteListAdapter(
                 )
             }
             voteListViewModel.vote(voteEventList?.get(position)?.vote_id!!)
+        }
+
+        holder.binding.btVoteShowAllParticipants.setOnClickListener{
+            createParticipantsDialog(
+                context = context,
+                arrayList = voteEventList?.get(position)?.vote_user,
+                voteListViewModel = voteListViewModel,
+            )
         }
     }
 

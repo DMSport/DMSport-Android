@@ -13,6 +13,6 @@ class VoteListViewModelFactory(
     private val context : Context,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        VoteListViewModel(voteRepository, pref, context) as T
+        VoteListViewModel(voteRepository, pref) as T
 
 }

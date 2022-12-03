@@ -2,24 +2,22 @@ package com.example.dmsport_android.feature.vote.viewmodel
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dmsport_android.dto.response.Vote
-import com.example.dmsport_android.dto.response.VoteListResponse
+import com.example.dmsport_android.feature.vote.model.User
+import com.example.dmsport_android.feature.vote.model.Vote
+import com.example.dmsport_android.feature.vote.model.VoteListResponse
 import com.example.dmsport_android.feature.vote.repository.VoteListRepository
 import com.example.dmsport_android.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import java.time.LocalDate
 
 class VoteListViewModel(
     private val voteListRepository: VoteListRepository,
     private val pref: SharedPreferences,
-    private val context: Context,
 ) : ViewModel() {
 
     private val _voteListResponse: MutableLiveData<Response<VoteListResponse>> = MutableLiveData()
@@ -116,4 +114,25 @@ class VoteListViewModel(
         }
         return text
     }
+
+    fun setFirstList(paticipantsList : ArrayList<User>?) : ArrayList<String> {
+        val arrayList = arrayListOf<String>()
+        for(i in 0.until(paticipantsList?.size ?: 0)){
+            if((paticipantsList?.get(i)?.team?.toInt() ?: 0) == 0){
+                arrayList.add(paticipantsList?.get(i)?.name ?: "")
+            }
+        }
+        return arrayList
+    }
+
+    fun setSecondList(participantsList : ArrayList<User>?) : ArrayList<String>{
+        val arrayList = arrayListOf<String>()
+        for(i in 0.until(participantsList?.size ?: 0)){
+            if((participantsList?.get(i)?.team?.toInt() ?: 0) == 1){
+                arrayList.add(participantsList?.get(i)?.name ?: "")
+            }
+        }
+        return arrayList
+    }
+
 }
