@@ -1,7 +1,6 @@
 package com.example.dmsport_android.feature.notice.activity
 
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -9,13 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityMoreAllNoticeBinding
-import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
-import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.notice.adapter.NoticeAdapter
 import com.example.dmsport_android.feature.notice.model.NoticeList
+import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
+import com.example.dmsport_android.feature.notice.viewmodel.factory.NoticeViewModelFactory
 import com.example.dmsport_android.feature.vote.repository.NoticeRepository
 import com.example.dmsport_android.util.*
-import kotlin.collections.ArrayList
 
 class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
     R.layout.activity_more_all_notice,
@@ -36,7 +34,7 @@ class NoticeActivity : BaseActivity<ActivityMoreAllNoticeBinding>(
         ViewModelProvider(
             this,
             noticeViewModelFactory,
-        ).get(NoticeViewModel::class.java)
+        )[NoticeViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

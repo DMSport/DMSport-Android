@@ -9,10 +9,3 @@ fun showSnack(
 ){
     Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
 }
-
-fun showSnackLong(
-    view : View,
-    message : String,
-){
-    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
-}

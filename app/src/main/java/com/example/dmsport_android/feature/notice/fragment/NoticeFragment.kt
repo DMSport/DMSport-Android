@@ -34,7 +34,7 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
         ViewModelProvider(
             this,
             noticeViewModelFactory,
-        ).get(NoticeViewModel::class.java)
+        )[NoticeViewModel::class.java]
     }
 
     override fun onViewCreated(
@@ -82,7 +82,7 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
     }
 
     private fun observeDeleteNoticeResponse(){
-        noticeViewModel.deleteNoticeResponse.observe(this){
+        noticeViewModel.deleteNoticeResponse.observe(viewLifecycleOwner){
             when(it.code()){
                 NO_CONTENT ->{
                     showSnack(

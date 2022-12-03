@@ -30,7 +30,7 @@ class VotePositionActivity : BaseActivity<ActivityVotePositionBinding>(
     }
 
     private val voteListViewModel by lazy {
-        ViewModelProvider(this, voteListViewModelFactory).get(VoteListViewModel::class.java)
+        ViewModelProvider(this, voteListViewModelFactory)[VoteListViewModel::class.java]
     }
 
     private val soccerPositionList by lazy {

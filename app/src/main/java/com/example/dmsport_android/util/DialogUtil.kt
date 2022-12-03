@@ -12,7 +12,6 @@ import com.example.dmsport_android.databinding.DialogDeleteNoticeBinding
 import com.example.dmsport_android.databinding.DialogParticipantsBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
 import com.example.dmsport_android.feature.vote.adapter.VoteParticipantsAdapter
-import com.example.dmsport_android.feature.vote.model.Position
 import com.example.dmsport_android.feature.vote.model.User
 import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
 

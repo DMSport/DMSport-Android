@@ -174,7 +174,7 @@ class NoticeViewModel(
             value = 0,
         ) as Int
 
-    fun saveNoticeTitle(title : String,){
+    fun saveNoticeTitle(title: String){
         putPref(
             editor = pref.edit(),
             key = notice_title,

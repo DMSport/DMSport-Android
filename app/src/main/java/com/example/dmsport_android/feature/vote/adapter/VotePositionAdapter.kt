@@ -8,12 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListPositionBinding
 import com.example.dmsport_android.feature.vote.model.Position
-import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
 
 class VotePositionAdapter(
     private val positionList: ArrayList<Position>,
     private val activity : Activity,
-    private val voteListViewModel : VoteListViewModel,
 ) : RecyclerView.Adapter<VotePositionAdapter.VotePositionViewHolder>() {
 
     class VotePositionViewHolder(val binding: ListPositionBinding) :

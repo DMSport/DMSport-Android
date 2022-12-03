@@ -1,6 +1,5 @@
 package com.example.dmsport_android.feature.vote.viewmodel
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -94,7 +93,7 @@ class VoteListViewModel(
             value = false,
         ) as Boolean
 
-    fun getUserName(): String =
+    private fun getUserName(): String =
         getPref(
             preferences = pref,
             key = "userName",

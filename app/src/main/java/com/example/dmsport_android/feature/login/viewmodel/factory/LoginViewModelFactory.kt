@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.feature.login.repository.LoginRepository
 import com.example.dmsport_android.feature.login.viewmodel.LoginViewModel
 
+@Suppress("UNCHECKED_CAST")
 class LoginViewModelFactory(
     private val loginRepository: LoginRepository,
     private val sharedPreferences : SharedPreferences,

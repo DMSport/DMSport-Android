@@ -28,7 +28,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private val myPageViewModel: MyPageViewModel by lazy {
-        ViewModelProvider(this, myPageViewModelFactory).get(MyPageViewModel::class.java)
+        ViewModelProvider(this, myPageViewModelFactory)[MyPageViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

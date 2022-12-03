@@ -32,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private val myPageViewModel by lazy {
-        ViewModelProvider(this, myPageViewModelFactory).get(MyPageViewModel::class.java)
+        ViewModelProvider(this, myPageViewModelFactory)[MyPageViewModel::class.java]
     }
 
 

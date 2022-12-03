@@ -8,9 +8,6 @@ const val loginVisible = "LoginVisible"
 const val registerVisible = "RegisterVisible"
 const val registerVisibleRe = "RegisterVisibleRe"
 
-const val emailChangePwVisible = "EmailChangePwVisible"
-const val emailChangePwVisibleRe = "EmailChangePwVisibleRe"
-
 const val localEmail = "Email"
 const val localName = "Name"
 const val localPassword = "Password"
@@ -18,7 +15,6 @@ const val localPassword = "Password"
 const val selectedVoteNumber = "SelectedNumber"
 
 const val LUNCH = "LUNCH"
-const val DINNER = "DINNER"
 
 const val notice_Id = "NoticeId"
 const val notice_title = "NoticeTitle"

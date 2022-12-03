@@ -6,8 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListParticipantsBinding
-import com.example.dmsport_android.feature.vote.model.Position
-import com.example.dmsport_android.feature.vote.model.User
 
 class VoteParticipantsAdapter(
     private val participantsList: ArrayList<String>

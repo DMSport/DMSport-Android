@@ -1,23 +1,17 @@
 package com.example.dmsport_android.feature.notice.adapter
 
-import android.app.AlertDialog
-import android.app.Dialog
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Resources
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
-import com.example.dmsport_android.databinding.DialogDeleteNoticeBinding
 import com.example.dmsport_android.databinding.ListNoticeBinding
 import com.example.dmsport_android.feature.notice.activity.DetailNoticeActivity
 import com.example.dmsport_android.feature.notice.model.NoticeList
@@ -29,8 +23,8 @@ import java.util.*
  * AllNoticeList에 사용되는 Recyclerview Adapter 입니다.
  *
  * @param noticeList 전체 공지 사항 response
- * @param context intent, sharedpreferences 로직 처리를 위한 context
- * @param editor sharedpreferences 저장을 위한 sharedpreferences editor
+ * @param context intent, shared-preferences 로직 처리를 위한 context
+ * @param editor shared-preferences 저장을 위한 shared-preferences editor
  */
 class NoticeAdapter(
     private val noticeList: ArrayList<NoticeList>,
@@ -61,6 +55,7 @@ class NoticeAdapter(
             )
         )
 
+    @SuppressLint("RecyclerView")
     override fun onBindViewHolder(
         holder: AllNoticeViewHolder,
         position : Int,

@@ -34,7 +34,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         ViewModelProvider(
             owner = this,
             factory = voteListViewModelFactory,
-        ).get(VoteListViewModel::class.java)
+        )[VoteListViewModel::class.java]
     }
 
     private val voteViewList: ArrayList<View> by lazy {
@@ -109,14 +109,14 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         )
     }
 
-    fun setBackgroundOff() {
+    private fun setBackgroundOff() {
         for (i in 0..3)
             voteViewList[i].setBackgroundResource(
                 R.drawable.vote_card_view_off,
             )
     }
 
-    fun setBackgroundOn(view: View) =
+    private fun setBackgroundOn(view: View) =
         view.setBackgroundResource(
             R.drawable.vote_card_view_on,
         )

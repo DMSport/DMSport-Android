@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.feature.register.repository.RegisterRepository
 import com.example.dmsport_android.feature.register.viewmodel.RegisterViewModel
 
+@Suppress("UNCHECKED_CAST")
 class RegisterViewModelFactory(
     private val registerRepository: RegisterRepository,
     private val sharedPreferences: SharedPreferences,
