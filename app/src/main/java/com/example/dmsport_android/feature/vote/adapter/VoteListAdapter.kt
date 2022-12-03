@@ -11,8 +11,7 @@ import com.example.dmsport_android.dto.response.Vote
 import com.example.dmsport_android.dto.response.VoteListResponse
 import com.example.dmsport_android.feature.vote.activity.VotePositionActivity
 import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
-import com.example.dmsport_android.util.ConvertTextUtil
-import com.example.dmsport_android.util.startIntent
+import com.example.dmsport_android.util.*
 
 /**
  * VoteList에 사용되는 Recyclerview Adapter 입니다.
@@ -68,12 +67,24 @@ internal class VoteListAdapter(
             voteEventList = voteEventList?.get(position),
             voteListViewModel = voteListViewModel,
         )
+
+        holder.binding.btVoteApply.text = voteListViewModel.isApplyed(
+            arrayList = voteEventList,
+            position = position,
+        )
+
         holder.binding.btVoteApply.setOnClickListener {
-            voteListViewModel.vote(voteEventList!![position].vote_id)
-            startIntent(
-                context = context,
-                activity = VotePositionActivity::class.java
+            holder.binding.btVoteApply.text = voteListViewModel.isApplyed(
+                arrayList = voteEventList,
+                position = position,
             )
+            if(voteListViewModel.getOnClikedApply()){
+                startIntent(
+                    context = context,
+                    activity = VotePositionActivity::class.java
+                )
+            }
+            voteListViewModel.vote(voteEventList?.get(position)?.vote_id!!)
         }
     }
 

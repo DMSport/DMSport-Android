@@ -25,6 +25,7 @@ const val notice_title = "NoticeTitle"
 const val notice_content = "NoticeContent"
 
 const val isManaged = "isManaged"
+const val isApplyed = "isApplyed"
 
 var isLogged = false
 var isLogOuted = false
@@ -32,6 +33,7 @@ var isDeletedUser = false
 var isJoined = false
 var isVerified = false
 var isAllEventNotice = false
+var isResume = false
 
 val typeList = arrayListOf("BADMINTON", "SOCCER", "BASKETBALL", "VOLLEYBALL")
 val typeListTitle = arrayListOf("배드민턴", "축구", "농구", "배구")

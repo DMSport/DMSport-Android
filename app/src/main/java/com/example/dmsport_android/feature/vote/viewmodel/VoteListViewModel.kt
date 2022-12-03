@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.dmsport_android.dto.response.Vote
 import com.example.dmsport_android.dto.response.VoteListResponse
 import com.example.dmsport_android.feature.vote.repository.VoteListRepository
 import com.example.dmsport_android.util.*
@@ -18,7 +19,7 @@ import java.time.LocalDate
 class VoteListViewModel(
     private val voteListRepository: VoteListRepository,
     private val pref: SharedPreferences,
-    private val context : Context,
+    private val context: Context,
 ) : ViewModel() {
 
     private val _voteListResponse: MutableLiveData<Response<VoteListResponse>> = MutableLiveData()
@@ -44,9 +45,9 @@ class VoteListViewModel(
     }
 
     fun vote(
-        voteId : Int,
-    ){
-        viewModelScope.launch(Dispatchers.IO){
+        voteId: Int,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
             voteListRepository.vote(voteId.toLong())
             selectVote(
                 number = getPref(
@@ -81,10 +82,38 @@ class VoteListViewModel(
         )
     }
 
-    fun getSelectedNumber() : Int =
+    fun getSelectedNumber(): Int =
         getPref(
             preferences = pref,
             key = selectedVoteNumber,
             0,
         ) as Int
+
+    fun getOnClikedApply(): Boolean =
+        getPref(
+            preferences = pref,
+            key = isApplyed,
+            value = false,
+        ) as Boolean
+
+    fun getUserName(): String =
+        getPref(
+            preferences = pref,
+            key = "userName",
+            value = ""
+        ).toString()
+
+    fun isApplyed(
+        arrayList: ArrayList<Vote>?,
+        position: Int,
+    ): String {
+        var text = "신청"
+        for (i in 0.until(arrayList?.get(position)?.vote_user?.size ?: 0)) {
+            if(!arrayList?.get(position)?.vote_user?.get(i)?.name.equals(getUserName())){
+                text = "취소"
+                break
+            }
+        }
+        return text
+    }
 }
