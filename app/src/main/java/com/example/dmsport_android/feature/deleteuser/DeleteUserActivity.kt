@@ -1,16 +1,15 @@
 package com.example.dmsport_android.feature.deleteuser
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityDeleteUserBinding
 import com.example.dmsport_android.feature.login.activity.LoginActivity
 import com.example.dmsport_android.feature.mypage.repository.MyPageRepository
-import com.example.dmsport_android.util.*
 import com.example.dmsport_android.feature.mypage.viewmodel.MyPageViewModel
 import com.example.dmsport_android.feature.mypage.viewmodel.factory.MyPageViewModelFactory
+import com.example.dmsport_android.util.*
 
 class DeleteUserActivity : BaseActivity<ActivityDeleteUserBinding>(R.layout.activity_delete_user) {
 
@@ -26,7 +25,7 @@ class DeleteUserActivity : BaseActivity<ActivityDeleteUserBinding>(R.layout.acti
     }
 
     private val myPageViewModel : MyPageViewModel by lazy {
-        ViewModelProvider(this, myPageViewModelFactory).get(MyPageViewModel::class.java)
+        ViewModelProvider(this, myPageViewModelFactory)[MyPageViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class DeleteUserActivity : BaseActivity<ActivityDeleteUserBinding>(R.layout.acti
     }
 
     private fun observeDeleteUserResponse(){
-        myPageViewModel.deleteUserResponse.observe(this, Observer {
+        myPageViewModel.deleteUserResponse.observe(this){
             when(it.code()){
                 NO_CONTENT -> {
                     startIntent(this, LoginActivity::class.java)
@@ -55,6 +54,6 @@ class DeleteUserActivity : BaseActivity<ActivityDeleteUserBinding>(R.layout.acti
                     finish()
                 }
             }
-        })
+        }
     }
 }

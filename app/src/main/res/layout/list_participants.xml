@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="model"
-            type="com.example.dmsport_android.feature.vote.model.Position" />
+            name="name"
+            type="String"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,22 +31,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="@{model.position}"
+                    android:text="@{name}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/bt_position_apply"
-                    style="@style/Theme.DMSportAndroid.Button_Vote_event_apply"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/bold"
-                    android:text="@string/vote_event_apply"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

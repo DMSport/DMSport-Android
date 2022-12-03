@@ -5,10 +5,10 @@
     <data>
         <variable
             name="model"
-            type="com.example.dmsport_android.dto.response.VoteListResponse" />
+            type="com.example.dmsport_android.feature.vote.model.VoteListResponse" />
         <variable
             name="vote"
-            type="com.example.dmsport_android.dto.response.Vote" />
+            type="com.example.dmsport_android.feature.vote.model.Vote" />
         <variable
             name="viewModel"
             type="com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel" />
@@ -88,12 +88,21 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
-                    android:text="@string/vote_event_apply"
-                    android:onClick="@{()->viewModel.vote(vote.vote_id)}"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pb_list_vote_number" />
+
+                <Button
+                    android:id="@+id/bt_vote_show_all_participants"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="116dp"
+                    android:layout_height="22dp"
+                    android:text="@string/vote_show_all_participants"
+                    style="@style/Theme.DMSportAndroid.Button_Vote_event_apply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

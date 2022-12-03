@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.feature.changepassword.repository.ChangePasswordRepository
 import com.example.dmsport_android.feature.changepassword.viewmodel.EmailChangePwViewModel
 
+@Suppress("UNCHECKED_CAST")
 class EmailChangePwViewModelFactory(
     private val changePasswordRepository: ChangePasswordRepository,
     private val sharedPreferences: SharedPreferences,

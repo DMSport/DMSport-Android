@@ -8,9 +8,6 @@ const val loginVisible = "LoginVisible"
 const val registerVisible = "RegisterVisible"
 const val registerVisibleRe = "RegisterVisibleRe"
 
-const val emailChangePwVisible = "EmailChangePwVisible"
-const val emailChangePwVisibleRe = "EmailChangePwVisibleRe"
-
 const val localEmail = "Email"
 const val localName = "Name"
 const val localPassword = "Password"
@@ -18,13 +15,13 @@ const val localPassword = "Password"
 const val selectedVoteNumber = "SelectedNumber"
 
 const val LUNCH = "LUNCH"
-const val DINNER = "DINNER"
 
 const val notice_Id = "NoticeId"
 const val notice_title = "NoticeTitle"
 const val notice_content = "NoticeContent"
 
 const val isManaged = "isManaged"
+const val isApplyed = "isApplyed"
 
 var isLogged = false
 var isLogOuted = false
@@ -32,6 +29,7 @@ var isDeletedUser = false
 var isJoined = false
 var isVerified = false
 var isAllEventNotice = false
+var isResume = false
 
 val typeList = arrayListOf("BADMINTON", "SOCCER", "BASKETBALL", "VOLLEYBALL")
 val typeListTitle = arrayListOf("배드민턴", "축구", "농구", "배구")

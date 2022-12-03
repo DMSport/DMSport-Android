@@ -1,6 +1,5 @@
 package com.example.dmsport_android.feature.vote.fragment
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -8,13 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseFragment
 import com.example.dmsport_android.databinding.FragmentVoteBinding
-import com.example.dmsport_android.dto.response.VoteListResponse
-import com.example.dmsport_android.feature.vote.viewmodel.factory.VoteListViewModelFactory
 import com.example.dmsport_android.feature.vote.adapter.VoteListAdapter
+import com.example.dmsport_android.feature.vote.model.VoteListResponse
 import com.example.dmsport_android.feature.vote.repository.VoteListRepository
 import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
-import com.example.dmsport_android.util.OK
-import com.example.dmsport_android.util.initPref
+import com.example.dmsport_android.feature.vote.viewmodel.factory.VoteListViewModelFactory
+import com.example.dmsport_android.util.*
 
 class VoteFragment : BaseFragment<FragmentVoteBinding>(
     R.layout.fragment_vote,
@@ -28,6 +26,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         VoteListViewModelFactory(
             voteRepository = voteListRepository,
             pref = pref,
+            context = requireContext(),
         )
     }
 
@@ -35,7 +34,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         ViewModelProvider(
             owner = this,
             factory = voteListViewModelFactory,
-        ).get(VoteListViewModel::class.java)
+        )[VoteListViewModel::class.java]
     }
 
     private val voteViewList: ArrayList<View> by lazy {
@@ -56,6 +55,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             savedInstanceState,
         )
         binding.viewModel = voteListViewModel
+        isResume = false
         observeVoteListResponse()
         observeSelectedVote()
         initSelectedVote()
@@ -66,19 +66,20 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             viewLifecycleOwner,
         ) {
             when (it.code()) {
-                OK -> initRecyclerView(it.body())
+                OK -> initRecyclerView(it.body()!!)
             }
         }
     }
 
     private fun initRecyclerView(
-        voteListResponse: VoteListResponse?,
+        voteListResponse: VoteListResponse,
     ) {
         binding.rvVoteList.run {
             adapter = VoteListAdapter(
                 voteList = voteListResponse,
-                voteEventList = voteListResponse?.vote,
+                voteEventList = voteListResponse.vote_list,
                 voteListViewModel = voteListViewModel,
+                context = requireActivity(),
             )
             layoutManager = LinearLayoutManager(
                 this@VoteFragment.requireContext(),
@@ -86,7 +87,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         }
 
         binding.rvVoteList.layoutManager =
-            LinearLayoutManager(this.requireContext(),)
+            LinearLayoutManager(this.requireContext())
     }
 
     private fun observeSelectedVote() {
@@ -108,14 +109,14 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         )
     }
 
-    fun setBackgroundOff() {
+    private fun setBackgroundOff() {
         for (i in 0..3)
             voteViewList[i].setBackgroundResource(
                 R.drawable.vote_card_view_off,
             )
     }
 
-    fun setBackgroundOn(view: View) =
+    private fun setBackgroundOn(view: View) =
         view.setBackgroundResource(
             R.drawable.vote_card_view_on,
         )

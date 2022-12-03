@@ -53,6 +53,7 @@
                     style="@style/Theme.DMSportAndroid.TextView_notice_title"
                     android:layout_marginHorizontal="16dp"
                     android:textSize="24sp"
+                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:text="@{viewModel.detailNoticeResponse.body().title}"/>
 

@@ -3,7 +3,6 @@ package com.example.dmsport_android.feature.changepassword.activity
 import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
@@ -30,7 +29,7 @@ class EmailChangePwActivity :
         ViewModelProvider(
             this,
             emailChangePwViewModelFactory
-        ).get(EmailChangePwViewModel::class.java)
+        )[EmailChangePwViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +55,7 @@ class EmailChangePwActivity :
         }
     }
 
-    fun initVisible() {
+    private fun initVisible() {
         binding.imgChangeVisiblePw.setImageDrawable(
             AppCompatResources.getDrawable(
                 this,
@@ -130,17 +129,17 @@ class EmailChangePwActivity :
                 )
             }
         }else {
-            val new_pw = binding.etChangePw.text.toString()
-            val new_pwRe = binding.etChangePwRe.text.toString()
-            if (new_pw.isNotEmpty() &&
-                new_pwRe.isNotEmpty() &&
-                new_pw == new_pwRe
+            val newPassword = binding.etChangePw.text.toString()
+            val newPasswordRepeat = binding.etChangePwRe.text.toString()
+            if (newPassword.isNotEmpty() &&
+                newPasswordRepeat.isNotEmpty() &&
+                newPassword == newPasswordRepeat
             ) {
-                putPref(pref.edit(), localPassword, new_pw)
+                putPref(editor, localPassword, newPassword)
                 if (getPref(pref, getPref(pref, localEmail, "").toString(), false) as Boolean) {
                     emailChangePwViewModel.emailChangePw(
-                        getPref(pref, localEmail, "").toString(),
-                        new_pw
+                        email = getPref(pref, localEmail, "").toString(),
+                        new_password = newPassword
                     )
                 } else {
                     startIntent(this, VerifyActivity::class.java)
@@ -152,7 +151,7 @@ class EmailChangePwActivity :
     }
 
     private fun observeChange() {
-        emailChangePwViewModel.emailChangePwResponse.observe(this, Observer {
+        emailChangePwViewModel.emailChangePwResponse.observe(this){
             when (it.code()) {
                 NO_CONTENT -> {
                     showSnack(binding.root, getString(R.string.change_pw_created))
@@ -161,7 +160,7 @@ class EmailChangePwActivity :
                 }
                 UNAUTHORIZED -> showSnack(binding.root, getString(R.string.register_unauthorized))
             }
-        })
+        }
     }
 
     private fun observeChangePasswordResponse(){

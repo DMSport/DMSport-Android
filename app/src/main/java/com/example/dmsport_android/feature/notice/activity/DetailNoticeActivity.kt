@@ -30,7 +30,7 @@ class DetailNoticeActivity : BaseActivity<ActivityDetailNoticeBinding>(
         ViewModelProvider(
             this,
             noticeViewModelFactory,
-        ).get(NoticeViewModel::class.java)
+        )[NoticeViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

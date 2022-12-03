@@ -1,4 +1,4 @@
-package com.example.dmsport_android.feature.refresh.model
+package com.example.dmsport_android.feature.refresh
 
 data class RefreshResponse(
     val access_token : String,

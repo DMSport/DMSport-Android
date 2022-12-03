@@ -1,5 +1,6 @@
 package com.example.dmsport_android.feature.vote.adapter
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,6 +11,7 @@ import com.example.dmsport_android.feature.vote.model.Position
 
 class VotePositionAdapter(
     private val positionList: ArrayList<Position>,
+    private val activity : Activity,
 ) : RecyclerView.Adapter<VotePositionAdapter.VotePositionViewHolder>() {
 
     class VotePositionViewHolder(val binding: ListPositionBinding) :
@@ -19,19 +21,22 @@ class VotePositionAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VotePositionViewHolder {
-        val binding = DataBindingUtil.inflate<ListPositionBinding>(
-            LayoutInflater.from(parent.context),
-            R.layout.list_notice,
-            parent,
-            false,
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VotePositionViewHolder =
+        VotePositionViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.list_position,
+                parent,
+                false,
+            )
         )
 
-        return VotePositionViewHolder(binding)
-    }
 
     override fun onBindViewHolder(holder: VotePositionViewHolder, position: Int) {
         holder.bind(positionList[position])
+        holder.binding.btPositionApply.setOnClickListener {
+            activity.finish()
+        }
     }
 
     override fun getItemCount(): Int =

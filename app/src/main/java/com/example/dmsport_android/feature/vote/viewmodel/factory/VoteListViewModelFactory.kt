@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.feature.vote.repository.VoteListRepository
 import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
 
+@Suppress("UNCHECKED_CAST")
 class VoteListViewModelFactory(
     private val voteRepository: VoteListRepository,
     private val pref : SharedPreferences,

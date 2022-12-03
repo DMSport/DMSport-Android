@@ -1,7 +1,6 @@
 package com.example.dmsport_android.feature.changepassword.activity
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
@@ -22,7 +21,7 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
     }
 
     private val emailChangePwViewModel: EmailChangePwViewModel by lazy {
-        ViewModelProvider(this, emailChangePwViewModelFactory).get(EmailChangePwViewModel::class.java)
+        ViewModelProvider(this, emailChangePwViewModelFactory)[EmailChangePwViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,16 +57,16 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
         }
     }
 
-    fun observeVerifyEmail(){
-        emailChangePwViewModel.findVerifyEmailResponse.observe(this, Observer {
+    private fun observeVerifyEmail(){
+        emailChangePwViewModel.findVerifyEmailResponse.observe(this){
             when(it.code()){
                 NO_CONTENT -> showSnack(binding.root, getString(R.string.duplicate_no_content))
             }
-        })
+        }
     }
 
-    fun observeVerify(){
-        emailChangePwViewModel.verifyResponse.observe(this, Observer {
+    private fun observeVerify(){
+        emailChangePwViewModel.verifyResponse.observe(this) {
             when(it.code()){
                 NO_CONTENT -> {
                     putPref(pref.edit(), getPref(pref, localEmail, "").toString(), true)
@@ -76,7 +75,7 @@ class ChangePwVerifyActivity : BaseActivity<ActivityChangePwVerifyBinding>(R.lay
                 }
                 UNAUTHORIZED -> showSnack(binding.root, getString(R.string.verify_unauthorized))
             }
-        })
+        }
     }
 
 

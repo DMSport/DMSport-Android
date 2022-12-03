@@ -6,9 +6,14 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.databinding.DialogCreateNoticeBinding
 import com.example.dmsport_android.databinding.DialogDeleteNoticeBinding
+import com.example.dmsport_android.databinding.DialogParticipantsBinding
 import com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel
+import com.example.dmsport_android.feature.vote.adapter.VoteParticipantsAdapter
+import com.example.dmsport_android.feature.vote.model.User
+import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
 
 lateinit var dialog: Dialog
 
@@ -111,10 +116,47 @@ fun initDialog(
     context: Context,
     view: View,
 ) {
+
     dialog = Dialog(context).apply {
+
         setContentView(view)
         setCancelable(false)
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         show()
     }
+}
+
+fun createParticipantsDialog(
+    context : Context,
+    arrayList : ArrayList<User>?,
+    voteListViewModel : VoteListViewModel
+){
+
+    val binding by lazy {
+        DialogParticipantsBinding.inflate(
+            LayoutInflater.from(context)
+        )
+    }
+
+    binding.btDialogParticipantsCheck.setOnClickListener {
+        dialog.dismiss()
+    }
+
+    binding.rvDialogParticipantsTeam1.run {
+        adapter = VoteParticipantsAdapter(
+            participantsList = voteListViewModel.setFirstList(arrayList)
+        )
+        layoutManager = LinearLayoutManager(context)
+    }
+
+    binding.rvDialogParticipantsTeam2.run {
+        adapter = VoteParticipantsAdapter(
+            participantsList = voteListViewModel.setSecondList(arrayList),
+        )
+    }
+
+    initDialog(
+        context = context,
+        view = binding.root
+    )
 }

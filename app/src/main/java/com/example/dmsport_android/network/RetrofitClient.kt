@@ -1,15 +1,12 @@
 package com.example.dmsport_android.network
 
-import android.util.Log
-import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.BuildConfig
-import com.example.dmsport_android.feature.refresh.*
-import com.example.dmsport_android.feature.register.viewmodel.RegisterViewModel
-import com.example.dmsport_android.feature.register.viewmodel.factory.RegisterViewModelFactory
 import com.example.dmsport_android.util.ACCESS_TOKEN
 import com.example.dmsport_android.util.REFRESH_TOKEN
 import com.example.dmsport_android.util.UNAUTHORIZED
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -39,7 +36,7 @@ object RetrofitClient {
     }
 }
 
-class RequestInterceptor() : Interceptor {
+class RequestInterceptor : Interceptor {
     private lateinit var request: Request
     override fun intercept(chain: Interceptor.Chain): Response {
 
@@ -51,10 +48,10 @@ class RequestInterceptor() : Interceptor {
             "/users/mail/find",
             "/users/password",
         )
-        if (ignorePath.contains(chain.request().url().encodedPath()))
-            request = chain.request().newBuilder().build()
+        request = if (ignorePath.contains(chain.request().url().encodedPath()))
+            chain.request().newBuilder().build()
         else
-            request = chain.request().newBuilder().addHeader(
+            chain.request().newBuilder().addHeader(
                 "Authorization",
                 "Bearer $ACCESS_TOKEN",
             ).build()
@@ -65,7 +62,7 @@ class RequestInterceptor() : Interceptor {
 
 }
 
-class ResponseInterceptor() : Interceptor {
+class ResponseInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val request = chain.request()

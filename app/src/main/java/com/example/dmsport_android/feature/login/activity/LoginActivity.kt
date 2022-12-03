@@ -4,22 +4,20 @@ import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseActivity
 import com.example.dmsport_android.databinding.ActivityLoginBinding
 import com.example.dmsport_android.feature.changepassword.activity.ChangePwVerifyActivity
+import com.example.dmsport_android.feature.home.MainActivity
 import com.example.dmsport_android.feature.login.repository.LoginRepository
 import com.example.dmsport_android.feature.login.viewmodel.LoginViewModel
 import com.example.dmsport_android.feature.login.viewmodel.factory.LoginViewModelFactory
-import com.example.dmsport_android.feature.home.MainActivity
 import com.example.dmsport_android.feature.register.activity.RegisterActivity
 import com.example.dmsport_android.util.*
 
@@ -36,7 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private val loginViewModel: LoginViewModel by lazy {
-        ViewModelProvider(this, loginViewModelFactory).get(LoginViewModel::class.java)
+        ViewModelProvider(this, loginViewModelFactory)[LoginViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,7 +105,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun observeLogin() {
-        loginViewModel.loginResponse.observe(this, Observer {
+        loginViewModel.loginResponse.observe(this){
             when (it.code()) {
                 OK -> {
                     ACCESS_TOKEN = "Bearer ${it.body()!!.access_token}"
@@ -119,7 +117,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 FORBIDDEN -> showSnack(binding.root, getString(R.string.login_forbidden))
                 NOT_FOUND -> showSnack(binding.root, getString(R.string.login_not_found))
             }
-        })
+        }
     }
 
     private fun snackBar(){

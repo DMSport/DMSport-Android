@@ -1,6 +1,6 @@
 package com.example.dmsport_android.network
 
-import com.example.dmsport_android.feature.refresh.model.RefreshResponse
+import com.example.dmsport_android.feature.refresh.RefreshResponse
 import retrofit2.Response
 import retrofit2.http.Header
 import retrofit2.http.PUT

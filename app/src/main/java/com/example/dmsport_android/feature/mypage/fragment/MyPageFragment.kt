@@ -1,9 +1,7 @@
 package com.example.dmsport_android.feature.mypage.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseFragment
@@ -30,7 +28,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private val myPageViewModel: MyPageViewModel by lazy {
-        ViewModelProvider(this, myPageViewModelFactory).get(MyPageViewModel::class.java)
+        ViewModelProvider(this, myPageViewModelFactory)[MyPageViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +38,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         myPageViewModel.fetchMyPage()
         observeLogout()
         observeDeleteUser()
-        observeMyPageResponse()
     }
 
     override fun onResume() {
@@ -91,18 +88,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     startIntent(this.requireContext(), LoginActivity::class.java)
                     isDeletedUser = true
                     this.requireActivity().finish()
-                }
-            }
-        }
-    }
-
-    private fun observeMyPageResponse(){
-        myPageViewModel.myPageResponse.observe(viewLifecycleOwner){
-            when(it.code()){
-                OK-> {
-                    if(it.body()!!.authority != "USER") {
-                        myPageViewModel.saveUserAuth(it.body()!!.authority)
-                    }
                 }
             }
         }

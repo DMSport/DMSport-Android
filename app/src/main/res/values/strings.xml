@@ -25,6 +25,7 @@
     <string name="vote_event_apply">신청</string>
     <string name="vote_event_complete">완료</string>
     <string name="vote_detail_select_position">포지션 선택</string>
+    <string name="vote_show_all_participants">신청자 목록 보기</string>
 
     <string name="item_vote">vote</string>
     <string name="item_notice">notice</string>
@@ -80,6 +81,9 @@
     <string name="delete_notice_success">공지가 성공적으로 삭제되었습니다</string>
 
     <string name="edit_notice">공지가 성공적으로 수정되었습니다</string>
+
+    <string name="dialog_team1">1팀</string>
+    <string name="dialog_team2">2팀</string>
 
     <string-array name="spinner">
         <item>취소</item>
