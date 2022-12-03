@@ -51,12 +51,19 @@ class MyPageViewModel(
         }
     }
 
-    fun saveUserAuth(auth : String?){
+    fun saveUserInfo(
+        auth : String?,
+        name : String,
+    ){
         putPref(
             editor = editor,
             key = isManaged,
             value = auth?.split('_')?.get(1)?.equals("MANAGER") ?: "USER"
         )
+        putPref(
+            editor = editor,
+            key = "userName",
+            value = name.trim()
+        )
     }
-
 }
