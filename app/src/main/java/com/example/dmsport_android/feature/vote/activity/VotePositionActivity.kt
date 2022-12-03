@@ -45,7 +45,7 @@ class VotePositionActivity : BaseActivity<ActivityVotePositionBinding>(
         arrayListOf("Right", "Left", "Center", "Libero")
     }
 
-    private val positionList : ArrayList<Position> by lazy {
+    private val positionList: ArrayList<Position> by lazy {
         ArrayList()
     }
 
@@ -62,16 +62,16 @@ class VotePositionActivity : BaseActivity<ActivityVotePositionBinding>(
         }
     }
 
-    private fun checkSelectedEvent(){
-            when(voteListViewModel.getSelectedNumber()){
-                1-> setPositionList(soccerPositionList)
-                2-> setPositionList(basketBallPositionList)
-                3-> setPositionList(volleyBallPositionList)
-            }
+    private fun checkSelectedEvent() {
+        when (voteListViewModel.getSelectedNumber()) {
+            1 -> setPositionList(soccerPositionList)
+            2 -> setPositionList(basketBallPositionList)
+            3 -> setPositionList(volleyBallPositionList)
+        }
     }
 
-    private fun setPositionList(arrayList : ArrayList<String>) {
-        for(i in 0.until(arrayList.size)){
+    private fun setPositionList(arrayList: ArrayList<String>) {
+        for (i in 0.until(arrayList.size)) {
             positionList.add(Position(arrayList[i]))
         }
     }

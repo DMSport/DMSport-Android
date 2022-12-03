@@ -14,8 +14,7 @@ import com.example.dmsport_android.feature.vote.viewmodel.factory.VoteListViewMo
 import com.example.dmsport_android.feature.vote.adapter.VoteListAdapter
 import com.example.dmsport_android.feature.vote.repository.VoteListRepository
 import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
-import com.example.dmsport_android.util.OK
-import com.example.dmsport_android.util.initPref
+import com.example.dmsport_android.util.*
 
 class VoteFragment : BaseFragment<FragmentVoteBinding>(
     R.layout.fragment_vote,
@@ -58,6 +57,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
             savedInstanceState,
         )
         binding.viewModel = voteListViewModel
+        isResume = false
         observeVoteListResponse()
         observeSelectedVote()
         initSelectedVote()
@@ -89,7 +89,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         }
 
         binding.rvVoteList.layoutManager =
-            LinearLayoutManager(this.requireContext(),)
+            LinearLayoutManager(this.requireContext())
     }
 
     private fun observeSelectedVote() {
