@@ -1,4 +1,4 @@
-package com.example.dmsport_android.dto.response
+package com.example.dmsport_android.feature.vote.model
 
 data class VoteListResponse(
     val ban_period: Boolean,

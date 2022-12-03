@@ -1,19 +1,17 @@
 package com.example.dmsport_android.feature.vote.fragment
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
 import com.example.dmsport_android.base.BaseFragment
 import com.example.dmsport_android.databinding.FragmentVoteBinding
-import com.example.dmsport_android.dto.response.VoteListResponse
-import com.example.dmsport_android.feature.vote.viewmodel.factory.VoteListViewModelFactory
 import com.example.dmsport_android.feature.vote.adapter.VoteListAdapter
+import com.example.dmsport_android.feature.vote.model.VoteListResponse
 import com.example.dmsport_android.feature.vote.repository.VoteListRepository
 import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
+import com.example.dmsport_android.feature.vote.viewmodel.factory.VoteListViewModelFactory
 import com.example.dmsport_android.util.*
 
 class VoteFragment : BaseFragment<FragmentVoteBinding>(
@@ -81,7 +79,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                 voteList = voteListResponse,
                 voteEventList = voteListResponse.vote_list,
                 voteListViewModel = voteListViewModel,
-                context = context,
+                context = requireActivity(),
             )
             layoutManager = LinearLayoutManager(
                 this@VoteFragment.requireContext(),

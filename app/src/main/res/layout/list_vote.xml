@@ -5,10 +5,10 @@
     <data>
         <variable
             name="model"
-            type="com.example.dmsport_android.dto.response.VoteListResponse" />
+            type="com.example.dmsport_android.feature.vote.model.VoteListResponse" />
         <variable
             name="vote"
-            type="com.example.dmsport_android.dto.response.Vote" />
+            type="com.example.dmsport_android.feature.vote.model.Vote" />
         <variable
             name="viewModel"
             type="com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel" />

@@ -1,6 +1,6 @@
 package com.example.dmsport_android.network
 
-import com.example.dmsport_android.dto.response.VoteListResponse
+import com.example.dmsport_android.feature.vote.model.VoteListResponse
 import retrofit2.Response
 import retrofit2.http.*
 
