@@ -9,9 +9,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/color_base">
+        android:background="@drawable/dialog_background">
 
         <androidx.cardview.widget.CardView
             style="@style/Theme.DMSportAndroid.CardView_vote_position_list"

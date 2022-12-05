@@ -153,6 +153,7 @@ fun createParticipantsDialog(
         adapter = VoteParticipantsAdapter(
             participantsList = voteListViewModel.setSecondList(arrayList),
         )
+        layoutManager = LinearLayoutManager(context)
     }
 
     initDialog(
