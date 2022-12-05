@@ -80,6 +80,8 @@ class VotePositionActivity : BaseActivity<ActivityVotePositionBinding>(
             adapter = VotePositionAdapter(
                 positionList = positionList,
                 activity = this@VotePositionActivity,
+                voteId = intent.getIntExtra("voteId", 0),
+                voteListViewModel = voteListViewModel,
             )
             layoutManager = LinearLayoutManager(
                 this@VotePositionActivity,

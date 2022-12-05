@@ -73,7 +73,6 @@ class ResponseInterceptor : Interceptor {
                 CoroutineScope(Dispatchers.IO).launch {
                     ACCESS_TOKEN =
                         "Bearer ${refreshApi.getRefreshToken(REFRESH_TOKEN).body()!!.access_token}"
-
                 }
             }
         }
