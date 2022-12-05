@@ -25,7 +25,6 @@ class VotePositionActivity : BaseActivity<ActivityVotePositionBinding>(
         VoteListViewModelFactory(
             voteRepository = voteListRepository,
             pref = initPref(this),
-            context = this,
         )
     }
 
@@ -81,7 +80,6 @@ class VotePositionActivity : BaseActivity<ActivityVotePositionBinding>(
             adapter = VotePositionAdapter(
                 positionList = positionList,
                 activity = this@VotePositionActivity,
-                voteListViewModel = voteListViewModel,
             )
             layoutManager = LinearLayoutManager(
                 this@VotePositionActivity,
