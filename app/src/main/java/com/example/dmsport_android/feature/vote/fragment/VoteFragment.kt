@@ -1,6 +1,7 @@
 package com.example.dmsport_android.feature.vote.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager

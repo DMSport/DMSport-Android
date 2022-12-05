@@ -1,6 +1,7 @@
 package com.example.dmsport_android.feature.vote.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -78,13 +79,13 @@ internal class VoteListAdapter(
                 arrayList = voteEventList,
                 position = position,
             )
-            if(voteListViewModel.getOnClikedApply()){
-                startIntent(
-                    context = context,
-                    activity = VotePositionActivity::class.java
-                )
+            if(holder.binding.btVoteApply.text == "신청"){
+                val intent = Intent(context, VotePositionActivity::class.java)
+                intent.putExtra("voteId", voteEventList?.get(position)?.vote_id)
+                this.context.startActivity(intent)
+            }else{
+                voteListViewModel.vote(voteEventList?.get(position)?.vote_id!!)
             }
-            voteListViewModel.vote(voteEventList?.get(position)?.vote_id!!)
         }
 
         holder.binding.btVoteShowAllParticipants.setOnClickListener{
