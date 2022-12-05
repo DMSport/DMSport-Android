@@ -102,6 +102,7 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
 
     override fun onResume() {
         super.onResume()
+        observeSelectedVote()
         voteListViewModel.setSelectedVote()
     }
 
