@@ -84,6 +84,7 @@
 
     <string name="dialog_team1">1팀</string>
     <string name="dialog_team2">2팀</string>
+    <string name="dialog_applyers">신청자</string>
 
     <string-array name="spinner">
         <item>취소</item>

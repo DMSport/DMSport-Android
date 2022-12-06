@@ -99,7 +99,6 @@
                     android:layout_marginStart="16dp"
                     android:layout_width="116dp"
                     android:layout_height="22dp"
-                    android:text="@string/vote_show_all_participants"
                     style="@style/Theme.DMSportAndroid.Button_Vote_event_apply"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
