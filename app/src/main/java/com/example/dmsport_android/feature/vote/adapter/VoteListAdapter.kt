@@ -25,7 +25,7 @@ internal class VoteListAdapter(
     private val voteList: VoteListResponse?,
     private val voteEventList: ArrayList<Vote>?,
     private val voteListViewModel: VoteListViewModel,
-    private val context : Context,
+    private val context: Context,
 ) : RecyclerView.Adapter<VoteListAdapter.VoteListViewHolder>() {
 
     class VoteListViewHolder(
@@ -69,31 +69,49 @@ internal class VoteListAdapter(
             voteListViewModel = voteListViewModel,
         )
 
-        holder.binding.btVoteApply.text = voteListViewModel.isApplyed(
-            arrayList = voteEventList,
-            position = position,
-        )
-
-        holder.binding.btVoteApply.setOnClickListener {
-            holder.binding.btVoteApply.text = voteListViewModel.isApplyed(
-                arrayList = voteEventList,
-                position = position,
-            )
-            if(holder.binding.btVoteApply.text == "신청"){
-                val intent = Intent(context, VotePositionActivity::class.java)
-                intent.putExtra("voteId", voteEventList?.get(position)?.vote_id)
-                this.context.startActivity(intent)
-            }else{
-                voteListViewModel.vote(voteEventList?.get(position)?.vote_id!!)
+        if (voteEventList?.get(position)?.is_complete == true) {
+            holder.binding.run {
+                btVoteShowAllParticipants.run {
+                    text = "팀 구성 보기"
+                    setOnClickListener {
+                        createParticipantsDialog(
+                            context = context,
+                            arrayList = voteEventList?.get(position)?.vote_user,
+                            voteListViewModel = voteListViewModel,
+                        )
+                    }
+                }
+                btVoteApply.text = "마감"
             }
-        }
-
-        holder.binding.btVoteShowAllParticipants.setOnClickListener{
-            createParticipantsDialog(
-                context = context,
-                arrayList = voteEventList?.get(position)?.vote_user,
-                voteListViewModel = voteListViewModel,
-            )
+        } else {
+            holder.binding.run {
+                holder.binding.btVoteApply.text = voteListViewModel.isApplyed(
+                    arrayList = voteEventList,
+                    position = position,
+                )
+                btVoteApply.setOnClickListener {
+                    holder.binding.btVoteApply.text = voteListViewModel.isApplyed(
+                        arrayList = voteEventList,
+                        position = position,
+                    )
+                    if (holder.binding.btVoteApply.text == "신청") {
+                        val intent = Intent(context, VotePositionActivity::class.java)
+                        intent.putExtra("voteId", voteEventList?.get(position)?.vote_id)
+                        this@VoteListAdapter.context.startActivity(intent)
+                    } else {
+                        voteListViewModel.vote(voteEventList?.get(position)?.vote_id!!)
+                    }
+                }
+                btVoteShowAllParticipants.run {
+                    text = "신청자 목록 보기"
+                    setOnClickListener {
+                        createApplyersDialog(
+                            context = context,
+                            applyerList = voteEventList?.get(position)?.vote_user
+                        )
+                    }
+                }
+            }
         }
     }
 

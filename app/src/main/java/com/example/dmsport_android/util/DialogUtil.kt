@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dmsport_android.databinding.DialogApplyersBinding
 import com.example.dmsport_android.databinding.DialogCreateNoticeBinding
 import com.example.dmsport_android.databinding.DialogDeleteNoticeBinding
 import com.example.dmsport_android.databinding.DialogParticipantsBinding
@@ -160,4 +161,32 @@ fun createParticipantsDialog(
         context = context,
         view = binding.root
     )
+}
+
+fun createApplyersDialog(
+    context : Context,
+    applyerList : ArrayList<User>?
+){
+    val binding by lazy {
+        DialogApplyersBinding.inflate(
+            LayoutInflater.from(context)
+        )
+    }
+
+    initDialog(
+        context = context,
+        view = binding.root,
+    )
+
+    binding.rvDialogApplyersList.run {
+        adapter = VoteParticipantsAdapter(
+            participantsList = applyerList,
+        )
+        layoutManager = LinearLayoutManager(context)
+    }
+
+    binding.btDialogApplyersCheck.setOnClickListener {
+        dialog.dismiss()
+    }
+
 }
