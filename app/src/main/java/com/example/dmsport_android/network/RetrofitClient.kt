@@ -68,13 +68,10 @@ class ResponseInterceptor : Interceptor {
         val request = chain.request()
         val response = chain.proceed(request)
 
-        when(response.code()){
-            UNAUTHORIZED ->{
-                CoroutineScope(Dispatchers.IO).launch {
-                    ACCESS_TOKEN =
-                        "Bearer ${refreshApi.getRefreshToken(REFRESH_TOKEN).body()!!.access_token}"
-
-                }
+        if(response.code() == UNAUTHORIZED){
+            CoroutineScope(Dispatchers.IO).launch {
+                ACCESS_TOKEN =
+                    "Bearer ${refreshApi.getRefreshToken(REFRESH_TOKEN).body()!!.access_token}"
             }
         }
 
