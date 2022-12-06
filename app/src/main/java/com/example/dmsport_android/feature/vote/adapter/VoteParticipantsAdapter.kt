@@ -6,15 +6,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListParticipantsBinding
+import com.example.dmsport_android.feature.vote.model.User
 
 class VoteParticipantsAdapter(
-    private val participantsList: ArrayList<String>
+    private val participantsList: ArrayList<User>?
 ) : RecyclerView.Adapter<VoteParticipantsAdapter.VoteParticipantsViewHolder>() {
 
     class VoteParticipantsViewHolder(val binding: ListParticipantsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(participants : String){
-                binding.name = participants
+            fun bind(participants : User?){
+                binding.model = participants
             }
 
     }
@@ -30,9 +31,9 @@ class VoteParticipantsAdapter(
         )
 
     override fun onBindViewHolder(holder: VoteParticipantsViewHolder, position: Int) {
-        holder.bind(participantsList[position])
+        holder.bind(participantsList?.get(position))
     }
 
     override fun getItemCount(): Int =
-        participantsList.size
+        participantsList?.size!!
 }

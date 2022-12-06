@@ -114,21 +114,21 @@ class VoteListViewModel(
         return text
     }
 
-    fun setFirstList(paticipantsList : ArrayList<User>?) : ArrayList<String> {
-        val arrayList = arrayListOf<String>()
-        for(i in 0.until(paticipantsList?.size ?: 0)){
-            if((paticipantsList?.get(i)?.team?.toInt() ?: 0) == 0){
-                arrayList.add(paticipantsList?.get(i)?.name ?: "")
+    fun setFirstList(participantsList: ArrayList<User>?): ArrayList<User> {
+        val arrayList = arrayListOf<User>()
+        for (i in 0.until(participantsList?.size ?: 0)) {
+            if (i % 2 != 0) {
+                arrayList.add(User(participantsList?.get(i)?.name ?: "", 0))
             }
         }
         return arrayList
     }
 
-    fun setSecondList(participantsList : ArrayList<User>?) : ArrayList<String>{
-        val arrayList = arrayListOf<String>()
-        for(i in 0.until(participantsList?.size ?: 0)){
-            if((participantsList?.get(i)?.team?.toInt() ?: 0) == 1){
-                arrayList.add(participantsList?.get(i)?.name ?: "")
+    fun setSecondList(participantsList: ArrayList<User>?): ArrayList<User> {
+        val arrayList = arrayListOf<User>()
+        for (i in 0.until(participantsList?.size ?: 0)) {
+            if (i % 2 == 0) {
+                arrayList.add(User(participantsList?.get(i)?.name ?: "", 0))
             }
         }
         return arrayList
