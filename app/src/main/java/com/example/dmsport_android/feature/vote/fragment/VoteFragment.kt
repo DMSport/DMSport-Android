@@ -1,7 +1,9 @@
 package com.example.dmsport_android.feature.vote.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dmsport_android.R
@@ -26,7 +28,6 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
         VoteListViewModelFactory(
             voteRepository = voteListRepository,
             pref = pref,
-            context = requireContext(),
         )
     }
 
@@ -97,6 +98,12 @@ class VoteFragment : BaseFragment<FragmentVoteBinding>(
                 setBackgroundOn(voteViewList[it])
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        observeSelectedVote()
+        voteListViewModel.setSelectedVote()
     }
 
     private fun initSelectedVote() {

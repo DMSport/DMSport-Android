@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dmsport_android.R
 import com.example.dmsport_android.databinding.ListPositionBinding
 import com.example.dmsport_android.feature.vote.model.Position
+import com.example.dmsport_android.feature.vote.viewmodel.VoteListViewModel
 
 class VotePositionAdapter(
     private val positionList: ArrayList<Position>,
     private val activity : Activity,
+    private val voteId : Int,
+    private val voteListViewModel : VoteListViewModel,
 ) : RecyclerView.Adapter<VotePositionAdapter.VotePositionViewHolder>() {
 
     class VotePositionViewHolder(val binding: ListPositionBinding) :
@@ -35,6 +38,7 @@ class VotePositionAdapter(
     override fun onBindViewHolder(holder: VotePositionViewHolder, position: Int) {
         holder.bind(positionList[position])
         holder.binding.btPositionApply.setOnClickListener {
+            voteListViewModel.vote(voteId)
             activity.finish()
         }
     }

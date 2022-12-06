@@ -42,6 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initNavigationBar()
         showSnackBarMainActivity()
         observeMyPageResponse()
+        myPageViewModel.fetchMyPage()
     }
 
     private fun initNavigationBar() {

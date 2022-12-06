@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -36,7 +37,7 @@
             <TextView
                 android:id="@+id/dialog_participants_team2"
                 style="@style/TextView_Hint20"
-                android:layout_marginTop="104dp"
+                android:layout_marginTop="122dp"
                 android:text="@string/dialog_team2"
                 app:layout_constraintStart_toStartOf="@id/dialog_participants_team1"
                 app:layout_constraintTop_toBottomOf="@id/dialog_participants_team1" />
@@ -49,7 +50,8 @@
                 android:layout_marginVertical="8dp"
                 app:layout_constraintBottom_toTopOf="@id/bt_dialog_participants_check"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/list_participants"/>
 
             <Button
                 android:id="@+id/bt_dialog_participants_check"

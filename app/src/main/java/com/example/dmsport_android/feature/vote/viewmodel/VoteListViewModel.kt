@@ -1,6 +1,7 @@
 package com.example.dmsport_android.feature.vote.viewmodel
 
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,17 +36,27 @@ class VoteListViewModel(
             _voteListResponse.postValue(
                 voteListRepository
                     .getVoteList(
-                        type = type,
+                        type = type
                     )
             )
         }
+    }
+
+    fun setSelectedVote() {
+        selectVote(
+            number = getPref(
+                preferences = pref,
+                key = selectedVoteNumber,
+                value = 0
+            ) as Int
+        )
     }
 
     fun vote(
         voteId: Int,
     ) {
         viewModelScope.launch(Dispatchers.IO) {
-            voteListRepository.vote(voteId.toLong())
+            voteListRepository.vote(voteId.toLong()).code().toString()
             selectVote(
                 number = getPref(
                     preferences = pref,
@@ -64,6 +75,7 @@ class VoteListViewModel(
         ) as Int
 
     fun selectVote(number: Int) {
+        _selectedVote.postValue(-1)
         _selectedVote.postValue(number)
         putPref(
             editor = pref.edit(),
@@ -105,8 +117,10 @@ class VoteListViewModel(
         position: Int,
     ): String {
         var text = "신청"
+        Log.d("TEST", getUserName())
+        Log.d("TEST", arrayList?.get(position)?.vote_user?.toString().toString())
         for (i in 0.until(arrayList?.get(position)?.vote_user?.size ?: 0)) {
-            if(!arrayList?.get(position)?.vote_user?.get(i)?.name.equals(getUserName())){
+            if (arrayList?.get(position)?.vote_user?.get(i)?.name?.trim().equals(getUserName())) {
                 text = "취소"
                 break
             }
@@ -114,20 +128,20 @@ class VoteListViewModel(
         return text
     }
 
-    fun setFirstList(paticipantsList : ArrayList<User>?) : ArrayList<String> {
+    fun setFirstList(paticipantsList: ArrayList<User>?): ArrayList<String> {
         val arrayList = arrayListOf<String>()
-        for(i in 0.until(paticipantsList?.size ?: 0)){
-            if((paticipantsList?.get(i)?.team?.toInt() ?: 0) == 0){
+        for (i in 0.until(paticipantsList?.size ?: 0)) {
+            if (i % 2 != 0) {
                 arrayList.add(paticipantsList?.get(i)?.name ?: "")
             }
         }
         return arrayList
     }
 
-    fun setSecondList(participantsList : ArrayList<User>?) : ArrayList<String>{
+    fun setSecondList(participantsList: ArrayList<User>?): ArrayList<String> {
         val arrayList = arrayListOf<String>()
-        for(i in 0.until(participantsList?.size ?: 0)){
-            if((participantsList?.get(i)?.team?.toInt() ?: 0) == 1){
+        for (i in 0.until(participantsList?.size ?: 0)) {
+            if (i % 2 == 0) {
                 arrayList.add(participantsList?.get(i)?.name ?: "")
             }
         }
