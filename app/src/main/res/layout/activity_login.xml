@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".feature.login.activity.LoginActivity">
+
+    <data>
+
+        <variable
+            name="LoginActivity"
+            type="com.example.dmsport_android.feature.login.activity.LoginActivity" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/ll_login_title"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toTopOf="@id/ll_login_edittext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85">
+
+            <TextView
+                android:id="@+id/tv_login_login"
+                style="@style/TextView_Title"
+                android:text="@string/login_login"
+                android:textColor="@color/color_main" />
+
+            <TextView
+                android:id="@+id/tv_login_dmsSport"
+                style="@style/TextView_DMSport" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_login_edittext"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_login_email"
+                style="@style/TextInputLayout"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/color_error"
+                app:hintEnabled="false">
+
+                <EditText
+                    android:id="@+id/et_login_email"
+                    style="@style/EditText"
+                    android:hint="@string/login_email" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_login_pw"
+                style="@style/TextInputLayout"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/color_error"
+                app:hintEnabled="false">
+
+                <EditText
+                    android:id="@+id/et_login_pw"
+                    style="@style/EditText"
+                    android:hint="@string/login_pw" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_login_visible"
+            style="@style/Toggle"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="@id/ll_login_edittext"
+            app:layout_constraintEnd_toEndOf="@id/ll_login_edittext"
+            android:onClick="@{() -> LoginActivity.visible()}" />
+
+        <TextView
+            android:id="@+id/tv_login_forgotPw"
+            style="@style/TextView_Des"
+            android:text="@string/login_forgotPw"
+            android:onClick="@{()->LoginActivity.forgotPw()}"
+            app:layout_constraintEnd_toEndOf="@id/ll_login_edittext"
+            app:layout_constraintStart_toStartOf="@id/ll_login_edittext"
+            app:layout_constraintTop_toBottomOf="@id/ll_login_edittext" />
+
+        <LinearLayout
+            android:id="@+id/ll_login_button"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_login_edittext"
+            app:layout_constraintVertical_bias="0.9">
+
+            <Button
+                android:id="@+id/bt_login_login"
+                style="@style/Button_Primary"
+                android:onClick="@{() -> LoginActivity.login()}"
+                android:text="@string/login_login" />
+
+            <Button
+                android:id="@+id/bt_login_register"
+                style="@style/Button_White"
+                android:layout_marginTop="12dp"
+                android:onClick="@{() -> LoginActivity.registerText()}"
+                android:text="@string/login_join" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="com.example.dmsport_android.feature.notice.model.NoticeList" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_base">
+
+        <androidx.cardview.widget.CardView
+            style="@style/Theme.DMSportAndroid.CardView_notice"
+            android:outlineProvider="none"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_notice_title"
+                    style="@style/Theme.DMSportAndroid.TextView_notice_title"
+                    android:text="@{model.title}"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_notice_list_time"/>
+
+                <TextView
+                    android:id="@+id/tv_notice_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/Theme.DMSportAndroid.TextView_notice_content"
+                    android:text="@{model.content_preview}"
+                    android:layout_marginHorizontal="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_notice_title" />
+
+                <TextView
+                    android:id="@+id/tv_notice_list_time"
+                    style="@style/Theme.DMSportAndroid.TextView_notice_time"
+                    android:layout_marginEnd="108dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_notice_title"
+                    app:layout_constraintEnd_toStartOf="@id/spinner_notice_detail"
+                    app:layout_constraintTop_toTopOf="@id/spinner_notice_detail" />
+                
+                <Spinner
+                    android:id="@+id/spinner_notice_detail"
+                    android:layout_width="6dp"
+                    android:visibility="invisible"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="14dp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_notice_content"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/ic_notice_detail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

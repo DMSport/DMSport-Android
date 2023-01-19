@@ -3,13 +3,14 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply plugin : 'kotlin-kapt'
+
 android {
     namespace 'com.example.dmsport_android'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.example.dmsport_android"
-        minSdk 33
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -33,9 +34,17 @@ android {
     buildFeatures{
         dataBinding true
     }
+
+    defaultConfig {
+        buildConfigField("String", "BASE_URL", BASE_URL)
+    }
 }
 
 dependencies {
+    implementation 'androidx.core:core-splashscreen:1.0.0'
+
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    implementation 'androidx.activity:activity-ktx:1.6.1'
 
     // Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

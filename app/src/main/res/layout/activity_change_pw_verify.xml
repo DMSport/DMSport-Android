@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="ChangePwVerifyActivity"
+            type="com.example.dmsport_android.feature.changepassword.activity.ChangePwVerifyActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_verify_title"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/ll_change_pw_verify_editText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85">
+
+            <TextView
+                android:id="@+id/tv_verify_verify"
+                style="@style/TextView_Title"
+                android:text="@string/verify_verify" />
+
+            <TextView
+                android:id="@+id/tv_verify_dmSport"
+                style="@style/TextView_DMSport"
+                android:text="@string/change_pw_text_en" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_change_pw_verify_editText"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout_verify_email"
+                    style="@style/TextInputLayout"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="7"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false">
+
+                    <EditText
+                        android:id="@+id/et_verify_email"
+                        style="@style/EditText"
+                        android:hint="@string/login_email" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/bt_verify_verify"
+                    style="@style/Button_Primary"
+                    android:layout_width="wrap_content"
+                    android:onClick="@{()->ChangePwVerifyActivity.verifyButton()}"
+                    android:text="@string/verify_button" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <EditText
+                    android:id="@+id/et_verify_code"
+                    style="@style/EditText"
+                    android:hint="@string/verify_code" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_verify_next"
+            style="@style/Button_Primary"
+            android:layout_marginHorizontal="16dp"
+            android:onClick="@{()->ChangePwVerifyActivity.completeButton()}"
+            android:text="@string/register_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_change_pw_verify_editText"
+            app:layout_constraintVertical_bias="0.9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

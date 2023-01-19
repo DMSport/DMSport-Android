@@ -1,3 +1,95 @@
 <resources>
-    <string name="app_name">DMSport-Android</string>
+
+    <string name="app_name">DMSportAndroid</string>
+
+    <string name="login_login">로그인</string>
+    <string name="login_email">이메일</string>
+    <string name="login_pw">비밀번호</string>
+    <string name="login_forgotPw">비밀번호를 잊으셨나요?</string>
+    <string name="login_DMS">DMSport.</string>
+    <string name="login_join">가입하기</string>
+    <string name="login_email_error">올바른 형식을 입력해주세요</string>
+    <string name="login_pw_error">올바른 형식을 입력해 주세요 (8자 ~ 20자)</string>
+
+    <string name="login_ok">로그인에 성공했습니다!</string>
+    <string name="login_forbidden">비밀번호가 다릅니다</string>
+    <string name="login_not_found">존재하지 않는 회원입니다</string>
+
+    <string name="vote_event">종목</string>
+    <string name="vote_time">시간</string>
+    <string name="vote_auto_participate">빈자리 자동 참여</string>
+    <string name="vote_event_badminton">배드민턴</string>
+    <string name="vote_event_soccer">축구</string>
+    <string name="vote_event_basketball">농구</string>
+    <string name="vote_event_volleyball">배구</string>
+    <string name="vote_event_apply">신청</string>
+    <string name="vote_event_complete">완료</string>
+    <string name="vote_detail_select_position">포지션 선택</string>
+    <string name="vote_show_all_participants">신청자 목록 보기</string>
+
+    <string name="item_vote">vote</string>
+    <string name="item_notice">notice</string>
+    <string name="item_myPage">myPage</string>
+
+    <string name="register_start">시작하기</string>
+    <string name="register_name">이름(실명)</string>
+    <string name="register_pw">비밀번호를 입력해주세요</string>
+    <string name="register_pw_re">비밀번호를 다시 입력해 주세요</string>
+    <string name="register_next">다음</string>
+
+    <string name="register_created">회원가입이 완료되었습니다</string>
+    <string name="register_bad_request">항목을 확인해주세요</string>
+    <string name="register_unauthorized">인증되지 않은 이메일 입니다</string>
+
+    <string name="verify_verify">인증하기</string>
+    <string name="verify_button">인증</string>
+    <string name="verify_code">인증번호</string>
+    <string name="verify_complement">완료</string>
+    <string name="verify_caution">이메일을 입력해주세요</string>
+    <string name="verify_unauthorized">인증번호가 잘못되었습니다</string>
+
+    <string name="duplicate_bad_request">잘못된 이메일 형식입니다</string>
+    <string name="duplicate_conflict">중복된 이메일 입니다</string>
+    <string name="duplicate_no_content">인증 메일이 전송되었습니다</string>
+
+    <string name="mypage_changePw">비밀번호 변경</string>
+    <string name="mypage_auto_participant">종목 빈자리 자동 참여</string>
+    <string name="mypage_logout">로그아웃</string>
+    <string name="mypage_delete_user">회원 탈퇴</string>
+    <string name="mypage_complete_change_password">성공적으로 변경되었습니다!</string>
+
+    <string name="change_pw_edit_text">새로운 비밀번호를 입력해주세요</string>
+    <string name="change_pw_created">비밀번호 변경이 완료되었습니다</string>
+    <string name="change_pw_re">비밀번호를 다시 입력해주세요</string>
+    <string name="change_pw_text_ko">변경하기</string>
+    <string name="change_pw_text_en">Password</string>
+    <string name="change_pw_old_password">현재 비밀번호를 입력해주세요</string>
+
+    <string name="notice_tv_all">전체 공지사항</string>
+    <string name="notice_tv_more_all">전체 공지사항 더 보기 ></string>
+    <string name="notice_tv_event">종목 공지사항</string>
+    <string name="notice_tv_event_all">종목별 공지사항 더 보기 ></string>
+
+    <string name="create_notice_title">공지 제목</string>
+    <string name="create_notice_content">공지 내용</string>
+    <string name="create_notice_complete">확인</string>
+    <string name="create_notice_cancel">취소</string>
+    <string name="create_notice_created">공지가 성공적으로 등록되었습니다</string>
+    <string name="create_notice_forbidden">권한이 없습니다</string>
+
+    <string name="delete_notice">공지사항을 삭제하시겠습니까?</string>
+    <string name="delete_notice_success">공지가 성공적으로 삭제되었습니다</string>
+
+    <string name="edit_notice">공지가 성공적으로 수정되었습니다</string>
+
+    <string name="dialog_team1">1팀</string>
+    <string name="dialog_team2">2팀</string>
+    <string name="dialog_applyers">신청자</string>
+
+    <string-array name="spinner">
+        <item>취소</item>
+        <item>수정</item>
+        <item>삭제</item>
+    </string-array>
+
 </resources>

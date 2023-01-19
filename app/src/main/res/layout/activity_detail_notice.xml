@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".feature.notice.activity.DetailNoticeActivity">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_base">
+
+        <ImageView
+            android:id="@+id/img_detail_back"
+            style="@style/AllBackButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        
+        <ImageView
+            android:id="@+id/img_detail_notice"
+            android:layout_width="12dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/cv_detail_notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_notice_detail"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_detail_notice"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_detail_back">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Theme.DMSportAndroid.TextView_notice_title"
+                    android:layout_marginHorizontal="16dp"
+                    android:textSize="24sp"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:text="@{viewModel.detailNoticeResponse.body().title}"/>
+
+                <TextView
+                    style="@style/Theme.DMSportAndroid.TextView_notice_time"
+                    android:textSize="10dp"
+                    android:text="@{viewModel.detailNoticeResponse.body().created_at}"
+                    android:layout_marginStart="16dp"/>
+
+                <TextView
+                    style="@style/Theme.DMSportAndroid.TextView_notice_content"
+                    android:text="@{viewModel.detailNoticeResponse.body().content}"
+                    android:layout_marginHorizontal="16dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

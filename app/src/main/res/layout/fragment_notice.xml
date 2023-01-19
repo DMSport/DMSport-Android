@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".feature.notice.fragment.NoticeFragment">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.dmsport_android.feature.notice.viewmodel.NoticeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_primary1">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_notice_horizon"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.13" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/Theme.DMSportAndroid.View_Main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gl_notice_horizon">
+
+            <TextView
+                android:id="@+id/tv_notice_all"
+                style="@style/TextView_Hint20"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/notice_tv_all"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_notice_admin"
+                style="@style/RecyclerView"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_notice_event"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_notice_all" />
+
+            <TextView
+                android:id="@+id/tv_notice_more_all"
+                style="@style/TextView_Light"
+                android:layout_width="wrap_content"
+                android:text="@string/notice_tv_more_all"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_notice_all"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.86"
+                app:layout_constraintStart_toEndOf="@+id/tv_notice_all"
+                app:layout_constraintTop_toTopOf="@+id/tv_notice_all" />
+
+            <TextView
+                android:id="@+id/tv_notice_event"
+                style="@style/TextView_Hint20"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/notice_tv_event"
+                app:layout_constraintVertical_bias="0.45"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_notice_all" />
+
+            <TextView
+                android:id="@+id/tv_notice_event_all"
+                style="@style/TextView_Light"
+                android:text="@string/notice_tv_event_all"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0.86"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_notice_event"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_notice_event"
+                app:layout_constraintTop_toTopOf="@id/tv_notice_event"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_notice_manager"
+                style="@style/RecyclerView"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_notice_event" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

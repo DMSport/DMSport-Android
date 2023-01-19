@@ -1,4 +1,28 @@
 
+.idea/workspace.xml
+
+.gradle/7.4/checksums/checksums.lock
+
+.gradle/7.4/dependencies-accessors/dependencies-accessors.lock
+
+.gradle/7.4/dependencies-accessors/gc.properties
+
+.gradle/7.4/executionHistory/executionHistory.lock
+
+.gradle/7.4/fileChanges/last-build.bin
+
+.gradle/7.4/fileHashes/fileHashes.bin
+
+.gradle/7.4/fileHashes/fileHashes.lock
+
+.gradle/7.4/gc.properties
+
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+
+.gradle/buildOutputCleanup/cache.properties
+
+.gradle/vcs-1/gc.properties
+
 .gradle/vcs-1/gc.properties
 
 .gradle/buildOutputCleanup/cache.properties
@@ -8,6 +32,24 @@
 .idea/gradle.xml
 
 .idea/misc.xml
+
+.gradle/7.4/executionHistory/executionHistory.bin
+
+.gradle/7.4/fileHashes/resourceHashesCache.bin
+
+.gradle/buildOutputCleanup/outputFiles.bin
+
+.gradle/file-system.probe
+
+.gradle/7.4/checksums/md5-checksums.bin
+
+.gradle/7.4/checksums/sha1-checksums.bin
+
+.idea/deploymentTargetDropDown.xml
+
+.idea/vcs.xml
+
+gradle.properties
 
 .idea/vcs.xml
 

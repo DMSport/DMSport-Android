@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".feature.deleteuser.DeleteUserActivity">
+
+    <data>
+        <variable
+            name="DeleteUserActivity"
+            type="com.example.dmsport_android.feature.deleteuser.DeleteUserActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_delete_user_back"
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/delete_user_back"/>
+
+        <LinearLayout
+            android:id="@+id/ll_delete_user_title"
+            app:layout_constraintBottom_toTopOf="@id/textInputLayout_delete_user_pw"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_delete_user_back">
+
+            <TextView
+                style="@style/TextView_Title"
+                android:text="@string/mypage_delete_user" />
+
+            <TextView style="@style/TextView_DMSport" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_delete_user_pw"
+            style="@style/TextInputLayout"
+            android:layout_marginHorizontal="16dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintVertical_bias="0.55"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/et_delete_user_pw"
+                style="@style/EditText"
+                android:inputType="textPassword"
+                android:hint="@string/login_pw"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            style="@style/Toggle"
+            app:layout_constraintEnd_toEndOf="@id/textInputLayout_delete_user_pw"
+            app:layout_constraintBottom_toBottomOf="@id/textInputLayout_delete_user_pw"
+            app:layout_constraintTop_toTopOf="@id/textInputLayout_delete_user_pw"/>
+
+        <TextView
+            android:id="@+id/tv_delete_user_forgot_pw"
+            style="@style/TextView_Des"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/login_forgotPw"
+            app:layout_constraintVertical_bias="0.65"/>
+
+        <Button
+            style="@style/Button_Primary"
+            android:onClick="@{()->DeleteUserActivity.deleteUserButton()}"
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginHorizontal="16dp"
+            android:text="@string/mypage_delete_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_delete_user_forgot_pw"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

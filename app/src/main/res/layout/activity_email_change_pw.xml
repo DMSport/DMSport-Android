@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="EmailChangePwActivity"
+            type="com.example.dmsport_android.feature.changepassword.activity.EmailChangePwActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_email_change_pw_title"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toTopOf="@id/ll_email_change_pw_editText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85">
+
+            <TextView
+                android:id="@+id/tv_change_pw"
+                style="@style/TextView_Title"
+                android:text="@string/change_pw_text_ko" />
+
+            <TextView
+                android:id="@+id/tv_change_pw_password"
+                style="@style/TextView_DMSport"
+                android:text="@string/change_pw_text_en" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_email_change_pw_editText"
+            style="@style/Theme.DMSportAndroid.LinearLayout"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_change_pw"
+                style="@style/TextInputLayout"
+                app:errorEnabled="true"
+                app:helperTextTextColor="@color/color_highLight"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_change_pw_password">
+
+                <EditText
+                    android:id="@+id/et_change_pw"
+                    style="@style/EditText"
+                    android:hint="@string/change_pw_edit_text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_change_pw_re"
+                style="@style/TextInputLayout"
+                app:errorEnabled="true"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <EditText
+                    android:id="@+id/et_change_pw_re"
+                    style="@style/EditText"
+                    android:hint="@string/change_pw_re" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_change_visible_pw"
+            style="@style/Toggle"
+            android:layout_marginTop="12dp"
+            android:onClick="@{()->EmailChangePwActivity.visible()}"
+            app:layout_constraintEnd_toEndOf="@id/ll_email_change_pw_editText"
+            app:layout_constraintTop_toTopOf="@id/ll_email_change_pw_editText" />
+
+        <ImageView
+            android:id="@+id/img_change_visible_pw_re"
+            style="@style/Toggle"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{()->EmailChangePwActivity.visibleRe()}"
+            app:layout_constraintBottom_toBottomOf="@id/ll_email_change_pw_editText"
+            app:layout_constraintEnd_toEndOf="@id/ll_email_change_pw_editText" />
+
+        <Button
+            android:id="@+id/bt_change_pw_next"
+            style="@style/Button_Primary"
+            android:layout_marginHorizontal="16dp"
+            android:onClick="@{()->EmailChangePwActivity.nextButton()}"
+            android:text="@string/register_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_email_change_pw_editText"
+            app:layout_constraintVertical_bias="0.9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
