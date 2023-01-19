@@ -23,6 +23,10 @@
 
 .gradle/vcs-1/gc.properties
 
+.gradle/vcs-1/gc.properties
+
+.gradle/buildOutputCleanup/cache.properties
+
 .idea/compiler.xml
 
 .idea/gradle.xml
@@ -46,3 +50,23 @@
 .idea/vcs.xml
 
 gradle.properties
+
+.idea/vcs.xml
+
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+
+.gradle/7.4/fileHashes/fileHashes.lock
+
+.gradle/7.4/gc.properties
+
+.gradle/7.4/fileHashes/fileHashes.bin
+
+.gradle/7.4/fileChanges/last-build.bin
+
+.gradle/7.4/executionHistory/executionHistory.lock
+
+.gradle/7.4/dependencies-accessors/gc.properties
+
+.gradle/7.4/dependencies-accessors/dependencies-accessors.lock
+
+.gradle/7.4/checksums/checksums.lock
